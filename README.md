@@ -7,13 +7,6 @@ A .NET binding to NationBuilder's Web API.
 Sample Usage
 ------------
 
-* Compile and reference the \<NationBuilderAPI.dll\> in your project.
-
-* You need to obtain an access token for your NationBuilder app in order to be able to call NationBuilder's API methods (endpoints).  You can obtain one by completing an OAuth login and token exchange.  Once you have the access token you can use it like this:
-
-# Code:
-
-
 ```C#
 using NationBuilderAPI.V1;
 
@@ -28,6 +21,11 @@ foreach (AbbreviatedPerson p in resp.results)
   outpTextBox.AppendText("E-mail: " + p.email + ", Name: " + p.first_name + " " + p.last_name + "\n");
 }
 ```
+
+* Compile this project, and reference the \<NationBuilderAPI.dll\> in your project.
+
+* You need to obtain an access token for your NationBuilder app in order to be able to call NationBuilder's API methods (endpoints).  You can obtain one by completing an OAuth login and token exchange.  Once you have the access token you can use it as shown above.
+
 
 License
 -------
