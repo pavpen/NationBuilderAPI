@@ -30,7 +30,7 @@ foreach (AbbreviatedPerson p in resp.results)
 License
 -------
 
-This project is distribute under GPL v.2.
+This project is distributed under GPL v.2.
 
 --
 Pav
