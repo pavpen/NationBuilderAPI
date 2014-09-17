@@ -7,12 +7,12 @@ A .NET binding to NationBuilder's Web API.
 Sample Usage
 ============
 
-* Compile and reference the <NationBuilderAPI.dll> in your project.
+* Compile and reference the \<NationBuilderAPI.dll\> in your project.
 
 * You need to obtain an access token for your NationBuilder app in order to be able to call NationBuilder's API methods (endpoints).  You can obtain one by completing an OAuth login and token exchange.  Once you have the access token you can use it like this:
 
 
-```
+```C#
 using NationBuilderAPI.V1;
 
 NationBuilderSession nbSession = new NationBuilderSession("your-nation-slug", "your-access-token");
