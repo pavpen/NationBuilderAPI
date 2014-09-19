@@ -23,48 +23,102 @@ namespace NationBuilderAPI.V1
             this.nbAccessToken = accessToken;
         }
 
+        /// <summary>
+        /// The index endpoint provides a paginated view of the people in a nation. Each person's data is abbreviated for the Index view.
+        /// To get a full representation use the Show endpoint (<see cref="ShowPerson"/>).
+        /// </summary>
+        /// <param name="page">Result page number.</param>
+        /// <param name="per_page">Number of results to return (max 100).</param>
+        /// <returns>The results page, and results information.</returns>
         public PeopleIndexResponse GetPeople(int page=1, int per_page = 10)
         {
-            string reqURL = "https://" + nbSlug + ".nationbuilder.com/api/v1/people?access_token=" + nbAccessToken + "&page=" + page + "&per_page=" + per_page;
-            PeopleIndexResponse res;
+            StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
+                MakeRequestUrlBuilder("people"),
+                "&page=", page.ToString(),
+                "&per_page=", per_page.ToString());
+            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            PeopleIndexResponse res = DeserializeHttpResponse<PeopleIndexResponse>(req);
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(reqURL);
-            req.Proxy = httpProxy;
-            req.ContentType = "application/json";
-            req.Accept = "application/json";
-            DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
-            serSetgs.DateTimeFormat = dateTimeFormat;
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(PeopleIndexResponse), serSetgs);
-            res = (PeopleIndexResponse)ser.ReadObject(req.GetResponse().GetResponseStream());
             return res;
         }
 
-        public PersonShowResponse ShowPerson(int id)
+        /// <summary>
+        /// The Show endpoint returns a full representation of the person with the provided ID.
+        /// </summary>
+        /// <param name="id">ID of the person to retrieve.</param>
+        /// <param name="idType">Type of ID to use, set to <c>"external"</c> to show the person based on their external ID. Leave as <c>null</c> to use NationBuilder's ID.</param>
+        /// <returns>The full person information.</returns>
+        public PersonShowResponse ShowPerson(long id, string idType = null)
         {
-            string reqURL = "https://" + nbSlug + ".nationbuilder.com/api/v1/people/" + id + "?access_token=" + nbAccessToken;
-            PersonShowResponse res;
+            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", id.ToString());
+            if (null != idType)
+            {
+                reqUrlBuilder = RequestUrlBuilderAppendQuery(reqUrlBuilder, "&id_type=", idType.ToString());
+            }
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(reqURL);
-            req.Proxy = httpProxy;
-            req.ContentType = "application/json";
-            req.Accept = "application/json";
-            DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
-            serSetgs.DateTimeFormat = dateTimeFormat;
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(PersonShowResponse), serSetgs);
-            res = (PersonShowResponse)ser.ReadObject(req.GetResponse().GetResponseStream());
+            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            PersonShowResponse res = DeserializeHttpResponse<PersonShowResponse>(req);
+
             return res;
         }
 
+        /// <summary>
+        /// Remove a webhook to have NationBuilder stop sending events to the endpoint.
+        /// </summary>
+        /// <param name="webhookId">ID of the webhook to destroy.</param>
         public void DestroyWebhook(string webhookId)
         {
-            string reqUrl = "https://" + nbSlug + ".nationbuilder.com/api/v1/webhooks/" + webhookId + "?access_token=" + nbAccessToken;
+            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks/", webhookId);
+            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, "DELETE");
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(reqUrl);
-            req.Proxy = httpProxy;
-            req.ContentType = "application/json";
-            req.Accept = "application/json";
-            req.Method = "DELETE";
             req.GetResponse();
+        }
+
+        private StringBuilder MakeRequestUrlBuilder(params string[] urlComponents)
+        {
+            StringBuilder res = new StringBuilder("https://");
+
+            res.Append(nbSlug);
+            res.Append(".nationbuilder.com/api/v1/");
+            foreach (string component in urlComponents)
+            {
+                res.Append(component);
+            }
+            res.Append("?access_token=");
+            res.Append(nbAccessToken);
+
+            return res;
+        }
+
+        private StringBuilder RequestUrlBuilderAppendQuery(StringBuilder urlBuilder, params string[] urlComponents)
+        {
+            foreach (string component in urlComponents)
+            {
+                urlBuilder.Append(component);
+            }
+
+            return urlBuilder;
+        }
+
+        private HttpWebRequest MakeHttpRequest(StringBuilder url, string method = "GET")
+        {
+            HttpWebRequest res = (HttpWebRequest)WebRequest.Create(url.ToString());
+
+            res.Proxy = httpProxy;
+            res.ContentType = "application/json";
+            res.Accept = "application/json";
+            res.Method = method;
+
+            return res;
+        }
+
+        private ResponseT DeserializeHttpResponse<ResponseT>(HttpWebRequest req)
+        {
+            DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
+            serSetgs.DateTimeFormat = dateTimeFormat;
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ResponseT), serSetgs);
+
+            return (ResponseT)ser.ReadObject(req.GetResponse().GetResponseStream());
         }
     }
 }
