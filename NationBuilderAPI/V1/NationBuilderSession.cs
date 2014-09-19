@@ -54,5 +54,17 @@ namespace NationBuilderAPI.V1
             res = (PersonShowResponse)ser.ReadObject(req.GetResponse().GetResponseStream());
             return res;
         }
+
+        public void DestroyWebhook(string webhookId)
+        {
+            string reqUrl = "https://" + nbSlug + ".nationbuilder.com/api/v1/webhooks/" + webhookId + "?access_token=" + nbAccessToken;
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(reqUrl);
+            req.Proxy = httpProxy;
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            req.Method = "DELETE";
+            req.GetResponse();
+        }
     }
 }
