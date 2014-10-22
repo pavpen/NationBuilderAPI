@@ -13,6 +13,6 @@ namespace NationBuilderAPI.V1.Webhooks.V4
     public class PersonWebhookPayload
     {
         [DataMember]
-        WebhookPerson person;
+        public WebhookPerson person;
     }
 }

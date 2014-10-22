@@ -18,6 +18,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>$10.00</c>
         /// </summary>
+        [DataMember]
         public string amount;
 
         /// <summary>
@@ -29,6 +30,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>1000</c>
         /// </summary>
+        [DataMember]
         public int amount_in_cents;
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace NationBuilderAPI.V1
         /// 
         ///     On the Create endpoint this field will be set to the person ID of the API access token's owner.
         /// </summary>
+        [DataMember]
         public int author_id;
 
         /// <summary>
@@ -53,6 +56,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Required: N
         /// </summary>
+        [DataMember]
         public Address billing_address;
 
         /// <summary>
@@ -64,6 +68,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
+        [DataMember]
         public DateTime canceled_at;
 
         /// <summary>
@@ -75,6 +80,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>4747392947582</c>
         /// </summary>
+        [DataMember]
         public string check_number;
 
         /// <summary>
@@ -86,6 +92,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>false</c>
         /// </summary>
+        [DataMember]
         public bool corporate_contribution;
 
         /// <summary>
@@ -97,6 +104,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T14:36:29-05:00</c>
         /// </summary>
+        [DataMember]
         public DateTime created_at;
 
         /// <summary>
@@ -113,6 +121,7 @@ namespace NationBuilderAPI.V1
         ///     It is strongly recommended to specify this field. If omitted, <see cref="email"/> or <see cref="first_name"/> and <see cref="last_name"/>
         ///     become required and a new <see cref="Person"/> may be created.
         /// </summary>
+        [DataMember]
         public int donor_id;
 
         /// <summary>
@@ -122,6 +131,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Required: N
         /// </summary>
+        [DataMember]
         public AbbreviatedPerson donor;
 
         /// <summary>
@@ -138,6 +148,7 @@ namespace NationBuilderAPI.V1
         ///     Use the <see cref="donor_id"/> field instead to specify a donor. By specifying any of these fields you override the value of the same
         ///     field on the donor.
         /// </summary>
+        [DataMember]
         public string email;
 
         /// <summary>
@@ -154,6 +165,7 @@ namespace NationBuilderAPI.V1
         ///     Use the <see cref="donor_id"/> field instead to specify a donor. By specifying any of these fields you override the value of the same
         ///     field on the donor.
         /// </summary>
+        [DataMember]
         public string employer;
 
         /// <summary>
@@ -165,6 +177,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
+        [DataMember]
         public DateTime failed_at;
 
         /// <summary>
@@ -181,6 +194,7 @@ namespace NationBuilderAPI.V1
         ///     Use the <see cref="donor_id"/> field instead to specify a donor. By specifying any of these fields you override the value of the same
         ///     field on the donor.
         /// </summary>
+        [DataMember]
         public string first_name;
 
         /// <summary>
@@ -192,6 +206,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>314</c>
         /// </summary>
+        [DataMember]
         public int id;
 
         /// <summary>
@@ -203,6 +218,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>890</c>
         /// </summary>
+        [DataMember]
         public int import_id;
 
         /// <summary>
@@ -214,6 +230,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>false</c>
         /// </summary>
+        [DataMember]
         public bool is_private;
 
         /// <summary>
@@ -230,6 +247,7 @@ namespace NationBuilderAPI.V1
         ///     Use the <see cref="donor_id"/> field instead to specify a donor. By specifying any of these fields you override the value of the same
         ///     field on the donor.
         /// </summary>
+        [DataMember]
         public string last_name;
 
         /// <summary>
@@ -241,6 +259,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>la_family</c>
         /// </summary>
+        [DataMember]
         public string mailing_slug;
 
         /// <summary>
@@ -252,6 +271,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>11</c>
         /// </summary>
+        [DataMember]
         public int merchant_account_id;
 
         /// <summary>
@@ -263,6 +283,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>56</c>
         /// </summary>
+        [DataMember]
         public int ngp_id;
 
         /// <summary>
@@ -274,6 +295,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>very generous</c>
         /// </summary>
+        [DataMember]
         public string note;
 
         /// <summary>
@@ -290,6 +312,7 @@ namespace NationBuilderAPI.V1
         ///     Use the <see cref="donor_id"/> field instead to specify a donor. By specifying any of these fields you override the value of the same
         ///     field on the donor.
         /// </summary>
+        [DataMember]
         public string occupation;
 
         /// <summary>
@@ -301,6 +324,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>ticket_sales</c>
         /// </summary>
+        [DataMember]
         public string page_slug;
 
         /// <summary>
@@ -317,6 +341,7 @@ namespace NationBuilderAPI.V1
         ///     Default: Cash (C). It is strongly recommended to specify one of these (<see cref="payment_type_name"/>, or
         ///     <see cref="payment_type_ngp_code"/>) fields.
         /// </summary>
+        [DataMember]
         public string payment_type_name;
 
         /// <summary>
@@ -333,6 +358,7 @@ namespace NationBuilderAPI.V1
         ///     Default: Cash (C). It is strongly recommended to specify one of these (<see cref="payment_type_name"/>, or
         ///     <see cref="payment_type_ngp_code"/>) fields.
         /// </summary>
+        [DataMember]
         public char payment_type_ngp_code;
 
         /// <summary>
@@ -344,6 +370,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>129</c>
         /// </summary>
+        [DataMember]
         public int pledge_id;
 
         /// <summary>
@@ -360,6 +387,7 @@ namespace NationBuilderAPI.V1
         ///     Use the <see cref="donor_id"/> field instead to specify a donor. By specifying any of these fields you override the value of the same
         ///     field on the donor.
         /// </summary>
+        [DataMember]
         public string recruiter_name_or_email;
 
         /// <summary>
@@ -375,6 +403,7 @@ namespace NationBuilderAPI.V1
         /// 
         ///     This field is for internal use only.
         /// </summary>
+        [DataMember]
         public int recurring_donation_id;
 
         /// <summary>
@@ -390,6 +419,7 @@ namespace NationBuilderAPI.V1
         /// 
         ///     If omitted the donation will be considered failed.
         /// </summary>
+        [DataMember]
         public DateTime succeeded_at;
 
         /// <summary>
@@ -401,6 +431,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>vip</c>
         /// </summary>
+        [DataMember]
         public string tracking_code_slug;
 
         /// <summary>
@@ -412,6 +443,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T14:36:29-05:00</c>
         /// </summary>
+        [DataMember]
         public DateTime updated_at;
 
         /// <summary>
@@ -421,6 +453,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Required: N
         /// </summary>
+        [DataMember]
         public Address work_address;
 
         // Voter add-on fields:
@@ -433,6 +466,7 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>543</c>
         /// </summary>
+        [DataMember]
         public long actblue_order_number;
 
         /// <summary>
@@ -448,6 +482,7 @@ namespace NationBuilderAPI.V1
         ///
         ///     Default: Contribution (C). It is strongly recommended to specify one of these fields.
         /// </summary>
+        [DataMember]
         public string fec_type;
 
         /// <summary>
@@ -463,6 +498,7 @@ namespace NationBuilderAPI.V1
         /// 
         ///     Default: Contribution (C). It is strongly recommended to specify one of these fields.
         /// </summary>
+        [DataMember]
         public string fec_type_ngp_code;
 
         /// <summary>
@@ -476,6 +512,7 @@ namespace NationBuilderAPI.V1
         /// 
         ///     It is strongly recommended to specify this field.
         /// </summary>
+        [DataMember]
         public Election election;
     }
 }
