@@ -47,7 +47,7 @@ namespace NationBuilderAPI.V1
         ///     On the Create endpoint this field will be set to the person ID of the API access token's owner.
         /// </summary>
         [DataMember]
-        public int author_id;
+        public long author_id;
 
         /// <summary>
         /// An address resource representing the billing address.
@@ -122,7 +122,7 @@ namespace NationBuilderAPI.V1
         ///     become required and a new <see cref="Person"/> may be created.
         /// </summary>
         [DataMember]
-        public int donor_id;
+        public long donor_id;
 
         /// <summary>
         /// An abbreviated person resource representing the donor.
@@ -207,7 +207,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>314</c>
         /// </summary>
         [DataMember]
-        public int id;
+        public long id;
 
         /// <summary>
         /// ID of the import job (if the donation was imported).
@@ -219,7 +219,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>890</c>
         /// </summary>
         [DataMember]
-        public int import_id;
+        public long import_id;
 
         /// <summary>
         /// False if the donation should not be posted publicly on the site.
@@ -272,7 +272,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>11</c>
         /// </summary>
         [DataMember]
-        public int merchant_account_id;
+        public long merchant_account_id;
 
         /// <summary>
         /// An id which is present if the donor has been imported from NGP VAN.
@@ -284,7 +284,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>56</c>
         /// </summary>
         [DataMember]
-        public int ngp_id;
+        public long ngp_id;
 
         /// <summary>
         /// A note for this donation.
@@ -371,7 +371,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>129</c>
         /// </summary>
         [DataMember]
-        public int pledge_id;
+        public long pledge_id;
 
         /// <summary>
         /// Recruiter's name or email address.
@@ -404,7 +404,7 @@ namespace NationBuilderAPI.V1
         ///     This field is for internal use only.
         /// </summary>
         [DataMember]
-        public int recurring_donation_id;
+        public long recurring_donation_id;
 
         /// <summary>
         /// Timestamp representing when the donation succeeded.
