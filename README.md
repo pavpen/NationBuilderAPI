@@ -13,7 +13,7 @@ using NationBuilderAPI.V1;
 NationBuilderSession nbSession = new NationBuilderSession("your-nation-slug", "your-access-token");
 
 // Get a page of the top 100 people in our nation:
-PeopleIndexResponse resp = nbSession.GetPeople(1, 100);
+ResultsPageResponse<AbbreviatedPerson> resp = nbSession.GetPeople(1, 100);
 
 foreach (AbbreviatedPerson p in resp.results)
 {

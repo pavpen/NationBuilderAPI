@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("A .NET binding for the NationBuilder Web API v.1")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LaRouche Policy Institute")]
-[assembly: AssemblyProduct("NationBuilderAPI")]
+[assembly: AssemblyProduct("NationBuilder API")]
 [assembly: AssemblyCopyright("Copyright ©  2014 LaRouche Policy Institute")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
