@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class PersonShowResponse
+    public class AbbreviatedPersonResponse
     {
         [DataMember]
-        public Person person;
+        public AbbreviatedPerson person;
 
         [DataMember]
         public Precinct precinct;

@@ -13,14 +13,14 @@ namespace NationBuilderAPI.V1
         /// <param name="page">Result page number.</param>
         /// <param name="per_page">Number of results to show on each page of results (max 100).</param>
         /// <returns>The requested page of results, and result information.</returns>
-        public DonationsIndexResponse GetDonations(int page = 1, int per_page = 100)
+        public ResultsPageResponse<Donation> GetDonations(int page = 1, int per_page = 100)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("donations"),
                 "&page=", page.ToString(),
                 "&per_page=", per_page.ToString());
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
-            DonationsIndexResponse res = DeserializeHttpResponse<DonationsIndexResponse>(req);
+            var res = DeserializeHttpResponse<ResultsPageResponse<Donation>>(req);
 
             return res;
         }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Reflection;
 using System.Text;
 
 
@@ -51,6 +52,28 @@ namespace NationBuilderAPI.V1
             }
 
             return urlBuilder;
+        }
+
+        protected StringBuilder RequestUrlBuilderAppendMethodNonNullParameters(StringBuilder urlBuilder, ParameterInfo[] parameterInfo,
+            params string[] parameterValues)
+        {
+            StringBuilder res = urlBuilder;
+
+            for (int c = 0; c < parameterInfo.Length; ++c)
+            {
+                string value = parameterValues[c];
+
+                if (null == value)
+                {
+                    continue;
+                }
+
+                ParameterInfo info = parameterInfo[c];
+
+                res = RequestUrlBuilderAppendQuery(res, "&", info.Name, "=", Uri.EscapeUriString(value));
+            }
+
+            return res;
         }
 
         protected HttpWebRequest MakeHttpRequest(StringBuilder url, string method = "GET")

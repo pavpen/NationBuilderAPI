@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class PeopleIndexResponse
+    public class ResultsPageResponse<ResultType>
     {
         [DataMember]
         public int page;
@@ -23,6 +20,6 @@ namespace NationBuilderAPI.V1
         public int total;
 
         [DataMember]
-        public List<AbbreviatedPerson> results;
+        public List<ResultType> results;
     }
 }
