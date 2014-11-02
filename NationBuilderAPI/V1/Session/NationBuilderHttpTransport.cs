@@ -23,10 +23,12 @@ namespace NationBuilderAPI.V1
     /// </summary>
     public class NationBuilderHttpTransport
     {
+        public const string DefaultDateTimeFormatString = "yyyy-MM-ddTHH:mm:ssK";
+
         protected string nbSlug;
         protected string nbAccessToken;
         public System.Net.IWebProxy httpProxy = null;
-        protected DateTimeFormat dateTimeFormat = new DateTimeFormat("yyyy-MM-ddTHH:mm:ssK");
+        protected DateTimeFormat dateTimeFormat = new DateTimeFormat(DefaultDateTimeFormatString);
 
         protected StringBuilder MakeRequestUrlBuilder(params string[] urlComponents)
         {
@@ -97,7 +99,7 @@ namespace NationBuilderAPI.V1
             res.Accept = "application/json";
             res.Method = method;
 
-            byte[] postDataOctets = ((MemoryStream)SerializeHttpDataObject<PostDataT>(postData)).ToArray();
+            byte[] postDataOctets = ((MemoryStream)SerializeNationBuilderObject<PostDataT>(postData)).ToArray();
             res.ContentLength = postDataOctets.Length;
 
             using (var stream = res.GetRequestStream())
@@ -118,6 +120,15 @@ namespace NationBuilderAPI.V1
             }
         }
 
+        public ObjectT DeserializeNationBuilderObject<ObjectT>(Stream stream)
+        {
+            DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
+            serSetgs.DateTimeFormat = dateTimeFormat;
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ObjectT), serSetgs);
+
+            return (ObjectT)ser.ReadObject(stream);
+        }
+
         protected ResponseT DeserializeHttpResponse<ResponseT>(HttpWebRequest req, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
         {
             HttpWebResponse response = (HttpWebResponse)req.GetResponse();
@@ -127,18 +138,14 @@ namespace NationBuilderAPI.V1
                 throw new InvalidOperationException("Unexpected HTTP status code: " + response.StatusCode + "\n" + response.StatusDescription);
             }
 
-            DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
-            serSetgs.DateTimeFormat = dateTimeFormat;
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ResponseT), serSetgs);
-
-            return (ResponseT)ser.ReadObject(response.GetResponseStream());
+            return DeserializeNationBuilderObject<ResponseT>(response.GetResponseStream());
         }
 
-        private Stream SerializeHttpDataObject<DataObjectT>(DataObjectT dataObject, Stream outputStream = null)
+        public Stream SerializeNationBuilderObject<ObjectT>(ObjectT dataObject, Stream outputStream = null)
         {
             DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
             serSetgs.DateTimeFormat = dateTimeFormat;
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DataObjectT), serSetgs);
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ObjectT), serSetgs);
             Stream res = null == outputStream ? new MemoryStream() : outputStream;
 
             ser.WriteObject(res, dataObject);
