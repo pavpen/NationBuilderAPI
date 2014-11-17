@@ -2,8 +2,9 @@
 <package >
   <metadata>
     <id>NationBuilderAPI</id>
-    <version>1.0.0</version>
-    <authors>Pavel M. Penev</authors>
+    <version>1.0.1</version>
+    <title>Nation Builder API v.1.0 .NET Wrapper</title>
+    <authors>Pavel M. Penev &lt;pavpen@gmail.com&gt;</authors>
     <owners>Pavel M. Penev</owners>
     <licenseUrl>https://github.com/pavpen/NationBuilderAPI/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/pavpen/NationBuilderAPI</projectUrl>
