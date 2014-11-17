@@ -30,18 +30,22 @@ foreach (AbbreviatedPerson p in resp.results)
 ### Receive "Person created" Webhooks in a WCF Service:
 
 ```C#
-// Epose this method in your WCF service, and use its URL to receive "Person created" webhook requests:
+// Epose this method in your WCF service, and use its URL to receive "Person created"
+// webhook requests:
 [WebInvoke(Method = "POST",
     BodyStyle = WebMessageBodyStyle.Bare,
     ResponseFormat = WebMessageFormat.Json,
     UriTemplate = "WebhookReception/NationBuilder/PersonCreated")]
 public void NationBuilder_PersonCreated(
     NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<
-      NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.PersonWebhookPayload> webhookContent)
+      NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.PersonWebhookPayload>
+        webhookContent)
 {
     NationBuilder_WebhookRequest_CheckAccess(webhookContent);
 
     // !!!: Process your webhookContent here.
+    // Use webhookContent.payload.person.ToPerson() to get the "cannonical"
+    // NationBuilderAPI.V1.Person.
 }
 
 /// <summary>
@@ -52,7 +56,8 @@ public void NationBuilder_PersonCreated(
 ///   <see cref="System.ServiceModel.Security.SecurityAccessDeniedException"/>
 ///   if access was denied.</returns>
 private bool NationBuilder_WebhookRequest_CheckAccess<PayloadT>(
-    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<PayloadT> webhookContent)
+    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<PayloadT>
+      webhookContent)
 {
     if (webhookContent.token != "your-webhook-authentication-token")
     {
