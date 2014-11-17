@@ -31,10 +31,13 @@ foreach (AbbreviatedPerson p in resp.results)
 
 ```C#
 // Epose this method in your WCF service, and use its URL to receive "Person created" webhook requests:
-[WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, ResponseFormat = WebMessageFormat.Json,
+[WebInvoke(Method = "POST",
+    BodyStyle = WebMessageBodyStyle.Bare,
+    ResponseFormat = WebMessageFormat.Json,
     UriTemplate = "WebhookReception/NationBuilder/PersonCreated")]
 public void NationBuilder_PersonCreated(
-    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.PersonWebhookPayload> webhookContent)
+    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<
+      NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.PersonWebhookPayload> webhookContent)
 {
     NationBuilder_WebhookRequest_CheckAccess(webhookContent);
 
@@ -42,15 +45,19 @@ public void NationBuilder_PersonCreated(
 }
 
 /// <summary>
-/// Validate a webhook's webhook token.
+/// Validate a webhook's security token.
 /// </summary>
 /// <param name="webhookContent">The webhook input payload to validate.</param>
-/// <returns><c>true</c>, meaning that access was granted, or throws a <see cref="System.ServiceModel.Security.SecurityAccessDeniedException"/> if access was denied.</returns>
-private bool NationBuilder_WebhookRequest_CheckAccess<PayloadT>(NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<PayloadT> webhookContent)
+/// <returns><c>true</c>, meaning that access was granted, or throws a
+///   <see cref="System.ServiceModel.Security.SecurityAccessDeniedException"/>
+///   if access was denied.</returns>
+private bool NationBuilder_WebhookRequest_CheckAccess<PayloadT>(
+    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<PayloadT> webhookContent)
 {
     if (webhookContent.token != "your-webhook-authentication-token")
     {
-        throw new System.ServiceModel.Security.SecurityAccessDeniedException("Invalid Nation Builder webhook token!");
+        throw new System.ServiceModel.Security.SecurityAccessDeniedException(
+            "Invalid Nation Builder webhook token!");
     }
 
     return true;
