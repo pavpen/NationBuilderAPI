@@ -47,7 +47,7 @@ namespace NationBuilderAPI.V1
         ///     On the Create endpoint this field will be set to the person ID of the API access token's owner.
         /// </summary>
         [DataMember]
-        public long author_id;
+        public long? author_id;
 
         /// <summary>
         /// An address resource representing the billing address.
@@ -69,7 +69,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
         [DataMember]
-        public DateTime canceled_at;
+        public DateTime? canceled_at;
 
         /// <summary>
         /// Check/wire/MO number.
@@ -178,7 +178,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
         [DataMember]
-        public DateTime failed_at;
+        public DateTime? failed_at;
 
         /// <summary>
         /// The donor's first name and middle name.
@@ -219,7 +219,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>890</c>
         /// </summary>
         [DataMember]
-        public long import_id;
+        public string import_id;
 
         /// <summary>
         /// False if the donation should not be posted publicly on the site.
@@ -284,7 +284,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>56</c>
         /// </summary>
         [DataMember]
-        public long ngp_id;
+        public string ngp_id;
 
         /// <summary>
         /// A note for this donation.
@@ -371,7 +371,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>129</c>
         /// </summary>
         [DataMember]
-        public long pledge_id;
+        public long? pledge_id;
 
         /// <summary>
         /// Recruiter's name or email address.
@@ -404,7 +404,7 @@ namespace NationBuilderAPI.V1
         ///     This field is for internal use only.
         /// </summary>
         [DataMember]
-        public long recurring_donation_id;
+        public long? recurring_donation_id;
 
         /// <summary>
         /// Timestamp representing when the donation succeeded.
@@ -420,7 +420,7 @@ namespace NationBuilderAPI.V1
         ///     If omitted the donation will be considered failed.
         /// </summary>
         [DataMember]
-        public DateTime succeeded_at;
+        public DateTime? succeeded_at;
 
         /// <summary>
         /// Tracking code for this donation.
@@ -467,7 +467,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>543</c>
         /// </summary>
         [DataMember]
-        public long actblue_order_number;
+        public string actblue_order_number;
 
         /// <summary>
         /// FEC code name.  See <see cref="FecType"/>.
@@ -514,5 +514,51 @@ namespace NationBuilderAPI.V1
         /// </summary>
         [DataMember]
         public Election election;
+
+
+        /// <summary>
+        /// Copy field values from another object (i.e. make a shallow copy).
+        /// </summary>
+        /// <param name="source">The source object to copy from.</param>
+        public void CopyFrom(NationBuilderAPI.V1.AutoSerializable.Donation source)
+        {
+            amount = source.amount;
+            amount_in_cents = source.amount_in_cents;
+            author_id = source.author_id;
+            billing_address = source.billing_address;
+            canceled_at = source.canceled_at;
+            check_number = source.check_number;
+            corporate_contribution = source.corporate_contribution;
+            created_at = source.created_at;
+            donor_id = source.donor_id;
+            donor = null == source.donor ? null : source.donor.ToAbbreviatedPerson();
+            email = source.email;
+            employer = source.employer;
+            failed_at = source.failed_at;
+            first_name = source.first_name;
+            id = source.id;
+            import_id = source.import_id;
+            is_private = source.is_private;
+            last_name = source.last_name;
+            mailing_slug = source.mailing_slug;
+            merchant_account_id = source.merchant_account_id;
+            ngp_id = source.ngp_id;
+            note = source.note;
+            occupation = source.occupation;
+            page_slug = source.page_slug;
+            payment_type_name = source.payment_type_name;
+            payment_type_ngp_code = source.payment_type_ngp_code;
+            pledge_id = source.pledge_id;
+            recruiter_name_or_email = source.recruiter_name_or_email;
+            recurring_donation_id = source.recurring_donation_id;
+            succeeded_at = source.succeeded_at;
+            tracking_code_slug = source.tracking_code_slug;
+            updated_at = source.updated_at;
+            work_address = source.work_address;
+            actblue_order_number = source.actblue_order_number;
+            fec_type = source.fec_type;
+            fec_type_ngp_code = source.fec_type_ngp_code;
+            election = source.election;
+        }
     }
 }

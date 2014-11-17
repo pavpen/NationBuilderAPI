@@ -6,14 +6,13 @@ using System.Text;
 namespace NationBuilderAPI.V1.Webhooks.V4.AutoSerializable
 {
     [DataContract]
-    [KnownType(typeof(PersonWebhookContent))]
-    public class PersonWebhookContent
+    public class WebhookContent<PayloadType>
     {
         [DataMember]
         public string nation_slug;
 
         [DataMember]
-        public PersonWebhookPayload payload;
+        public PayloadType payload;
 
         /// <summary>
         /// The webhook secret token that can be used to verify the authenticity of the submitted webhook data.

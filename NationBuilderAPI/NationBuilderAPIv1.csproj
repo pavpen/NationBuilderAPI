@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="V1\AutoSerializable\Base.cs" />
+    <Compile Include="V1\AutoSerializable\Donation.cs" />
     <Compile Include="V1\AutoSerializable\Person.cs" />
-    <Compile Include="V1\Webhooks\V4\AutoSerializable\PersonWebhookContent.cs" />
+    <Compile Include="V1\Webhooks\V4\AutoSerializable\DonationWebhookPayload.cs" />
+    <Compile Include="V1\Webhooks\V4\AutoSerializable\WebhookContent.cs" />
     <Compile Include="V1\Webhooks\V4\AutoSerializable\PersonWebhookPayload.cs" />
     <Compile Include="V1\Webhooks\V4\AutoSerializable\WebhookPerson.cs" />
     <Compile Include="V1\CommonResources\Election.cs" />
@@ -65,7 +67,8 @@
     <Compile Include="V1\Session\People.cs" />
     <Compile Include="V1\Session\Webhooks.cs" />
     <Compile Include="V1\AutoSerializable\AbbreviatedPerson.cs" />
-    <Compile Include="V1\Webhooks\V4\PersonWebhookContent.cs" />
+    <Compile Include="V1\Webhooks\V4\DonationWebhookPayload.cs" />
+    <Compile Include="V1\Webhooks\V4\WebhookContent.cs" />
     <Compile Include="V1\Webhooks\V4\PersonWebhookPayload.cs" />
     <Compile Include="V1\Webhooks\V4\WebhookPerson.cs" />
     <Compile Include="V1\Webhooks\Webhook.cs" />
