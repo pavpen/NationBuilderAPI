@@ -192,5 +192,18 @@ namespace NationBuilderAPI.V1.AutoSerializable
             created_at = DateTime.ParseExact(created_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
             updated_at = DateTime.ParseExact(updated_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
         }
+
+        /// <summary>
+        /// Convert this object to the cannonical <see cref="NationBuilderAPI.V1.AbbreviatedPerson"/>.
+        /// </summary>
+        /// <returns>The resulting AbbreviatedPerson object.</returns>
+        public NationBuilderAPI.V1.AbbreviatedPerson ToAbbreviatedPerson()
+        {
+            var res = new NationBuilderAPI.V1.AbbreviatedPerson();
+
+            res.CopyFrom(this);
+
+            return res;
+        }
     }
 }

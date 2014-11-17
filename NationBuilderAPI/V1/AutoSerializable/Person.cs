@@ -586,5 +586,18 @@ namespace NationBuilderAPI.V1.AutoSerializable
             twitter_updated_at = Base.NullableDateTimeDeserialize(twitter_updated_at_SerializationForm);
             unsubscribed_at = Base.NullableDateTimeDeserialize(unsubscribed_at_SerializationForm);
         }
+
+        /// <summary>
+        /// Convert this object to the cannonical <see cref="NationBuilderAPI.V1.Person"/>.
+        /// </summary>
+        /// <returns>The converted NationBuilderAPI.V1.Person object.</returns>
+        public NationBuilderAPI.V1.Person ToPerson()
+        {
+            var res = new NationBuilderAPI.V1.Person();
+
+            res.CopyFrom(this);
+
+            return res;
+        }
     }
 }
