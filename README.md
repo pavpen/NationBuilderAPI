@@ -22,15 +22,39 @@ foreach (AbbreviatedPerson p in resp.results)
 }
 ```
 
-* Compile this project, and reference the \<NationBuilderAPI.dll\> in your project.
+* Install the NationBuilderAPI NuGet package in your project. (If, for some reason, you can't install the NuGet package, compile this project, and reference the \<NationBuilderAPI.dll\> in your project.)
 
-* You need to obtain an access token for your NationBuilder app in order to be able to call NationBuilder's API methods (endpoints).  You can obtain one by completing an OAuth login and token exchange.  Once you have the access token you can use it as shown above.
+* You need to obtain an access token for your NationBuilder app in order to be able to call NationBuilder's API methods (endpoints).  You can obtain one by completing an OAuth login and token exchange.  Once you have the access token you can use it as shown above. (You can also create a 'test token' through Nation Builder's web API.)
+
+
+### Receive "Person created" Webhooks in a WCF Service:
+
+```C#
+void NationBuilder_PersonCreated(
+    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.PersonWebhookPayload> webhookContent)
+{
+    NationBuilder_WebhookRequest_CheckAccess(webhookContent);
+
+    // !!!: Process your webhookContent here.
+}
+
+
+private bool NationBuilder_WebhookRequest_CheckAccess<PayloadT>(NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<PayloadT> webhookContent)
+{
+    if (webhookContent.token != "your-webhook-authentication-token")
+    {
+	throw new System.ServiceModel.Security.SecurityAccessDeniedException("Invalid Nation Builder webhook token!");
+    }
+
+    return true;
+}
+```
 
 
 License
 -------
 
-This project is distributed under GPL v.2.
+This project is distributed under GPL v.2.  If you need a different license for a commercial project, send me a note.
 
 --
 Pav
