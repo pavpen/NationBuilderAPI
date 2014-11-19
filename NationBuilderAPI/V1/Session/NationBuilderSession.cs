@@ -8,7 +8,7 @@ namespace NationBuilderAPI.V1
     /// <summary>
     /// A session object used to access a nation's API.
     /// </summary>
-    public partial class NationBuilderSession : NationBuilderHttpTransport
+    public partial class NationBuilderSession : NationBuilderHttpTransport, IDisposable
     {
         /// <summary>
         /// Create a new Nation Builder session for accessing a nation's API.
@@ -19,6 +19,17 @@ namespace NationBuilderAPI.V1
         {
             this.nbSlug = slug;
             this.nbAccessToken = accessToken;
+        }
+
+        /// <summary>
+        /// Dispose of any resources taken up by this session.
+        /// 
+        /// (This <see cref="NationBuilderSession"/> is quite state-less, and has no resources to dispose.
+        /// However, it implements <see cref="IDisposable"/>, because it is conventional to think of a session as somethin disposable.)
+        /// </summary>
+        void IDisposable.Dispose()
+        {
+            // Nothing to do here.
         }
     }
 }
