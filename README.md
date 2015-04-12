@@ -30,7 +30,7 @@ foreach (AbbreviatedPerson p in resp.results)
 ### Receive "Person created" Webhooks in a WCF Service:
 
 ```C#
-// Epose this method in your WCF service, and use its URL to receive "Person created"
+// Expose this method in your WCF service, and use its URL to receive "Person created"
 // webhook requests:
 [WebInvoke(Method = "POST",
     BodyStyle = WebMessageBodyStyle.Bare,
