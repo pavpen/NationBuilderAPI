@@ -25,7 +25,7 @@ namespace NationBuilderAPI.V1
         /// Dispose of any resources taken up by this session.
         /// 
         /// (This <see cref="NationBuilderSession"/> is quite state-less, and has no resources to dispose.
-        /// However, it implements <see cref="IDisposable"/>, because it is conventional to think of a session as somethin disposable.)
+        /// However, it implements <see cref="IDisposable"/>, because it is conventional to think of a session as disposable.)
         /// </summary>
         void IDisposable.Dispose()
         {
