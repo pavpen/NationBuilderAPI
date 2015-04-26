@@ -14,3 +14,8 @@ C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\N
 C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPIv1.csprojResolveAssemblyReference.cache
 C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.dll
 C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.pdb
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\bin\Debug\NationBuilderAPI.dll
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\bin\Debug\NationBuilderAPI.pdb
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPIv1.csprojResolveAssemblyReference.cache
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.dll
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.pdb

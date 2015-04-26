@@ -177,7 +177,7 @@ namespace NationBuilderAPI.V1
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", id.ToString());
             HttpWebRequest req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person }, HttpMethodNames.Put);
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req, HttpStatusCode.Created);
+            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
 
             return res;
         }
