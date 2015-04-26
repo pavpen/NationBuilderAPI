@@ -77,7 +77,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string contact_status_name;
 
         [DataMember]
-        public bool? could_vote_status;
+        public int? could_vote_status;
 
         [DataMember]
         public string demo;
