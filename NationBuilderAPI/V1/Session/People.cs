@@ -48,6 +48,23 @@ namespace NationBuilderAPI.V1
         }
 
         /// <summary>
+        /// Retrieve the full representation of a person with a given external ID.
+        /// 
+        /// To retrieve a person by Nation Builder's ID, <see cref="ShowPerson"/>.
+        /// </summary>
+        /// <param name="externalId">The external ID of the person to retrieve.</param>
+        /// <returns>The full person information.</returns>
+        public PersonResponse ShowPersonWithExternalId(string externalId)
+        {
+            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", WebUtility.UrlEncode(externalId), "&id_type=external");
+
+            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
+
+            return res;
+        }
+
+        /// <summary>
         /// Use the match endpoint to find people that have certain attributes.
         /// A single person must match the given criteria for this endpoint to return success.
         /// 
