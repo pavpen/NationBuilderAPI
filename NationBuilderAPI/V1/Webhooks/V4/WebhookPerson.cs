@@ -18,6 +18,14 @@ namespace NationBuilderAPI.V1.Webhooks.V4
         public string profile_image_url_ssl;
 
 
+
+        /// <summary>
+        /// Create a shallow <see cref="Person"/> clone of this <see cref="WebhookPerson"/> object.
+        /// 
+        /// You may want to use this method instead of having to resolve data types at runtime,
+        /// if you need to serialize it back as a <see cref="Person"/> object.
+        /// </summary>
+        /// <returns>The <see cref="Person"/> object.</returns>
         public Person ToPerson()
         {
             return new Person(this);
