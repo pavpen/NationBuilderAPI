@@ -26,6 +26,17 @@ namespace NationBuilderAPI.V1
         }
 
         /// <summary>
+        /// Get an enumeration of all the donations in a nation.
+        /// </summary>
+        /// <param name="page">Results page to start from.</param>
+        /// <param name="per_page">Number of results to retrieve on each page of results (max 100).</param>
+        /// <returns>All the donations in the nation.</returns>
+        public IEnumerable<Donation> GetDonationsResults(int page = 1, int per_page = 100)
+        {
+            return FollowingResults(GetDonations(page, per_page));
+        }
+
+        /// <summary>
         /// This endpoint creates a donation with the provided data.
         /// It returns a full representation of the donation that was created.
         /// If the creation step fails, it returns an error.

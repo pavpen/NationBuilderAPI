@@ -25,23 +25,39 @@ namespace NationBuilderAPI.V1
     {
         public const string DefaultDateTimeFormatString = "yyyy-MM-ddTHH:mm:ssK";
 
-        protected string nbSlug;
-        protected string nbAccessToken;
-        public System.Net.IWebProxy httpProxy = null;
-        protected DateTimeFormat dateTimeFormat = new DateTimeFormat(DefaultDateTimeFormatString);
+        protected string NationSlug;
+        protected string AccessToken;
+        public System.Net.IWebProxy HttpProxy = null;
+        protected DateTimeFormat DateTimeFormat = new DateTimeFormat(DefaultDateTimeFormatString);
 
         protected StringBuilder MakeRequestUrlBuilder(params string[] urlComponents)
         {
             StringBuilder res = new StringBuilder("https://");
 
-            res.Append(nbSlug);
+            res.Append(NationSlug);
             res.Append(".nationbuilder.com/api/v1/");
             foreach (string component in urlComponents)
             {
                 res.Append(component);
             }
             res.Append("?access_token=");
-            res.Append(nbAccessToken);
+            res.Append(AccessToken);
+
+            return res;
+        }
+
+        /// <summary>
+        /// Create a <see cref="StringBuilder"/> object containing the URI for authenticated request from the URI for an unauthenticated request.
+        /// 
+        /// You can use this method to construct the final URLs from the <c>next</c> and <c>prev</c> URLs returned in responses containing result pages.
+        /// </summary>
+        /// <param name="requestUrl">The unauthenticated URL.</param>
+        /// <returns>A <c>StringBuilder</c> containing the authenticated URL.</returns>
+        protected StringBuilder MakeRequestUrlBuilderFromUnauthenticatedUrl(string requestUrl)
+        {
+            StringBuilder res = new StringBuilder(requestUrl);
+
+            res.Append("&access_token=").Append(AccessToken);
 
             return res;
         }
@@ -82,7 +98,7 @@ namespace NationBuilderAPI.V1
         {
             HttpWebRequest res = (HttpWebRequest)WebRequest.Create(url.ToString());
 
-            res.Proxy = httpProxy;
+            res.Proxy = HttpProxy;
             res.ContentType = "application/json";
             res.Accept = "application/json";
             res.Method = method;
@@ -94,7 +110,7 @@ namespace NationBuilderAPI.V1
         {
             HttpWebRequest res = (HttpWebRequest)WebRequest.Create(url.ToString());
 
-            res.Proxy = httpProxy;
+            res.Proxy = HttpProxy;
             res.ContentType = "application/json";
             res.Accept = "application/json";
             res.Method = method;
@@ -123,7 +139,7 @@ namespace NationBuilderAPI.V1
         public ObjectT DeserializeNationBuilderObject<ObjectT>(Stream stream)
         {
             DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings();
-            settings.DateTimeFormat = dateTimeFormat;
+            settings.DateTimeFormat = DateTimeFormat;
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObjectT), settings);
 
             return (ObjectT)serializer.ReadObject(stream);
@@ -144,7 +160,7 @@ namespace NationBuilderAPI.V1
         public Stream SerializeNationBuilderObject<ObjectT>(ObjectT dataObject, Stream outputStream = null)
         {
             DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
-            serSetgs.DateTimeFormat = dateTimeFormat;
+            serSetgs.DateTimeFormat = DateTimeFormat;
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ObjectT), serSetgs);
             Stream res = null == outputStream ? new MemoryStream() : outputStream;
 

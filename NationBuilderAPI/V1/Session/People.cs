@@ -28,6 +28,17 @@ namespace NationBuilderAPI.V1
         }
 
         /// <summary>
+        /// Get an enumeration of all people in the nation as <see cref="AbbreviatedPerson"/> objects.
+        /// </summary>
+        /// <param name="page">The result page to start from.</param>
+        /// <param name="per_page">The number of result to fetch in each HTTP request.  The maximum is 100.</param>
+        /// <returns>An enumeration of all people in the nation.</returns>
+        public IEnumerable<AbbreviatedPerson> GetPeopleResults(int page = 1, int per_page = 100)
+        {
+            return FollowingResults(GetPeople(page, per_page));
+        }
+
+        /// <summary>
         /// The Show endpoint returns a full representation of the person with the provided ID.
         /// </summary>
         /// <param name="id">ID of the person to retrieve.</param>
@@ -142,6 +153,50 @@ namespace NationBuilderAPI.V1
         }
 
         /// <summary>
+        /// Get an enumeration of all people that have certain attributes.
+        /// </summary>
+        /// <param name="first_name">First name search parameter.</param>
+        /// <param name="last_name">Last name search parameter.</param>
+        /// <param name="city">City of the primary address of people to match.</param>
+        /// <param name="state">State of the primary address of people to match.</param>
+        /// <param name="sex">Sex of the people to match (optional, M or F).</param>
+        /// <param name="birthdate">Date of birth of the people to match.</param>
+        /// <param name="updated_since">People updated since the given date.</param>
+        /// <param name="with_mobile">Only people with mobile phone numbers.</param>
+        /// <param name="custom_values">
+        ///     Match custom field values.
+        ///     It takes a nested format, e.g. {"custom_values": {"my_field_slug": "abcd"}}.
+        ///     In the query string this parameter would have to be encoded as custom_values%5Bmy_field_slug%5D=abcd.
+        /// </param>
+        /// <param name="civicrm_id">civicrm_id of the person to match.</param>
+        /// <param name="county_file_id">county_file_id of the person to match.</param>
+        /// <param name="state_file_id">state_file_id of the person to match.</param>
+        /// <param name="datatrust_id">datatrust_id of the person to match.</param>
+        /// <param name="dw_id">dw_id of the person to match.</param>
+        /// <param name="media_market_id">media_market_id of the person to match.</param>
+        /// <param name="membership_level_id">membership_level_id of the person to match.</param>
+        /// <param name="ngp_id">ngp_id of the person to match.</param>
+        /// <param name="pf_strat_id">pf_strat_id of the person to match.</param>
+        /// <param name="van_id">van_id of the person to match.</param>
+        /// <param name="salesforce_id">salesforce_id of the person to match.</param>
+        /// <param name="rnc_id">rnc_id of the person to match.</param>
+        /// <param name="rnc_regid">rnc_regid of the person to match.</param>
+        /// <param name="external_id">external_id of the person to match.</param>
+        /// <param name="page">Results page to start from (default is 1).</param>
+        /// <param name="per_page">Number of results to retrieve in each page (default: 100, max: 100).</param>
+        /// <returns>The people matching the specified criteria.</returns>
+        public IEnumerable<AbbreviatedPerson> SearchPeopleResults(string first_name = null, string last_name = null, string city = null, string state = null, string sex = null,
+            string birthdate = null, string updated_since = null, string with_mobile = null, string custom_values = null, string civicrm_id = null,
+            string county_file_id = null, string state_file_id = null, string datatrust_id = null, int? dw_id = null, string media_market_id = null,
+            string membership_level_id = null, string ngp_id = null, string pf_strat_id = null, string van_id = null, string salesforce_id = null,
+            string rnc_id = null, string rnc_regid = null, string external_id = null, int page = 1, int per_page = 100)
+        {
+            return FollowingResults(SearchPeople(first_name, last_name, city, state, sex, birthdate, updated_since, with_mobile, custom_values,
+                civicrm_id, county_file_id, state_file_id, datatrust_id, dw_id, media_market_id, membership_level_id, ngp_id, pf_strat_id, van_id, salesforce_id,
+                rnc_id, rnc_regid, external_id, page, per_page));
+        }
+
+        /// <summary>
         /// Use this endpoint to search for people near a location defined by latitude and longitude.
         /// </summary>
         /// <param name="location">Origin of search in the format latitude,longitude. (required)</param>
@@ -159,6 +214,19 @@ namespace NationBuilderAPI.V1
             var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
 
             return res;
+        }
+
+        /// <summary>
+        /// Get an enumeration of all people near a location defined by latitude and longitude.
+        /// </summary>
+        /// <param name="location">Origin of search in the format latitude,longitude. (required)</param>
+        /// <param name="distance">The radius in miles for which to include results. (optional, default: 1 mile)</param>
+        /// <param name="page">Results page to start from. (default: 1)</param>
+        /// <param name="per_page">Number of results to retireve per page. (default: 100, max: 100)</param>
+        /// <returns>The people in the specified search radius.</returns>
+        public IEnumerable<Person> NearbyPeopleResults(string location, double distance = 1.0, int page = 1, int per_page = 100)
+        {
+            return FollowingResults(NearbyPeople(location, distance, page, per_page));
         }
 
         /// <summary>
