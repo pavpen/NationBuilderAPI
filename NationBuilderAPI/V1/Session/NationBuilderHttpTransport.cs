@@ -24,6 +24,8 @@ namespace NationBuilderAPI.V1
     public class NationBuilderHttpTransport
     {
         public const string DefaultDateTimeFormatString = "yyyy-MM-ddTHH:mm:ssK";
+        public const string DefaultBirthDateFormatString = "yyyy-MM-dd";
+        public static string[] DefaultBirthDateFormatStrings = new string[] { DefaultDateTimeFormatString, DefaultBirthDateFormatString };
 
         protected string NationSlug;
         protected string AccessToken;

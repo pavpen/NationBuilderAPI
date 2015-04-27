@@ -364,7 +364,7 @@ namespace NationBuilderAPI.V1
         {
             birthdate = null == birthdate_SerializationForm ?
                 (DateTime?)null :
-                DateTime.ParseExact(birthdate_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+                DateTime.ParseExact(birthdate_SerializationForm, NationBuilderHttpTransport.DefaultBirthDateFormatStrings, CultureInfo.InvariantCulture, DateTimeStyles.None);
             created_at = DateTimeOffset.ParseExact(created_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
             updated_at = DateTimeOffset.ParseExact(updated_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
         }
