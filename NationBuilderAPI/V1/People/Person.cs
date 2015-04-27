@@ -1197,7 +1197,7 @@ namespace NationBuilderAPI.V1
         /// The clone will share member objects with this object!
         /// </summary>
         /// <returns>The cloned Person object.</returns>
-        public Person ShallowClone()
+        new public Person ShallowClone()
         {
             return (Person)this.MemberwiseClone();
         }
