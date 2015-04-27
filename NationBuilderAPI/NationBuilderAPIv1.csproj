@@ -41,15 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="V1\AutoSerializable\Base.cs" />
-    <Compile Include="V1\AutoSerializable\Donation.cs" />
-    <Compile Include="V1\AutoSerializable\Person.cs" />
-    <Compile Include="V1\Webhooks\V4\AutoSerializable\DonationWebhookPayload.cs" />
-    <Compile Include="V1\Webhooks\V4\AutoSerializable\WebhookContent.cs" />
-    <Compile Include="V1\Webhooks\V4\AutoSerializable\PersonWebhookPayload.cs" />
-    <Compile Include="V1\Webhooks\V4\AutoSerializable\WebhookPerson.cs" />
+    <Compile Include="V1\Donations\Donation.cs" />
+    <Compile Include="V1\People\Person.cs" />
     <Compile Include="V1\CommonResources\Election.cs" />
     <Compile Include="V1\CommonResources\Enumerations.cs" />
-    <Compile Include="V1\Donations\Donation.cs" />
     <Compile Include="V1\CommonResources\ResultsPageResponse.cs" />
     <Compile Include="V1\Donations\DonationTransportObject.cs" />
     <Compile Include="V1\People\AbbreviatedPersonResponse.cs" />
@@ -57,16 +52,14 @@
     <Compile Include="V1\People\RegisterResponse.cs" />
     <Compile Include="V1\Session\Donations.cs" />
     <Compile Include="V1\Session\NationBuilderHttpTransport.cs" />
-    <Compile Include="V1\People\AbbreviatedPerson.cs" />
     <Compile Include="V1\CommonResources\Address.cs" />
     <Compile Include="V1\Session\NationBuilderSession.cs" />
-    <Compile Include="V1\People\Person.cs" />
     <Compile Include="V1\People\PersonResponse.cs" />
     <Compile Include="V1\CommonResources\Precinct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V1\Session\People.cs" />
     <Compile Include="V1\Session\Webhooks.cs" />
-    <Compile Include="V1\AutoSerializable\AbbreviatedPerson.cs" />
+    <Compile Include="V1\People\AbbreviatedPerson.cs" />
     <Compile Include="V1\Webhooks\V4\DonationWebhookPayload.cs" />
     <Compile Include="V1\Webhooks\V4\WebhookContent.cs" />
     <Compile Include="V1\Webhooks\V4\PersonWebhookPayload.cs" />

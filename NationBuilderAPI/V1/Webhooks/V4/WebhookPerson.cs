@@ -16,5 +16,11 @@ namespace NationBuilderAPI.V1.Webhooks.V4
 
         [DataMember]
         public string profile_image_url_ssl;
+
+
+        public Person ToPerson()
+        {
+            return new Person(this);
+        }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
+
+using NationBuilderAPI.V1.AutoSerializable;
 
 namespace NationBuilderAPI.V1
 {
@@ -13,14 +14,20 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// The date at which to consider a customer no longer active.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? active_customer_expires_at;
+
+        [DataMember(Name = "active_customer_expires_at")]
+        private string active_customer_expires_at_SerializationForm;
+
 
         /// <summary>
         /// The date from which a customer is considered active.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? active_customer_started_at;
+
+        [DataMember(Name = "active_customer_started_at")]
+        private string active_customer_started_at_SerializationForm;
+
 
         /// <summary>
         /// The resource ID of the person who created this person in the nation.
@@ -46,11 +53,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string availability;
 
+
         /// <summary>
         /// The time and date this person was banned.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? banned_at;
+
+        [DataMember(Name = "banned_at")]
+        private string banned_at_SerializationForm;
+
 
         /// <summary>
         /// An address resource representing this person’s billing address.
@@ -164,6 +175,12 @@ namespace NationBuilderAPI.V1
         /// </summary>
         [DataMember]
         public string demo;
+
+        // This is a boolean flag that lets us know if this person is on a do not call list.
+        //public bool do_not_call;
+
+        // This is a boolean flag that lets us know if this person is on a do not contact list.
+        //public bool do_not_contact;
 
         /// <summary>
         /// Aggregate amount of all this person’s donations in cents.
@@ -306,11 +323,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string facebook_profile_url;
 
+
         /// <summary>
         /// The date and time this person's Facebook info was last updated.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? facebook_updated_at;
+
+        [DataMember(Name = "facebook_updated_at")]
+        private string facebook_updated_at_SerializationForm;
+
 
         /// <summary>
         /// This person's Facebook username.
@@ -339,45 +360,65 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// Date and time of this person's first donation.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? first_donated_at;
 
+        [DataMember(Name = "first_donated_at")]
+        private string first_donated_at_SerializationForm;
+
+
         // date and time that this person first raised donation:
-        [DataMember]
         public DateTimeOffset? first_fundraised_at;
+
+        [DataMember(Name = "first_fundraised_at")]
+        private string first_fundraised_at_SerializationForm;
+
 
         /// <summary>
         /// Date and time of this person's first invoice.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? first_invoice_at;
 
-        // the person's first name and middle names:
+        [DataMember(Name = "first_invoice_at")]
+        private string first_invoice_at_SerializationForm;
+
+        // the person's first name:
         //public string first_name;
 
         /// <summary>
         /// Date and time that this user first became a prospect.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? first_prospect_at;
+
+        [DataMember(Name = "first_prospect_at")]
+        private string first_prospect_at_SerializationForm;
+
 
         /// <summary>
         /// Date and time that this user was first recruited.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? first_recruited_at;
+
+        [DataMember(Name = "first_recruited_at")]
+        private string first_recruited_at_SerializationForm;
+
 
         /// <summary>
         /// Date and time that this user became a supporter for the first time.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? first_supporter_at;
+
+        [DataMember(Name = "first_supporter_at")]
+        private string first_supporter_at_SerializationForm;
+
 
         /// <summary>
         /// Date and time that this person first volunteered.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? first_volunteer_at;
+
+        [DataMember(Name = "first_volunteer_at")]
+        private string first_volunteer_at_SerializationForm;
+
 
         /// <summary>
         /// This person’s full name.
@@ -535,11 +576,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public long? last_call_id;
 
+
         /// <summary>
         /// The time and date of the last time this person was contacted.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? last_contacted_at;
+
+        [DataMember(Name = "last_contacted_at")]
+        private string last_contacted_at_SerializationForm;
+
 
         /// <summary>
         /// An abbreviated person resource representing the last user who contacted this person.
@@ -547,23 +592,32 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public AbbreviatedPerson last_contacted_by;
 
+
         /// <summary>
         /// The time and date of this person’s last donation.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? last_donated_at;
+
+        [DataMember(Name = "last_donated_at")]
+        private string last_donated_at_SerializationForm;
+
 
         /// <summary>
         /// The time and date of the last time this person fundraised.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? last_fundraised_at;
+
+        [DataMember(Name = "last_fundraised_at")]
+        private string last_fundraised_at_SerializationForm;
+
 
         /// <summary>
         /// The time and date of this person’s last invoice.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? last_invoice_at;
+
+        [DataMember(Name = "last_invoice_at")]
+        private string last_invoice_at_SerializationForm;
 
         // this person's last name:
         //public string last_name;
@@ -571,8 +625,11 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// The time and date of this person’s last rule violation.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? last_rule_violation_at;
+
+        [DataMember(Name = "last_rule_violation_at")]
+        private string last_rule_violation_at_SerializationForm;
+
 
         /// <summary>
         /// The full (legal) name of this person.
@@ -613,11 +670,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public Address meetup_address;
 
+
         /// <summary>
         /// The time and date that this user’s membership expires.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? membership_expires_at;
+
+        [DataMember(Name = "membership_expires_at")]
+        private string membership_expires_at_SerializationForm;
+
 
         /// <summary>
         /// The name of the level of this person’s membership.
@@ -625,11 +686,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string membership_level_name;
 
+
         /// <summary>
         /// The time and date that this user started a membership.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? membership_started_at;
+
+        [DataMember(Name = "membership_started_at")]
+        private string membership_started_at_SerializationForm;
+
 
         /// <summary>
         /// This person’s middle name.
@@ -664,8 +729,10 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// The date and time the note attached to this person was updated.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? note_updated_at;
+
+        [DataMember(Name = "note_updated_at")]
+        private string note_updated_at_SerializationForm;
 
         // a note to attach to the person's profile:
         //public string note;
@@ -772,11 +839,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string primary_email_id;
 
+
         /// <summary>
         /// The date and time that this person’s priority level changed.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? priority_level_changed_at;
+
+        [DataMember(Name = "priority_level_changed_at")]
+        private string priority_level_changed_at_SerializationForm;
+
 
         /// <summary>
         /// The priority level associated with this person.
@@ -829,11 +900,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public Address registered_address;
 
+
         /// <summary>
         /// The date this person registered to become a voter.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? registered_at;
+
+        [DataMember(Name = "registered_at")]
+        private string registered_at_SerializationForm;
+
 
         /// <summary>
         /// This person’s religion.
@@ -899,11 +974,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string suffix;
 
+
         /// <summary>
         /// The time and date that this person’s support level changed.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? support_level_changed_at;
+
+        [DataMember(Name = "support_level_changed_at")]
+        private string support_level_changed_at_SerializationForm;
+
 
         // the level of support this person has for your nation, expressed as a number between 1 and 5,
         //  1 being Strong support, 5 meaning strong opposition, and 3 meaning undecided.
@@ -972,8 +1051,11 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// The last time this person’s Twitter record was updated.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? twitter_updated_at;
+
+        [DataMember(Name = "twitter_updated_at")]
+        private string twitter_updated_at_SerializationForm;
+
 
         /// <summary>
         /// The URL of the website that this person included in their Twitter profile.
@@ -981,11 +1063,15 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string twitter_website;
 
+
         /// <summary>
         /// The date/time that this person unsubscribed from emails.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? unsubscribed_at;
+
+        [DataMember(Name = "unsubscribed_at")]
+        private string unsubscribed_at_SerializationForm;
+
 
         // the timestamp representing when this person was last updated:
         //public DateTimeOffset updated_at;
@@ -1032,157 +1118,88 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string work_phone_number;
 
-        /// <summary>
-        /// Copy field values from another object.
-        /// </summary>
-        /// <param name="source">The source object to copy from.</param>
-        public void CopyFrom(NationBuilderAPI.V1.AutoSerializable.Person source)
-        {
-            this.CopyFrom((NationBuilderAPI.V1.AutoSerializable.AbbreviatedPerson)source);
 
-            active_customer_expires_at = source.active_customer_expires_at;
-            active_customer_started_at = source.active_customer_started_at;
-            author_id = source.author_id;
-            author = source.author;
-            auto_import_id = source.auto_import_id;
-            availability = source.availability;
-            banned_at = source.banned_at;
-            billing_address = source.billing_address;
-            bio = source.bio;
-            call_status_id = source.call_status_id;
-            call_status_name = source.call_status_name;
-            capital_amount_in_cents = source.capital_amount_in_cents;
-            children_count = source.children_count;
-            church = source.church;
-            city_sub_district = source.city_sub_district;
-            closed_invoices_amount_in_cents = source.closed_invoices_amount_in_cents;
-            closed_invoices_count = source.closed_invoices_count;
-            contact_status_id = source.contact_status_id;
-            contact_status_name = source.contact_status_name;
-            could_vote_status = source.could_vote_status;
-            demo = source.demo;
-            donations_amount_in_cents = source.donations_amount_in_cents;
-            donations_amount_this_cycle_in_cents = source.donations_amount_this_cycle_in_cents;
-            donations_count_this_cycle = source.donations_count_this_cycle;
-            donations_count = source.donations_count;
-            donations_pledged_amount_in_cents = source.donations_pledged_amount_in_cents;
-            donations_raised_amount_in_cents = source.donations_raised_amount_in_cents;
-            donations_raised_amount_this_cycle_in_cents = source.donations_raised_amount_this_cycle_in_cents;
-            donations_raised_count_this_cycle = source.donations_raised_count_this_cycle;
-            donations_raised_count = source.donations_raised_count;
-            donations_to_raise_amount_in_cents = source.donations_to_raise_amount_in_cents;
-            email1_is_bad = source.email1_is_bad;
-            email1 = source.email1;
-            email2_is_bad = source.email2_is_bad;
-            email2 = source.email2;
-            email3_is_bad = source.email3_is_bad;
-            email3 = source.email3;
-            email4_is_bad = source.email4_is_bad;
-            email4 = source.email4;
-            ethnicity = source.ethnicity;
-            facebook_address = source.facebook_address;
-            facebook_profile_url = source.facebook_profile_url;
-            facebook_updated_at = source.facebook_updated_at;
-            facebook_username = source.facebook_username;
-            fax_number = source.fax_number;
-            federal_donotcall = source.federal_donotcall;
-            first_donated_at = source.first_donated_at;
-            first_fundraised_at = source.first_fundraised_at;
-            first_invoice_at = source.first_invoice_at;
-            first_prospect_at = source.first_prospect_at;
-            first_recruited_at = source.first_recruited_at;
-            first_supporter_at = source.first_supporter_at;
-            first_volunteer_at = source.first_volunteer_at;
-            full_name = source.full_name;
-            home_address = source.home_address;
-            import_id = source.import_id;
-            inferred_party = source.inferred_party;
-            inferred_support_level = source.inferred_support_level;
-            invoice_payments_amount_in_cents = source.invoice_payments_amount_in_cents;
-            invoice_payments_referred_amount_in_cents = source.invoice_payments_referred_amount_in_cents;
-            invoices_amount_in_cents = source.invoices_amount_in_cents;
-            invoices_count = source.invoices_count;
-            is_deceased = source.is_deceased;
-            is_donor = source.is_donor;
-            is_fundraiser = source.is_fundraiser;
-            is_ignore_donation_limits = source.is_ignore_donation_limits;
-            is_leaderboardable = source.is_leaderboardable;
-            is_mobile_bad = source.is_mobile_bad;
-            is_possible_duplicate = source.is_possible_duplicate;
-            is_profile_private = source.is_profile_private;
-            is_profile_searchable = source.is_profile_searchable;
-            is_prospect = source.is_prospect;
-            is_supporter = source.is_supporter;
-            is_survey_question_private = source.is_survey_question_private;
-            language = source.language;
-            last_call_id = source.last_call_id;
-            last_contacted_at = source.last_contacted_at;
-            last_contacted_by = null == source.last_contacted_by ? null : source.last_contacted_by.ToAbbreviatedPerson();
-            last_donated_at = source.last_donated_at;
-            last_fundraised_at = source.last_fundraised_at;
-            last_invoice_at = source.last_invoice_at;
-            last_rule_violation_at = source.last_rule_violation_at;
-            legal_name = source.legal_name;
-            locale = source.locale;
-            mailing_address = source.mailing_address;
-            marital_status = source.marital_status;
-            media_market_name = source.media_market_name;
-            meetup_address = source.meetup_address;
-            membership_expires_at = source.membership_expires_at;
-            membership_level_name = source.membership_level_name;
-            membership_started_at = source.membership_started_at;
-            middle_name = source.middle_name;
-            mobile_normalized = source.mobile_normalized;
-            nbec_precinct_code = source.nbec_precinct_code;
-            note_updated_at = source.note_updated_at;
-            outstanding_invoices_amount_in_cents = source.outstanding_invoices_amount_in_cents;
-            outstanding_invoices_count = source.outstanding_invoices_count;
-            overdue_invoices_count = source.overdue_invoices_count;
-            page_slug = source.page_slug;
-            parent_id = source.parent_id;
-            parent = null == parent ? null : source.parent.ToAbbreviatedPerson();
-            party_member = source.party_member;
-            phone_normalized = source.phone_normalized;
-            phone_time = source.phone_time;
-            precinct_code = source.precinct_code;
-            precinct_name = source.precinct_name;
-            prefix = source.prefix;
-            previous_party = source.previous_party;
-            primary_email_id = source.primary_email_id;
-            priority_level_changed_at = source.priority_level_changed_at;
-            priority_level = source.priority_level;
-            profile_content_html = source.profile_content_html;
-            profile_content = source.profile_content;
-            profile_headline = source.profile_headline;
-            received_capital_amount_in_cents = source.received_capital_amount_in_cents;
-            recruiter = null == source.recruiter ? null : source.recruiter.ToAbbreviatedPerson();
-            recruits_count = source.recruits_count;
-            registered_address = source.registered_address;
-            registered_at = source.registered_at;
-            religion = source.religion;
-            rule_violations_count = source.rule_violations_count;
-            spent_capital_amount_in_cents = source.spent_capital_amount_in_cents;
-            submitted_address = source.submitted_address;
-            subnations = source.subnations;
-            suffix = source.suffix;
-            support_level_changed_at = source.support_level_changed_at;
-            support_probability_score = source.support_probability_score;
-            turnout_probability_score = source.turnout_probability_score;
-            twitter_address = source.twitter_address;
-            twitter_description = source.twitter_description;
-            twitter_followers_count = source.twitter_followers_count;
-            twitter_friends_count = source.twitter_friends_count;
-            twitter_location = source.twitter_location;
-            twitter_login = source.twitter_login;
-            twitter_updated_at = source.twitter_updated_at;
-            twitter_website = source.twitter_website;
-            unsubscribed_at = source.unsubscribed_at;
-            user_submitted_address = source.user_submitted_address;
-            username = source.username;
-            warnings_count = source.warnings_count;
-            website = source.website;
-            work_address = source.work_address;
-            work_phone_number = source.work_phone_number;
+        public Person() { }
+
+        /// <summary>
+        /// Create a <see cref="Person"/> object which is a shallow copy of another object.
+        /// </summary>
+        /// <param name="copySource">The object to copy.</param>
+        public Person(Person copySource)
+        {
+            foreach (var info in typeof(Person).GetFields())
+            {
+                info.SetValue(this, info.GetValue(copySource));
+            }
+        }
+
+        [OnSerializing]
+        void OnSerializing(StreamingContext context)
+        {
+            active_customer_expires_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(active_customer_expires_at);
+            active_customer_started_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(active_customer_started_at);
+            banned_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(banned_at);
+            facebook_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(facebook_updated_at);
+            first_donated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_donated_at);
+            first_fundraised_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_fundraised_at);
+            first_invoice_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_invoice_at);
+            first_prospect_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_prospect_at);
+            first_recruited_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_recruited_at);
+            first_supporter_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_supporter_at);
+            first_volunteer_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_volunteer_at);
+            last_contacted_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_contacted_at);
+            last_donated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_donated_at);
+            last_fundraised_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_fundraised_at);
+            last_invoice_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_invoice_at);
+            last_rule_violation_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_rule_violation_at);
+            membership_expires_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(membership_expires_at);
+            membership_started_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(membership_started_at);
+            note_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(note_updated_at);
+            priority_level_changed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(priority_level_changed_at);
+            registered_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(registered_at);
+            support_level_changed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(support_level_changed_at);
+            twitter_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(twitter_updated_at);
+            unsubscribed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(unsubscribed_at);
+        }
+
+        [OnDeserialized]
+        void OnDeserialized(StreamingContext context)
+        {
+            active_customer_expires_at = Base.NullableDateTimeOffsetDeserialize(active_customer_expires_at_SerializationForm);
+            active_customer_started_at = Base.NullableDateTimeOffsetDeserialize(active_customer_started_at_SerializationForm);
+            banned_at = Base.NullableDateTimeOffsetDeserialize(banned_at_SerializationForm);
+            facebook_updated_at = Base.NullableDateTimeOffsetDeserialize(facebook_updated_at_SerializationForm);
+            first_donated_at = Base.NullableDateTimeOffsetDeserialize(first_donated_at_SerializationForm);
+            first_fundraised_at = Base.NullableDateTimeOffsetDeserialize(first_fundraised_at_SerializationForm);
+            first_invoice_at = Base.NullableDateTimeOffsetDeserialize(first_invoice_at_SerializationForm);
+            first_prospect_at = Base.NullableDateTimeOffsetDeserialize(first_prospect_at_SerializationForm);
+            first_recruited_at = Base.NullableDateTimeOffsetDeserialize(first_recruited_at_SerializationForm);
+            first_supporter_at = Base.NullableDateTimeOffsetDeserialize(first_supporter_at_SerializationForm);
+            first_volunteer_at = Base.NullableDateTimeOffsetDeserialize(first_volunteer_at_SerializationForm);
+            last_contacted_at = Base.NullableDateTimeOffsetDeserialize(last_contacted_at_SerializationForm);
+            last_donated_at = Base.NullableDateTimeOffsetDeserialize(last_donated_at_SerializationForm);
+            last_fundraised_at = Base.NullableDateTimeOffsetDeserialize(last_fundraised_at_SerializationForm);
+            last_invoice_at = Base.NullableDateTimeOffsetDeserialize(last_invoice_at_SerializationForm);
+            last_rule_violation_at = Base.NullableDateTimeOffsetDeserialize(last_rule_violation_at_SerializationForm);
+            membership_expires_at = Base.NullableDateTimeOffsetDeserialize(membership_expires_at_SerializationForm);
+            membership_started_at = Base.NullableDateTimeOffsetDeserialize(membership_started_at_SerializationForm);
+            note_updated_at = Base.NullableDateTimeOffsetDeserialize(note_updated_at_SerializationForm);
+            priority_level_changed_at = Base.NullableDateTimeOffsetDeserialize(priority_level_changed_at_SerializationForm);
+            registered_at = Base.NullableDateTimeOffsetDeserialize(registered_at_SerializationForm);
+            support_level_changed_at = Base.NullableDateTimeOffsetDeserialize(support_level_changed_at_SerializationForm);
+            twitter_updated_at = Base.NullableDateTimeOffsetDeserialize(twitter_updated_at_SerializationForm);
+            unsubscribed_at = Base.NullableDateTimeOffsetDeserialize(unsubscribed_at_SerializationForm);
+        }
+
+        /// <summary>
+        /// Create a shallow clone of this object.
+        /// 
+        /// The clone will share member objects with this object!
+        /// </summary>
+        /// <returns>The cloned Person object.</returns>
+        public Person ShallowClone()
+        {
+            return (Person)this.MemberwiseClone();
         }
     }
 }

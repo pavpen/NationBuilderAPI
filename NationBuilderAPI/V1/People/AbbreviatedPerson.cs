@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace NationBuilderAPI.V1
 {
@@ -13,8 +12,10 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// This person's birth date.
         /// </summary>
-        [DataMember]
         public DateTime? birthdate;
+
+        [DataMember(Name = "birthdate")]
+        private string birthdate_SerializationForm;
 
         /// <summary>
         /// District field.
@@ -43,8 +44,10 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// Timestamp representing when this person was created in the nation.
         /// </summary>
-        [DataMember]
         public DateTimeOffset created_at;
+
+        [DataMember(Name = "created_at")]
+        private string created_at_SerializationForm;
 
         /// <summary>
         /// This is a boolean flag that lets us know if this person is on a do not call list.
@@ -314,8 +317,10 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// The timestamp representing when this person was last updated.
         /// </summary>
-        [DataMember]
         public DateTimeOffset updated_at;
+
+        [DataMember(Name = "updated_at")]
+        private string updated_at_SerializationForm;
 
         /// <summary>
         /// This person’s ID from VAN.
@@ -329,65 +334,50 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string village_district;
 
+
+
+        public AbbreviatedPerson() { }
+
         /// <summary>
-        /// Copy field contents from another object.
+        /// Create an <see cref="AbbreviatedPerson"/> object which is a shallow copy of another object.
         /// </summary>
-        /// <param name="source">The source object to copy field contents from.</param>
-        public void CopyFrom(NationBuilderAPI.V1.AutoSerializable.AbbreviatedPerson source)
+        /// <param name="copySource">The object to copy.</param>
+        public AbbreviatedPerson(AbbreviatedPerson copySource)
         {
-            birthdate = source.birthdate;
-            city_district = source.city_district;
-            civicrm_id = source.civicrm_id;
-            county_district = source.county_district;
-            county_file_id = source.county_file_id;
-            created_at = source.created_at;
-            do_not_call = source.do_not_call;
-            do_not_contact = source.do_not_contact;
-            dw_id = source.dw_id;
-            email = source.email;
-            email_opt_in = source.email_opt_in;
-            employer = source.employer;
-            external_id = source.external_id;
-            federal_district = source.federal_district;
-            fire_district = source.fire_district;
-            first_name = source.first_name;
-            has_facebook = source.has_facebook;
-            id = source.id;
-            is_twitter_follower = source.is_twitter_follower;
-            is_volunteer = source.is_volunteer;
-            judicial_district = source.judicial_district;
-            labour_region = source.labour_region;
-            last_name = source.last_name;
-            linkedin_id = source.linkedin_id;
-            mobile_opt_in = source.mobile_opt_in;
-            mobile = source.mobile;
-            nbec_guid = source.nbec_guid;
-            ngp_id = source.ngp_id;
-            note = source.note;
-            occupation = source.occupation;
-            party = source.party;
-            pf_strat_id = source.pf_strat_id;
-            phone = source.phone;
-            precinct_id = source.precinct_id;
-            primary_address = source.primary_address;
-            recruiter_id = source.recruiter_id;
-            rnc_id = source.rnc_id;
-            rnc_regid = source.rnc_regid;
-            salesforce_id = source.salesforce_id;
-            school_district = source.school_district;
-            school_sub_district = source.school_sub_district;
-            sex = source.sex;
-            state_file_id = source.state_file_id;
-            state_lower_district = source.state_lower_district;
-            state_upper_district = source.state_upper_district;
-            support_level = source.support_level;
-            supranational_district = source.supranational_district;
-            tags = source.tags;
-            twitter_id = source.twitter_id;
-            twitter_name = source.twitter_name;
-            updated_at = source.updated_at;
-            van_id = source.van_id;
-            village_district = source.village_district;
+            foreach (var info in typeof(AbbreviatedPerson).GetFields())
+            {
+                info.SetValue(this, info.GetValue(copySource));
+            }
+        }
+
+        [OnSerializing]
+        void OnSerializing(StreamingContext context)
+        {
+            birthdate_SerializationForm = birthdate.HasValue ?
+                birthdate.Value.ToString(NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture) : null;
+            created_at_SerializationForm = created_at.ToString(NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+            updated_at_SerializationForm = updated_at.ToString(NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+        }
+
+        [OnDeserialized]
+        void OnDeserialized(StreamingContext context)
+        {
+            birthdate = null == birthdate_SerializationForm ?
+                (DateTime?)null :
+                DateTime.ParseExact(birthdate_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+            created_at = DateTimeOffset.ParseExact(created_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+            updated_at = DateTimeOffset.ParseExact(updated_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Clone this object as a shallow copy.
+        /// 
+        /// Any member objects will be shared between this object and its shallow clone!
+        /// </summary>
+        /// <returns>The resulting AbbreviatedPerson object.</returns>
+        public AbbreviatedPerson ShallowClone()
+        {
+            return (AbbreviatedPerson)this.MemberwiseClone();
         }
     }
 }

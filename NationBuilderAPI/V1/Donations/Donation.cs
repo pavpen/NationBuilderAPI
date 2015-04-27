@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
+using NationBuilderAPI.V1.AutoSerializable;
+
 namespace NationBuilderAPI.V1
 {
     [DataContract]
@@ -59,6 +61,7 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public Address billing_address;
 
+
         /// <summary>
         /// Timestamp representing when the donation was canceled.
         /// 
@@ -68,8 +71,11 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
-        [DataMember]
         public DateTimeOffset? canceled_at;
+
+        [DataMember(Name = "canceled_at")]
+        private string canceled_at_SerializationForm;
+
 
         /// <summary>
         /// Check/wire/MO number.
@@ -95,6 +101,7 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public bool corporate_contribution;
 
+
         /// <summary>
         /// Timestamp representing when the donation was created.
         /// 
@@ -104,8 +111,11 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T14:36:29-05:00</c>
         /// </summary>
-        [DataMember]
         public DateTimeOffset created_at;
+
+        [DataMember(Name = "created_at")]
+        private string created_at_SerializationForm;
+
 
         /// <summary>
         /// The person id of the donor.
@@ -168,6 +178,7 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string employer;
 
+
         /// <summary>
         /// Timestamp representing when the donation failed.
         /// 
@@ -177,11 +188,14 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
-        [DataMember]
         public DateTimeOffset? failed_at;
 
+        [DataMember(Name = "failed_at")]
+        private string failed_at_SerializationForm;
+        
+
         /// <summary>
-        /// The donor's first name and middle name.
+        /// The donor's first name.
         /// 
         /// Writable: Y
         /// 
@@ -406,6 +420,7 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public long? recurring_donation_id;
 
+
         /// <summary>
         /// Timestamp representing when the donation succeeded.
         /// 
@@ -419,8 +434,11 @@ namespace NationBuilderAPI.V1
         /// 
         ///     If omitted the donation will be considered failed.
         /// </summary>
-        [DataMember]
         public DateTimeOffset? succeeded_at;
+
+        [DataMember(Name = "succeeded_at")]
+        private string succeeded_at_SerializationForm;
+        
 
         /// <summary>
         /// Tracking code for this donation.
@@ -434,6 +452,7 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string tracking_code_slug;
 
+
         /// <summary>
         /// Timestamp representing when the donation was last updated.
         /// 
@@ -443,8 +462,11 @@ namespace NationBuilderAPI.V1
         /// 
         /// Example: <c>2014-02-14T14:36:29-05:00</c>
         /// </summary>
-        [DataMember]
         public DateTimeOffset updated_at;
+
+        [DataMember(Name = "updated_at")]
+        private string updated_at_SerializationForm;
+        
 
         /// <summary>
         /// An address resource representing the work address.
@@ -516,49 +538,51 @@ namespace NationBuilderAPI.V1
         public Election election;
 
 
-        /// <summary>
-        /// Copy field values from another object (i.e. make a shallow copy).
-        /// </summary>
-        /// <param name="source">The source object to copy from.</param>
-        public void CopyFrom(NationBuilderAPI.V1.AutoSerializable.Donation source)
+        [OnSerializing]
+        void OnSerializing(StreamingContext context)
         {
-            amount = source.amount;
-            amount_in_cents = source.amount_in_cents;
-            author_id = source.author_id;
-            billing_address = source.billing_address;
-            canceled_at = source.canceled_at;
-            check_number = source.check_number;
-            corporate_contribution = source.corporate_contribution;
-            created_at = source.created_at;
-            donor_id = source.donor_id;
-            donor = null == source.donor ? null : source.donor.ToAbbreviatedPerson();
-            email = source.email;
-            employer = source.employer;
-            failed_at = source.failed_at;
-            first_name = source.first_name;
-            id = source.id;
-            import_id = source.import_id;
-            is_private = source.is_private;
-            last_name = source.last_name;
-            mailing_slug = source.mailing_slug;
-            merchant_account_id = source.merchant_account_id;
-            ngp_id = source.ngp_id;
-            note = source.note;
-            occupation = source.occupation;
-            page_slug = source.page_slug;
-            payment_type_name = source.payment_type_name;
-            payment_type_ngp_code = source.payment_type_ngp_code;
-            pledge_id = source.pledge_id;
-            recruiter_name_or_email = source.recruiter_name_or_email;
-            recurring_donation_id = source.recurring_donation_id;
-            succeeded_at = source.succeeded_at;
-            tracking_code_slug = source.tracking_code_slug;
-            updated_at = source.updated_at;
-            work_address = source.work_address;
-            actblue_order_number = source.actblue_order_number;
-            fec_type = source.fec_type;
-            fec_type_ngp_code = source.fec_type_ngp_code;
-            election = source.election;
+            canceled_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(canceled_at);
+            created_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(created_at);
+            failed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(failed_at);
+            succeeded_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(succeeded_at);
+            updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(updated_at);
+        }
+
+        [OnDeserialized]
+        void OnDeserialized(StreamingContext context)
+        {
+            canceled_at = Base.NullableDateTimeOffsetDeserialize(canceled_at_SerializationForm);
+            created_at = Base.DateTimeOffsetDeserialize(created_at_SerializationForm);
+            failed_at = Base.NullableDateTimeOffsetDeserialize(failed_at_SerializationForm);
+            succeeded_at = Base.NullableDateTimeOffsetDeserialize(succeeded_at_SerializationForm);
+            updated_at = Base.DateTimeOffsetDeserialize(updated_at_SerializationForm);
+        }
+
+
+
+        public Donation() { }
+        
+        /// <summary>
+        /// Create a <see cref="Donation"/> object which is a shallow copy of another object.
+        /// </summary>
+        /// <param name="copySource">The object to copy.</param>
+        public Donation(Donation copySource)
+        {
+            foreach (var info in typeof(Donation).GetFields())
+            {
+                info.SetValue(this, info.GetValue(copySource));
+            }
+        }
+
+        /// <summary>
+        /// Create a shallow copy of this object.
+        /// 
+        /// The clone and this object will share member objects!
+        /// </summary>
+        /// <returns>The cloned Donation object.</returns>
+        public Donation ShallowClone()
+        {
+            return (Donation)this.MemberwiseClone();
         }
     }
 }

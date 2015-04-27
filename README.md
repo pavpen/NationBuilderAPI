@@ -37,15 +37,17 @@ foreach (AbbreviatedPerson p in resp.results)
     ResponseFormat = WebMessageFormat.Json,
     UriTemplate = "WebhookReception/NationBuilder/PersonCreated")]
 public void NationBuilder_PersonCreated(
-    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<
-      NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.PersonWebhookPayload>
+    NationBuilderAPI.V1.Webhooks.V4.WebhookContent<
+      NationBuilderAPI.V1.Webhooks.V4.PersonWebhookPayload>
         webhookContent)
 {
     NationBuilder_WebhookRequest_CheckAccess(webhookContent);
 
     // !!!: Process your webhookContent here.
-    // Use webhookContent.payload.person.ToPerson() to get the "cannonical"
-    // NationBuilderAPI.V1.Person.
+    // Use webhookContent.payload.person.ToPerson() to get the base
+    // NationBuilderAPI.V1.Person.  If you simply cast
+    // webhookContent.payload.person, you'll have to resolve types when
+    // serializing.
 }
 
 /// <summary>
@@ -56,7 +58,7 @@ public void NationBuilder_PersonCreated(
 ///   <see cref="System.ServiceModel.Security.SecurityAccessDeniedException"/>
 ///   if access was denied.</returns>
 private bool NationBuilder_WebhookRequest_CheckAccess<PayloadT>(
-    NationBuilderAPI.V1.Webhooks.V4.AutoSerializable.WebhookContent<PayloadT>
+    NationBuilderAPI.V1.Webhooks.V4.WebhookContent<PayloadT>
       webhookContent)
 {
     if (webhookContent.token != "your-webhook-authentication-token")
