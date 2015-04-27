@@ -26,7 +26,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         [DataMember]
         public string county_file_id;
 
-        public DateTime created_at;
+        public DateTimeOffset created_at;
 
         [DataMember(Name = "created_at")]
         private string created_at_SerializationForm;
@@ -163,7 +163,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         [DataMember]
         public string twitter_name;
 
-        public DateTime updated_at;
+        public DateTimeOffset updated_at;
 
         [DataMember(Name = "updated_at")]
         private string updated_at_SerializationForm;
@@ -189,8 +189,8 @@ namespace NationBuilderAPI.V1.AutoSerializable
             birthdate = null == birthdate_SerializationForm ?
                 (DateTime?)null :
                 DateTime.ParseExact(birthdate_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
-            created_at = DateTime.ParseExact(created_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
-            updated_at = DateTime.ParseExact(updated_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+            created_at = DateTimeOffset.ParseExact(created_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+            updated_at = DateTimeOffset.ParseExact(updated_at_SerializationForm, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
         }
 
         /// <summary>

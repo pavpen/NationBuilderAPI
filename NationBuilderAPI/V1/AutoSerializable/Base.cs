@@ -17,6 +17,17 @@ namespace NationBuilderAPI.V1.AutoSerializable
         {
             return value.ToString(NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
         }
+        
+        public static string DateTimeOffsetGetSerializationForm(DateTimeOffset? value)
+        {
+            return value.HasValue ?
+                value.Value.ToString(NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture) : null;
+        }
+
+        public static string DateTimeOffsetGetSerializationForm(DateTimeOffset value)
+        {
+            return value.ToString(NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+        }
 
         public static DateTime? NullableDateTimeDeserialize(string value)
         {
@@ -28,6 +39,18 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public static DateTime DateTimeDeserialize(string value)
         {
             return DateTime.ParseExact(value, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+        }
+
+        public static DateTimeOffset? NullableDateTimeOffsetDeserialize(string value)
+        {
+            return null == value ?
+                (DateTimeOffset?)null :
+                DateTimeOffset.ParseExact(value, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
+        }
+
+        public static DateTimeOffset DateTimeOffsetDeserialize(string value)
+        {
+            return DateTimeOffset.ParseExact(value, NationBuilderHttpTransport.DefaultDateTimeFormatString, CultureInfo.InvariantCulture);
         }
     }
 }

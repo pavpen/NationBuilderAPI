@@ -22,7 +22,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public Address billing_address;
 
 
-        public DateTime? canceled_at;
+        public DateTimeOffset? canceled_at;
 
         [DataMember(Name = "canceled_at")]
         private string canceled_at_SerializationForm;
@@ -35,7 +35,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public bool corporate_contribution;
 
 
-        public DateTime created_at;
+        public DateTimeOffset created_at;
 
         [DataMember(Name = "created_at")]
         private string created_at_SerializationForm;
@@ -54,7 +54,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string employer;
 
 
-        public DateTime? failed_at;
+        public DateTimeOffset? failed_at;
 
         [DataMember(Name = "failed_at")]
         private string failed_at_SerializationForm;
@@ -109,7 +109,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public long? recurring_donation_id;
 
 
-        public DateTime? succeeded_at;
+        public DateTimeOffset? succeeded_at;
 
         [DataMember(Name = "succeeded_at")]
         private string succeeded_at_SerializationForm;
@@ -119,7 +119,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string tracking_code_slug;
 
 
-        public DateTime updated_at;
+        public DateTimeOffset updated_at;
 
         [DataMember(Name = "updated_at")]
         private string updated_at_SerializationForm;
@@ -144,21 +144,21 @@ namespace NationBuilderAPI.V1.AutoSerializable
         [OnSerializing]
         void OnSerializing(StreamingContext context)
         {
-            canceled_at_SerializationForm = Base.DateTimeGetSerializationForm(canceled_at);
-            created_at_SerializationForm = Base.DateTimeGetSerializationForm(created_at);
-            failed_at_SerializationForm = Base.DateTimeGetSerializationForm(failed_at);
-            succeeded_at_SerializationForm = Base.DateTimeGetSerializationForm(succeeded_at);
-            updated_at_SerializationForm = Base.DateTimeGetSerializationForm(updated_at);
+            canceled_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(canceled_at);
+            created_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(created_at);
+            failed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(failed_at);
+            succeeded_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(succeeded_at);
+            updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(updated_at);
         }
 
         [OnDeserialized]
         void OnDeserialized(StreamingContext context)
         {
-            canceled_at = Base.NullableDateTimeDeserialize(canceled_at_SerializationForm);
-            created_at = Base.DateTimeDeserialize(created_at_SerializationForm);
-            failed_at = Base.NullableDateTimeDeserialize(failed_at_SerializationForm);
-            succeeded_at = Base.NullableDateTimeDeserialize(succeeded_at_SerializationForm);
-            updated_at = Base.DateTimeDeserialize(updated_at_SerializationForm);
+            canceled_at = Base.NullableDateTimeOffsetDeserialize(canceled_at_SerializationForm);
+            created_at = Base.DateTimeOffsetDeserialize(created_at_SerializationForm);
+            failed_at = Base.NullableDateTimeOffsetDeserialize(failed_at_SerializationForm);
+            succeeded_at = Base.NullableDateTimeOffsetDeserialize(succeeded_at_SerializationForm);
+            updated_at = Base.DateTimeOffsetDeserialize(updated_at_SerializationForm);
         }
 
         /// <summary>

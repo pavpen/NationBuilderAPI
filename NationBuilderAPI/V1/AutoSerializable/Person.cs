@@ -9,13 +9,13 @@ namespace NationBuilderAPI.V1.AutoSerializable
     [DataContract]
     public class Person : AbbreviatedPerson
     {
-        public DateTime? active_customer_expires_at;
+        public DateTimeOffset? active_customer_expires_at;
 
         [DataMember(Name = "active_customer_expires_at")]
         private string active_customer_expires_at_SerializationForm;
 
 
-        public DateTime? active_customer_started_at;
+        public DateTimeOffset? active_customer_started_at;
 
         [DataMember(Name = "active_customer_started_at")]
         private string active_customer_started_at_SerializationForm;
@@ -34,7 +34,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string availability;
 
 
-        public DateTime? banned_at;
+        public DateTimeOffset? banned_at;
 
         [DataMember(Name = "banned_at")]
         private string banned_at_SerializationForm;
@@ -146,7 +146,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string facebook_profile_url;
 
 
-        public DateTime? facebook_updated_at;
+        public DateTimeOffset? facebook_updated_at;
 
         [DataMember(Name = "facebook_updated_at")]
         private string facebook_updated_at_SerializationForm;
@@ -162,43 +162,43 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public bool federal_donotcall;
 
 
-        public DateTime? first_donated_at;
+        public DateTimeOffset? first_donated_at;
 
         [DataMember(Name = "first_donated_at")]
         private string first_donated_at_SerializationForm;
 
 
-        public DateTime? first_fundraised_at;
+        public DateTimeOffset? first_fundraised_at;
 
         [DataMember(Name = "first_fundraised_at")]
         private string first_fundraised_at_SerializationForm;
 
 
-        public DateTime? first_invoice_at;
+        public DateTimeOffset? first_invoice_at;
 
         [DataMember(Name = "first_invoice_at")]
         private string first_invoice_at_SerializationForm;
 
 
-        public DateTime? first_prospect_at;
+        public DateTimeOffset? first_prospect_at;
 
         [DataMember(Name = "first_prospect_at")]
         private string first_prospect_at_SerializationForm;
 
 
-        public DateTime? first_recruited_at;
+        public DateTimeOffset? first_recruited_at;
 
         [DataMember(Name = "first_recruited_at")]
         private string first_recruited_at_SerializationForm;
 
 
-        public DateTime? first_supporter_at;
+        public DateTimeOffset? first_supporter_at;
 
         [DataMember(Name = "first_supporter_at")]
         private string first_supporter_at_SerializationForm;
 
 
-        public DateTime? first_volunteer_at;
+        public DateTimeOffset? first_volunteer_at;
 
         [DataMember(Name = "first_volunteer_at")]
         private string first_volunteer_at_SerializationForm;
@@ -271,13 +271,10 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string language;
 
 
-        public DateTime? last_call_id;
-
-        [DataMember(Name = "last_call_id")]
-        private string last_call_id_SerializationForm;
+        public long? last_call_id;
 
 
-        public DateTime? last_contacted_at;
+        public DateTimeOffset? last_contacted_at;
 
         [DataMember(Name = "last_contacted_at")]
         private string last_contacted_at_SerializationForm;
@@ -287,25 +284,25 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public AbbreviatedPerson last_contacted_by;
 
 
-        public DateTime? last_donated_at;
+        public DateTimeOffset? last_donated_at;
 
         [DataMember(Name = "last_donated_at")]
         private string last_donated_at_SerializationForm;
 
 
-        public DateTime? last_fundraised_at;
+        public DateTimeOffset? last_fundraised_at;
 
         [DataMember(Name = "last_fundraised_at")]
         private string last_fundraised_at_SerializationForm;
 
 
-        public DateTime? last_invoice_at;
+        public DateTimeOffset? last_invoice_at;
 
         [DataMember(Name = "last_invoice_at")]
         private string last_invoice_at_SerializationForm;
 
 
-        public DateTime? last_rule_violation_at;
+        public DateTimeOffset? last_rule_violation_at;
 
         [DataMember(Name = "last_rule_violation_at")]
         private string last_rule_violation_at_SerializationForm;
@@ -330,7 +327,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public Address meetup_address;
 
 
-        public DateTime? membership_expires_at;
+        public DateTimeOffset? membership_expires_at;
 
         [DataMember(Name = "membership_expires_at")]
         private string membership_expires_at_SerializationForm;
@@ -340,7 +337,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string membership_level_name;
 
 
-        public DateTime? membership_started_at;
+        public DateTimeOffset? membership_started_at;
 
         [DataMember(Name = "membership_started_at")]
         private string membership_started_at_SerializationForm;
@@ -356,7 +353,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string nbec_precinct_code;
 
 
-        public DateTime? note_updated_at;
+        public DateTimeOffset? note_updated_at;
 
         [DataMember(Name = "note_updated_at")]
         private string note_updated_at_SerializationForm;
@@ -405,7 +402,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string primary_email_id;
 
 
-        public DateTime? priority_level_changed_at;
+        public DateTimeOffset? priority_level_changed_at;
 
         [DataMember(Name = "priority_level_changed_at")]
         private string priority_level_changed_at_SerializationForm;
@@ -436,7 +433,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public Address registered_address;
 
 
-        public DateTime? registered_at;
+        public DateTimeOffset? registered_at;
 
         [DataMember(Name = "registered_at")]
         private string registered_at_SerializationForm;
@@ -461,7 +458,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string suffix;
 
 
-        public DateTime? support_level_changed_at;
+        public DateTimeOffset? support_level_changed_at;
 
         [DataMember(Name = "support_level_changed_at")]
         private string support_level_changed_at_SerializationForm;
@@ -492,7 +489,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string twitter_login;
 
 
-        public DateTime? twitter_updated_at;
+        public DateTimeOffset? twitter_updated_at;
 
         [DataMember(Name = "twitter_updated_at")]
         private string twitter_updated_at_SerializationForm;
@@ -502,7 +499,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         public string twitter_website;
 
 
-        public DateTime? unsubscribed_at;
+        public DateTimeOffset? unsubscribed_at;
 
         [DataMember(Name = "unsubscribed_at")]
         private string unsubscribed_at_SerializationForm;
@@ -530,61 +527,59 @@ namespace NationBuilderAPI.V1.AutoSerializable
         [OnSerializing]
         void OnSerializing(StreamingContext context)
         {
-            active_customer_expires_at_SerializationForm = Base.DateTimeGetSerializationForm(active_customer_expires_at);
-            active_customer_started_at_SerializationForm = Base.DateTimeGetSerializationForm(active_customer_started_at);
-            banned_at_SerializationForm = Base.DateTimeGetSerializationForm(banned_at);
-            facebook_updated_at_SerializationForm = Base.DateTimeGetSerializationForm(facebook_updated_at);
-            first_donated_at_SerializationForm = Base.DateTimeGetSerializationForm(first_donated_at);
-            first_fundraised_at_SerializationForm = Base.DateTimeGetSerializationForm(first_fundraised_at);
-            first_invoice_at_SerializationForm = Base.DateTimeGetSerializationForm(first_invoice_at);
-            first_prospect_at_SerializationForm = Base.DateTimeGetSerializationForm(first_prospect_at);
-            first_recruited_at_SerializationForm = Base.DateTimeGetSerializationForm(first_recruited_at);
-            first_supporter_at_SerializationForm = Base.DateTimeGetSerializationForm(first_supporter_at);
-            first_volunteer_at_SerializationForm = Base.DateTimeGetSerializationForm(first_volunteer_at);
-            last_call_id_SerializationForm = Base.DateTimeGetSerializationForm(last_call_id);
-            last_contacted_at_SerializationForm = Base.DateTimeGetSerializationForm(last_contacted_at);
-            last_donated_at_SerializationForm = Base.DateTimeGetSerializationForm(last_donated_at);
-            last_fundraised_at_SerializationForm = Base.DateTimeGetSerializationForm(last_fundraised_at);
-            last_invoice_at_SerializationForm = Base.DateTimeGetSerializationForm(last_invoice_at);
-            last_rule_violation_at_SerializationForm = Base.DateTimeGetSerializationForm(last_rule_violation_at);
-            membership_expires_at_SerializationForm = Base.DateTimeGetSerializationForm(membership_expires_at);
-            membership_started_at_SerializationForm = Base.DateTimeGetSerializationForm(membership_started_at);
-            note_updated_at_SerializationForm = Base.DateTimeGetSerializationForm(note_updated_at);
-            priority_level_changed_at_SerializationForm = Base.DateTimeGetSerializationForm(priority_level_changed_at);
-            registered_at_SerializationForm = Base.DateTimeGetSerializationForm(registered_at);
-            support_level_changed_at_SerializationForm = Base.DateTimeGetSerializationForm(support_level_changed_at);
-            twitter_updated_at_SerializationForm = Base.DateTimeGetSerializationForm(twitter_updated_at);
-            unsubscribed_at_SerializationForm = Base.DateTimeGetSerializationForm(unsubscribed_at);
+            active_customer_expires_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(active_customer_expires_at);
+            active_customer_started_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(active_customer_started_at);
+            banned_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(banned_at);
+            facebook_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(facebook_updated_at);
+            first_donated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_donated_at);
+            first_fundraised_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_fundraised_at);
+            first_invoice_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_invoice_at);
+            first_prospect_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_prospect_at);
+            first_recruited_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_recruited_at);
+            first_supporter_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_supporter_at);
+            first_volunteer_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_volunteer_at);
+            last_contacted_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_contacted_at);
+            last_donated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_donated_at);
+            last_fundraised_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_fundraised_at);
+            last_invoice_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_invoice_at);
+            last_rule_violation_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_rule_violation_at);
+            membership_expires_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(membership_expires_at);
+            membership_started_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(membership_started_at);
+            note_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(note_updated_at);
+            priority_level_changed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(priority_level_changed_at);
+            registered_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(registered_at);
+            support_level_changed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(support_level_changed_at);
+            twitter_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(twitter_updated_at);
+            unsubscribed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(unsubscribed_at);
         }
 
         [OnDeserialized]
         void OnDeserialized(StreamingContext context)
         {
-            active_customer_expires_at = Base.NullableDateTimeDeserialize(active_customer_expires_at_SerializationForm);
-            active_customer_started_at = Base.NullableDateTimeDeserialize(active_customer_started_at_SerializationForm);
-            banned_at = Base.NullableDateTimeDeserialize(banned_at_SerializationForm);
-            facebook_updated_at = Base.NullableDateTimeDeserialize(facebook_updated_at_SerializationForm);
-            first_donated_at = Base.NullableDateTimeDeserialize(first_donated_at_SerializationForm);
-            first_fundraised_at = Base.NullableDateTimeDeserialize(first_fundraised_at_SerializationForm);
-            first_invoice_at = Base.NullableDateTimeDeserialize(first_invoice_at_SerializationForm);
-            first_prospect_at = Base.NullableDateTimeDeserialize(first_prospect_at_SerializationForm);
-            first_recruited_at = Base.NullableDateTimeDeserialize(first_recruited_at_SerializationForm);
-            first_supporter_at = Base.NullableDateTimeDeserialize(first_supporter_at_SerializationForm);
-            first_volunteer_at = Base.NullableDateTimeDeserialize(first_volunteer_at_SerializationForm);
-            last_call_id = Base.NullableDateTimeDeserialize(last_call_id_SerializationForm);
-            last_contacted_at = Base.NullableDateTimeDeserialize(last_contacted_at_SerializationForm);
-            last_donated_at = Base.NullableDateTimeDeserialize(last_donated_at_SerializationForm);
-            last_fundraised_at = Base.NullableDateTimeDeserialize(last_fundraised_at_SerializationForm);
-            last_invoice_at = Base.NullableDateTimeDeserialize(last_invoice_at_SerializationForm);
-            last_rule_violation_at = Base.NullableDateTimeDeserialize(last_rule_violation_at_SerializationForm);
-            membership_expires_at = Base.NullableDateTimeDeserialize(membership_expires_at_SerializationForm);
-            membership_started_at = Base.NullableDateTimeDeserialize(membership_started_at_SerializationForm);
-            note_updated_at = Base.NullableDateTimeDeserialize(note_updated_at_SerializationForm);
-            priority_level_changed_at = Base.NullableDateTimeDeserialize(priority_level_changed_at_SerializationForm);
-            registered_at = Base.NullableDateTimeDeserialize(registered_at_SerializationForm);
-            support_level_changed_at = Base.NullableDateTimeDeserialize(support_level_changed_at_SerializationForm);
-            twitter_updated_at = Base.NullableDateTimeDeserialize(twitter_updated_at_SerializationForm);
-            unsubscribed_at = Base.NullableDateTimeDeserialize(unsubscribed_at_SerializationForm);
+            active_customer_expires_at = Base.NullableDateTimeOffsetDeserialize(active_customer_expires_at_SerializationForm);
+            active_customer_started_at = Base.NullableDateTimeOffsetDeserialize(active_customer_started_at_SerializationForm);
+            banned_at = Base.NullableDateTimeOffsetDeserialize(banned_at_SerializationForm);
+            facebook_updated_at = Base.NullableDateTimeOffsetDeserialize(facebook_updated_at_SerializationForm);
+            first_donated_at = Base.NullableDateTimeOffsetDeserialize(first_donated_at_SerializationForm);
+            first_fundraised_at = Base.NullableDateTimeOffsetDeserialize(first_fundraised_at_SerializationForm);
+            first_invoice_at = Base.NullableDateTimeOffsetDeserialize(first_invoice_at_SerializationForm);
+            first_prospect_at = Base.NullableDateTimeOffsetDeserialize(first_prospect_at_SerializationForm);
+            first_recruited_at = Base.NullableDateTimeOffsetDeserialize(first_recruited_at_SerializationForm);
+            first_supporter_at = Base.NullableDateTimeOffsetDeserialize(first_supporter_at_SerializationForm);
+            first_volunteer_at = Base.NullableDateTimeOffsetDeserialize(first_volunteer_at_SerializationForm);
+            last_contacted_at = Base.NullableDateTimeOffsetDeserialize(last_contacted_at_SerializationForm);
+            last_donated_at = Base.NullableDateTimeOffsetDeserialize(last_donated_at_SerializationForm);
+            last_fundraised_at = Base.NullableDateTimeOffsetDeserialize(last_fundraised_at_SerializationForm);
+            last_invoice_at = Base.NullableDateTimeOffsetDeserialize(last_invoice_at_SerializationForm);
+            last_rule_violation_at = Base.NullableDateTimeOffsetDeserialize(last_rule_violation_at_SerializationForm);
+            membership_expires_at = Base.NullableDateTimeOffsetDeserialize(membership_expires_at_SerializationForm);
+            membership_started_at = Base.NullableDateTimeOffsetDeserialize(membership_started_at_SerializationForm);
+            note_updated_at = Base.NullableDateTimeOffsetDeserialize(note_updated_at_SerializationForm);
+            priority_level_changed_at = Base.NullableDateTimeOffsetDeserialize(priority_level_changed_at_SerializationForm);
+            registered_at = Base.NullableDateTimeOffsetDeserialize(registered_at_SerializationForm);
+            support_level_changed_at = Base.NullableDateTimeOffsetDeserialize(support_level_changed_at_SerializationForm);
+            twitter_updated_at = Base.NullableDateTimeOffsetDeserialize(twitter_updated_at_SerializationForm);
+            unsubscribed_at = Base.NullableDateTimeOffsetDeserialize(unsubscribed_at_SerializationForm);
         }
 
         /// <summary>

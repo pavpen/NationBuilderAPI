@@ -14,13 +14,13 @@ namespace NationBuilderAPI.V1
         /// The date at which to consider a customer no longer active.
         /// </summary>
         [DataMember]
-        public DateTime? active_customer_expires_at;
+        public DateTimeOffset? active_customer_expires_at;
 
         /// <summary>
         /// The date from which a customer is considered active.
         /// </summary>
         [DataMember]
-        public DateTime? active_customer_started_at;
+        public DateTimeOffset? active_customer_started_at;
 
         /// <summary>
         /// The resource ID of the person who created this person in the nation.
@@ -50,7 +50,7 @@ namespace NationBuilderAPI.V1
         /// The time and date this person was banned.
         /// </summary>
         [DataMember]
-        public DateTime? banned_at;
+        public DateTimeOffset? banned_at;
 
         /// <summary>
         /// An address resource representing this person’s billing address.
@@ -157,7 +157,7 @@ namespace NationBuilderAPI.V1
         //public string county_file_id;
 
         // timestamp representing when this person was created in the nation:
-        //public DateTime created_at;
+        //public DateTimeOffset created_at;
 
         /// <summary>
         /// Asian, Black, Hispanic, White, Other, Unknown.
@@ -310,7 +310,7 @@ namespace NationBuilderAPI.V1
         /// The date and time this person's Facebook info was last updated.
         /// </summary>
         [DataMember]
-        public DateTime? facebook_updated_at;
+        public DateTimeOffset? facebook_updated_at;
 
         /// <summary>
         /// This person's Facebook username.
@@ -340,17 +340,17 @@ namespace NationBuilderAPI.V1
         /// Date and time of this person's first donation.
         /// </summary>
         [DataMember]
-        public DateTime? first_donated_at;
+        public DateTimeOffset? first_donated_at;
 
         // date and time that this person first raised donation:
         [DataMember]
-        public DateTime? first_fundraised_at;
+        public DateTimeOffset? first_fundraised_at;
 
         /// <summary>
         /// Date and time of this person's first invoice.
         /// </summary>
         [DataMember]
-        public DateTime? first_invoice_at;
+        public DateTimeOffset? first_invoice_at;
 
         // the person's first name and middle names:
         //public string first_name;
@@ -359,25 +359,25 @@ namespace NationBuilderAPI.V1
         /// Date and time that this user first became a prospect.
         /// </summary>
         [DataMember]
-        public DateTime? first_prospect_at;
+        public DateTimeOffset? first_prospect_at;
 
         /// <summary>
         /// Date and time that this user was first recruited.
         /// </summary>
         [DataMember]
-        public DateTime? first_recruited_at;
+        public DateTimeOffset? first_recruited_at;
 
         /// <summary>
         /// Date and time that this user became a supporter for the first time.
         /// </summary>
         [DataMember]
-        public DateTime? first_supporter_at;
+        public DateTimeOffset? first_supporter_at;
 
         /// <summary>
         /// Date and time that this person first volunteered.
         /// </summary>
         [DataMember]
-        public DateTime? first_volunteer_at;
+        public DateTimeOffset? first_volunteer_at;
 
         /// <summary>
         /// This person’s full name.
@@ -530,16 +530,16 @@ namespace NationBuilderAPI.V1
         public string language;
 
         /// <summary>
-        /// The time and date of the last call to this person.
+        /// The ID of the last contact to this person.
         /// </summary>
         [DataMember]
-        public DateTime? last_call_id;
+        public long? last_call_id;
 
         /// <summary>
         /// The time and date of the last time this person was contacted.
         /// </summary>
         [DataMember]
-        public DateTime? last_contacted_at;
+        public DateTimeOffset? last_contacted_at;
 
         /// <summary>
         /// An abbreviated person resource representing the last user who contacted this person.
@@ -551,19 +551,19 @@ namespace NationBuilderAPI.V1
         /// The time and date of this person’s last donation.
         /// </summary>
         [DataMember]
-        public DateTime? last_donated_at;
+        public DateTimeOffset? last_donated_at;
 
         /// <summary>
         /// The time and date of the last time this person fundraised.
         /// </summary>
         [DataMember]
-        public DateTime? last_fundraised_at;
+        public DateTimeOffset? last_fundraised_at;
 
         /// <summary>
         /// The time and date of this person’s last invoice.
         /// </summary>
         [DataMember]
-        public DateTime? last_invoice_at;
+        public DateTimeOffset? last_invoice_at;
 
         // this person's last name:
         //public string last_name;
@@ -572,7 +572,7 @@ namespace NationBuilderAPI.V1
         /// The time and date of this person’s last rule violation.
         /// </summary>
         [DataMember]
-        public DateTime? last_rule_violation_at;
+        public DateTimeOffset? last_rule_violation_at;
 
         /// <summary>
         /// The full (legal) name of this person.
@@ -617,7 +617,7 @@ namespace NationBuilderAPI.V1
         /// The time and date that this user’s membership expires.
         /// </summary>
         [DataMember]
-        public DateTime? membership_expires_at;
+        public DateTimeOffset? membership_expires_at;
 
         /// <summary>
         /// The name of the level of this person’s membership.
@@ -629,7 +629,7 @@ namespace NationBuilderAPI.V1
         /// The time and date that this user started a membership.
         /// </summary>
         [DataMember]
-        public DateTime? membership_started_at;
+        public DateTimeOffset? membership_started_at;
 
         /// <summary>
         /// This person’s middle name.
@@ -665,7 +665,7 @@ namespace NationBuilderAPI.V1
         /// The date and time the note attached to this person was updated.
         /// </summary>
         [DataMember]
-        public DateTime? note_updated_at;
+        public DateTimeOffset? note_updated_at;
 
         // a note to attach to the person's profile:
         //public string note;
@@ -776,7 +776,7 @@ namespace NationBuilderAPI.V1
         /// The date and time that this person’s priority level changed.
         /// </summary>
         [DataMember]
-        public DateTime? priority_level_changed_at;
+        public DateTimeOffset? priority_level_changed_at;
 
         /// <summary>
         /// The priority level associated with this person.
@@ -833,7 +833,7 @@ namespace NationBuilderAPI.V1
         /// The date this person registered to become a voter.
         /// </summary>
         [DataMember]
-        public DateTime? registered_at;
+        public DateTimeOffset? registered_at;
 
         /// <summary>
         /// This person’s religion.
@@ -903,7 +903,7 @@ namespace NationBuilderAPI.V1
         /// The time and date that this person’s support level changed.
         /// </summary>
         [DataMember]
-        public DateTime? support_level_changed_at;
+        public DateTimeOffset? support_level_changed_at;
 
         // the level of support this person has for your nation, expressed as a number between 1 and 5,
         //  1 being Strong support, 5 meaning strong opposition, and 3 meaning undecided.
@@ -973,7 +973,7 @@ namespace NationBuilderAPI.V1
         /// The last time this person’s Twitter record was updated.
         /// </summary>
         [DataMember]
-        public DateTime? twitter_updated_at;
+        public DateTimeOffset? twitter_updated_at;
 
         /// <summary>
         /// The URL of the website that this person included in their Twitter profile.
@@ -985,10 +985,10 @@ namespace NationBuilderAPI.V1
         /// The date/time that this person unsubscribed from emails.
         /// </summary>
         [DataMember]
-        public DateTime? unsubscribed_at;
+        public DateTimeOffset? unsubscribed_at;
 
         // the timestamp representing when this person was last updated:
-        //public DateTime updated_at;
+        //public DateTimeOffset updated_at;
 
         /// <summary>
         /// An address resource representing the address this person submitted.

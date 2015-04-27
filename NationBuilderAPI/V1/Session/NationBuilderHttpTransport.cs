@@ -122,11 +122,11 @@ namespace NationBuilderAPI.V1
 
         public ObjectT DeserializeNationBuilderObject<ObjectT>(Stream stream)
         {
-            DataContractJsonSerializerSettings serSetgs = new DataContractJsonSerializerSettings();
-            serSetgs.DateTimeFormat = dateTimeFormat;
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ObjectT), serSetgs);
+            DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings();
+            settings.DateTimeFormat = dateTimeFormat;
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObjectT), settings);
 
-            return (ObjectT)ser.ReadObject(stream);
+            return (ObjectT)serializer.ReadObject(stream);
         }
 
         protected ResponseT DeserializeHttpResponse<ResponseT>(HttpWebRequest req, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)

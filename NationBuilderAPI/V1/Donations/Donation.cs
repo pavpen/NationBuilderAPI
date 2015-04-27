@@ -69,7 +69,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
         [DataMember]
-        public DateTime? canceled_at;
+        public DateTimeOffset? canceled_at;
 
         /// <summary>
         /// Check/wire/MO number.
@@ -105,7 +105,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>2014-02-14T14:36:29-05:00</c>
         /// </summary>
         [DataMember]
-        public DateTime created_at;
+        public DateTimeOffset created_at;
 
         /// <summary>
         /// The person id of the donor.
@@ -178,7 +178,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>2014-02-14T15:22:12-05:00</c>
         /// </summary>
         [DataMember]
-        public DateTime? failed_at;
+        public DateTimeOffset? failed_at;
 
         /// <summary>
         /// The donor's first name and middle name.
@@ -420,7 +420,7 @@ namespace NationBuilderAPI.V1
         ///     If omitted the donation will be considered failed.
         /// </summary>
         [DataMember]
-        public DateTime? succeeded_at;
+        public DateTimeOffset? succeeded_at;
 
         /// <summary>
         /// Tracking code for this donation.
@@ -444,7 +444,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>2014-02-14T14:36:29-05:00</c>
         /// </summary>
         [DataMember]
-        public DateTime updated_at;
+        public DateTimeOffset updated_at;
 
         /// <summary>
         /// An address resource representing the work address.

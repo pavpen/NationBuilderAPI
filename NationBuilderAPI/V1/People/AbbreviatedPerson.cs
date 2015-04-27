@@ -44,7 +44,7 @@ namespace NationBuilderAPI.V1
         /// Timestamp representing when this person was created in the nation.
         /// </summary>
         [DataMember]
-        public DateTime created_at;
+        public DateTimeOffset created_at;
 
         /// <summary>
         /// This is a boolean flag that lets us know if this person is on a do not call list.
@@ -315,7 +315,7 @@ namespace NationBuilderAPI.V1
         /// The timestamp representing when this person was last updated.
         /// </summary>
         [DataMember]
-        public DateTime updated_at;
+        public DateTimeOffset updated_at;
 
         /// <summary>
         /// This person’s ID from VAN.
