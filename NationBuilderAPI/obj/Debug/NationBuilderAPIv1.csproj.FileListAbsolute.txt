@@ -19,3 +19,8 @@ C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAP
 C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPIv1.csprojResolveAssemblyReference.cache
 C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.dll
 C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.pdb
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI-a\NationBuilderAPI\NationBuilderAPI\bin\Debug\NationBuilderAPI.dll
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI-a\NationBuilderAPI\NationBuilderAPI\bin\Debug\NationBuilderAPI.pdb
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI-a\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPIv1.csprojResolveAssemblyReference.cache
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI-a\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.dll
+C:\Users\Pavel\Documents\Visual Studio Projects\NationBuilderAPI-a\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.pdb

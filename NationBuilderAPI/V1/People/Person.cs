@@ -530,10 +530,10 @@ namespace NationBuilderAPI.V1
         public string language;
 
         /// <summary>
-        /// The time and date of the last call to this person.
+        /// The ID of the last contact to this person.
         /// </summary>
         [DataMember]
-        public DateTime? last_call_id;
+        public long? last_call_id;
 
         /// <summary>
         /// The time and date of the last time this person was contacted.

@@ -270,11 +270,7 @@ namespace NationBuilderAPI.V1.AutoSerializable
         [DataMember]
         public string language;
 
-
-        public DateTime? last_call_id;
-
-        [DataMember(Name = "last_call_id")]
-        private string last_call_id_SerializationForm;
+        public long? last_call_id;
 
 
         public DateTime? last_contacted_at;
@@ -541,7 +537,6 @@ namespace NationBuilderAPI.V1.AutoSerializable
             first_recruited_at_SerializationForm = Base.DateTimeGetSerializationForm(first_recruited_at);
             first_supporter_at_SerializationForm = Base.DateTimeGetSerializationForm(first_supporter_at);
             first_volunteer_at_SerializationForm = Base.DateTimeGetSerializationForm(first_volunteer_at);
-            last_call_id_SerializationForm = Base.DateTimeGetSerializationForm(last_call_id);
             last_contacted_at_SerializationForm = Base.DateTimeGetSerializationForm(last_contacted_at);
             last_donated_at_SerializationForm = Base.DateTimeGetSerializationForm(last_donated_at);
             last_fundraised_at_SerializationForm = Base.DateTimeGetSerializationForm(last_fundraised_at);
@@ -571,7 +566,6 @@ namespace NationBuilderAPI.V1.AutoSerializable
             first_recruited_at = Base.NullableDateTimeDeserialize(first_recruited_at_SerializationForm);
             first_supporter_at = Base.NullableDateTimeDeserialize(first_supporter_at_SerializationForm);
             first_volunteer_at = Base.NullableDateTimeDeserialize(first_volunteer_at_SerializationForm);
-            last_call_id = Base.NullableDateTimeDeserialize(last_call_id_SerializationForm);
             last_contacted_at = Base.NullableDateTimeDeserialize(last_contacted_at_SerializationForm);
             last_donated_at = Base.NullableDateTimeDeserialize(last_donated_at_SerializationForm);
             last_fundraised_at = Base.NullableDateTimeDeserialize(last_fundraised_at_SerializationForm);
