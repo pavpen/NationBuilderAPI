@@ -47,16 +47,19 @@ namespace NationBuilderAPI.V1
         }
 
         /// <summary>
-        /// Create a <see cref="StringBuilder"/> object containing the URI for authenticated request from the URI for an unauthenticated request.
+        /// Create a <see cref="StringBuilder"/> object containing the URI for authenticated request from
+        /// the URI path for an unauthenticated request relative to the host name.
         /// 
         /// You can use this method to construct the final URLs from the <c>next</c> and <c>prev</c> URLs returned in responses containing result pages.
         /// </summary>
         /// <param name="requestUrl">The unauthenticated URL.</param>
         /// <returns>A <c>StringBuilder</c> containing the authenticated URL.</returns>
-        protected StringBuilder MakeRequestUrlBuilderFromUnauthenticatedUrl(string requestUrl)
+        protected StringBuilder MakeRequestUrlBuilderFromUnauthenticatedPath(string requestUrl)
         {
-            StringBuilder res = new StringBuilder(requestUrl);
+            StringBuilder res = new StringBuilder("https://");
 
+            res.Append(NationSlug).Append(".nationbuilder.com");
+            res.Append(requestUrl);
             res.Append("&access_token=").Append(AccessToken);
 
             return res;

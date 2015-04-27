@@ -45,7 +45,7 @@ namespace NationBuilderAPI.V1
                 return null;
             }
 
-            var reqUrlBuilder = MakeRequestUrlBuilderFromUnauthenticatedUrl(resultsPage.next);
+            var reqUrlBuilder = MakeRequestUrlBuilderFromUnauthenticatedPath(resultsPage.next);
 
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
 
@@ -65,7 +65,7 @@ namespace NationBuilderAPI.V1
                 return null;
             }
 
-            var reqUrlBuilder = MakeRequestUrlBuilderFromUnauthenticatedUrl(resultsPage.prev);
+            var reqUrlBuilder = MakeRequestUrlBuilderFromUnauthenticatedPath(resultsPage.prev);
 
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
 
