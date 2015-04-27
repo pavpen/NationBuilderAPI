@@ -67,7 +67,7 @@ namespace NationBuilderAPI.V1
         /// <returns>The full person information.</returns>
         public PersonResponse ShowPersonWithExternalId(string externalId)
         {
-            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", WebUtility.UrlEncode(externalId), "&id_type=external");
+            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", Uri.EscapeUriString(externalId), "&id_type=external");
 
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
