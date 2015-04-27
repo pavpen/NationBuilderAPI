@@ -1034,10 +1034,15 @@ namespace NationBuilderAPI.V1
         //public string twitter_id;
 
         /// <summary>
-        /// An address resource representing this person’s address based on Twitter’s location data.
+        /// A string representing this person’s address based on Twitter’s location data.
+        /// 
+        /// Nation Builder's online documentation incorrectly states:
+        /// "An address resource representing this person’s address based on Twitter’s location data."
+        /// 
+        /// The examples they show, and data returned from the service have a string in this field.
         /// </summary>
         [DataMember]
-        public Address twitter_location;
+        public string twitter_location;
 
         /// <summary>
         /// This person’s Twitter login name.
