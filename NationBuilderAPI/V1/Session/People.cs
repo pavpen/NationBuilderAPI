@@ -35,7 +35,7 @@ namespace NationBuilderAPI.V1
         /// <returns>An enumeration of all people in the nation.</returns>
         public IEnumerable<AbbreviatedPerson> GetPeopleResults(int page = 1, int per_page = 100)
         {
-            return FollowingResults(GetPeople(page, per_page));
+            return AllResultsFrom(GetPeople(page, per_page));
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace NationBuilderAPI.V1
             string membership_level_id = null, string ngp_id = null, string pf_strat_id = null, string van_id = null, string salesforce_id = null,
             string rnc_id = null, string rnc_regid = null, string external_id = null, int page = 1, int per_page = 100)
         {
-            return FollowingResults(SearchPeople(first_name, last_name, city, state, sex, birthdate, updated_since, with_mobile, custom_values,
+            return AllResultsFrom(SearchPeople(first_name, last_name, city, state, sex, birthdate, updated_since, with_mobile, custom_values,
                 civicrm_id, county_file_id, state_file_id, datatrust_id, dw_id, media_market_id, membership_level_id, ngp_id, pf_strat_id, van_id, salesforce_id,
                 rnc_id, rnc_regid, external_id, page, per_page));
         }
@@ -226,7 +226,7 @@ namespace NationBuilderAPI.V1
         /// <returns>The people in the specified search radius.</returns>
         public IEnumerable<Person> NearbyPeopleResults(string location, double distance = 1.0, int page = 1, int per_page = 100)
         {
-            return FollowingResults(NearbyPeople(location, distance, page, per_page));
+            return AllResultsFrom(NearbyPeople(location, distance, page, per_page));
         }
 
         /// <summary>

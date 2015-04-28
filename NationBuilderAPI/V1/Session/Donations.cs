@@ -33,7 +33,7 @@ namespace NationBuilderAPI.V1
         /// <returns>All the donations in the nation.</returns>
         public IEnumerable<Donation> GetDonationsResults(int page = 1, int per_page = 100)
         {
-            return FollowingResults(GetDonations(page, per_page));
+            return AllResultsFrom(GetDonations(page, per_page));
         }
 
         /// <summary>

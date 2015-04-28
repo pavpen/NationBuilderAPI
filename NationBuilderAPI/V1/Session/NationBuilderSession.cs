@@ -72,7 +72,13 @@ namespace NationBuilderAPI.V1
             return DeserializeHttpResponse<ResultsPageResponse<ResultType>>(req);
         }
 
-        protected IEnumerable<ResultsPageResponse<ResultType>> FollowingPages<ResultType>(ResultsPageResponse<ResultType> startResultsPage)
+        /// <summary>
+        /// Returns an iterator over all query results pages, starting from a given page.
+        /// </summary>
+        /// <typeparam name="ResultType">Data type of the result listed on the results pages.</typeparam>
+        /// <param name="startResultsPage">The given results page to start from.</param>
+        /// <returns>An enumeration of all results pages, starting whith the given one.</returns>
+        public IEnumerable<ResultsPageResponse<ResultType>> AllPagesFrom<ResultType>(ResultsPageResponse<ResultType> startResultsPage)
         {
             for (var page = startResultsPage; null != page; page = GetNextPage(page))
             {
@@ -80,9 +86,15 @@ namespace NationBuilderAPI.V1
             }
         }
 
-        protected IEnumerable<ResultType> FollowingResults<ResultType>(ResultsPageResponse<ResultType> startResultsPage)
+        /// <summary>
+        /// Returns an iterator over all query results, starting from a given results page.
+        /// </summary>
+        /// <typeparam name="ResultType">Data type of each query result.</typeparam>
+        /// <param name="startResultsPage">The results page to start from.</param>
+        /// <returns>An enumeration of all query results, starting from the given page.</returns>
+        public IEnumerable<ResultType> AllResultsFrom<ResultType>(ResultsPageResponse<ResultType> startResultsPage)
         {
-            foreach (var page in FollowingPages(startResultsPage))
+            foreach (var page in AllPagesFrom(startResultsPage))
             {
                 foreach (var result in page.results)
                 {
