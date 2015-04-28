@@ -16,7 +16,7 @@ namespace NationBuilderAPI.V1
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("donations"),
-                "&per_page=", limit.ToString());
+                "&limit=", limit.ToString());
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Donation>>(req);
 
