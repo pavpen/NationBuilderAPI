@@ -286,7 +286,7 @@ namespace NationBuilderAPI.V1
         /// Example: <c>11</c>
         /// </summary>
         [DataMember]
-        public long merchant_account_id;
+        public long? merchant_account_id;
 
         /// <summary>
         /// An id which is present if the donor has been imported from NGP VAN.
