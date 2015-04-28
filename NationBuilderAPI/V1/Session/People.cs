@@ -12,15 +12,13 @@ namespace NationBuilderAPI.V1
         /// The index endpoint provides a paginated view of the people in a nation. Each person's data is abbreviated for the Index view.
         /// To get a full representation use the Show endpoint (<see cref="ShowPerson"/>).
         /// </summary>
-        /// <param name="page">Result page number.</param>
-        /// <param name="per_page">Number of results to return (max 100).</param>
+        /// <param name="limit">Max number of results to show in one page of results. (Default: 10, max: 100).</param>
         /// <returns>The results page, and results information.</returns>
-        public ResultsPageResponse<AbbreviatedPerson> GetPeople(int page = 1, int per_page = 10)
+        public ResultsPageResponse<AbbreviatedPerson> GetPeople(int limit = 10)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("people"),
-                "&page=", page.ToString(),
-                "&per_page=", per_page.ToString());
+                "&limit=", limit.ToString());
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<AbbreviatedPerson>>(req);
 
@@ -30,12 +28,11 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// Get an enumeration of all people in the nation as <see cref="AbbreviatedPerson"/> objects.
         /// </summary>
-        /// <param name="page">The result page to start from.</param>
-        /// <param name="per_page">The number of result to fetch in each HTTP request.  The maximum is 100.</param>
+        /// <param name="limit">The number of result to fetch in each HTTP request.  The maximum is 100.</param>
         /// <returns>An enumeration of all people in the nation.</returns>
-        public IEnumerable<AbbreviatedPerson> GetPeopleResults(int page = 1, int per_page = 100)
+        public IEnumerable<AbbreviatedPerson> GetPeopleResults(int limit = 100)
         {
-            return AllResultsFrom(GetPeople(page, per_page));
+            return AllResultsFrom(GetPeople(limit));
         }
 
         /// <summary>
@@ -129,14 +126,13 @@ namespace NationBuilderAPI.V1
         /// <param name="rnc_id">rnc_id of the person to match.</param>
         /// <param name="rnc_regid">rnc_regid of the person to match.</param>
         /// <param name="external_id">external_id of the person to match.</param>
-        /// <param name="page">Page number (default: 1).</param>
-        /// <param name="per_page">Number of results to show per page (default: 10, max: 100).</param>
+        /// <param name="limit">Number of results to show per page. (Default: 10, max: 100).</param>
         /// <returns>The specified page of people matching the specified criteria.</returns>
         public ResultsPageResponse<AbbreviatedPerson> SearchPeople(string first_name = null, string last_name = null, string city = null, string state = null, string sex = null,
             string birthdate = null, string updated_since = null, string with_mobile = null, string custom_values = null, string civicrm_id = null,
             string county_file_id = null, string state_file_id = null, string datatrust_id = null, int? dw_id = null, string media_market_id = null,
             string membership_level_id = null, string ngp_id = null, string pf_strat_id = null, string van_id = null, string salesforce_id = null,
-            string rnc_id = null, string rnc_regid = null, string external_id = null, int page = 1, int per_page = 10)
+            string rnc_id = null, string rnc_regid = null, string external_id = null, int limit = 10)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendMethodNonNullParameters(
                 MakeRequestUrlBuilder("people/search"),
@@ -145,7 +141,7 @@ namespace NationBuilderAPI.V1
                 birthdate, updated_since, with_mobile, custom_values, civicrm_id,
                 county_file_id, state_file_id, datatrust_id, dw_id.HasValue ? dw_id.ToString() : null, media_market_id,
                 membership_level_id, ngp_id, pf_strat_id, van_id, salesforce_id,
-                rnc_id, rnc_regid, external_id, page.ToString(), per_page.ToString());
+                rnc_id, rnc_regid, external_id, limit.ToString());
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<AbbreviatedPerson>>(req);
 
@@ -182,34 +178,32 @@ namespace NationBuilderAPI.V1
         /// <param name="rnc_id">rnc_id of the person to match.</param>
         /// <param name="rnc_regid">rnc_regid of the person to match.</param>
         /// <param name="external_id">external_id of the person to match.</param>
-        /// <param name="page">Results page to start from (default is 1).</param>
-        /// <param name="per_page">Number of results to retrieve in each page (default: 100, max: 100).</param>
+        /// <param name="limit">Number of results to retrieve in each page. (Max: 100).</param>
         /// <returns>The people matching the specified criteria.</returns>
         public IEnumerable<AbbreviatedPerson> SearchPeopleResults(string first_name = null, string last_name = null, string city = null, string state = null, string sex = null,
             string birthdate = null, string updated_since = null, string with_mobile = null, string custom_values = null, string civicrm_id = null,
             string county_file_id = null, string state_file_id = null, string datatrust_id = null, int? dw_id = null, string media_market_id = null,
             string membership_level_id = null, string ngp_id = null, string pf_strat_id = null, string van_id = null, string salesforce_id = null,
-            string rnc_id = null, string rnc_regid = null, string external_id = null, int page = 1, int per_page = 100)
+            string rnc_id = null, string rnc_regid = null, string external_id = null, int limit = 100)
         {
             return AllResultsFrom(SearchPeople(first_name, last_name, city, state, sex, birthdate, updated_since, with_mobile, custom_values,
                 civicrm_id, county_file_id, state_file_id, datatrust_id, dw_id, media_market_id, membership_level_id, ngp_id, pf_strat_id, van_id, salesforce_id,
-                rnc_id, rnc_regid, external_id, page, per_page));
+                rnc_id, rnc_regid, external_id, limit));
         }
 
         /// <summary>
         /// Use this endpoint to search for people near a location defined by latitude and longitude.
         /// </summary>
-        /// <param name="location">Origin of search in the format latitude,longitude. (required)</param>
-        /// <param name="distance">The radius in miles for which to include results. (optional, default: 1 mile)</param>
-        /// <param name="page">Page number. (default: 1)</param>
-        /// <param name="per_page">Number of results to show per page. (default: 10, max: 100)</param>
+        /// <param name="location">Origin of search in the format latitude,longitude. (Required.)</param>
+        /// <param name="distance">The radius in miles for which to include results. (Optional, default: 1 mile.)</param>
+        /// <param name="limit">Number of results to show per page. (Default: 10, max: 100.)</param>
         /// <returns>The specified page of people in the specified search radius.</returns>
-        public ResultsPageResponse<Person> NearbyPeople(string location, double distance = 1.0, int page = 1, int per_page = 10)
+        public ResultsPageResponse<Person> NearbyPeople(string location, double distance = 1.0, int limit = 10)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendMethodNonNullParameters(
                 MakeRequestUrlBuilder("people/nearby"),
                 MethodBase.GetCurrentMethod().GetParameters(),
-                location, distance.ToString(), page.ToString(), per_page.ToString());
+                location, distance.ToString(), limit.ToString());
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
 
@@ -221,12 +215,11 @@ namespace NationBuilderAPI.V1
         /// </summary>
         /// <param name="location">Origin of search in the format latitude,longitude. (required)</param>
         /// <param name="distance">The radius in miles for which to include results. (optional, default: 1 mile)</param>
-        /// <param name="page">Results page to start from. (default: 1)</param>
-        /// <param name="per_page">Number of results to retireve per page. (default: 100, max: 100)</param>
+        /// <param name="limit">Number of results to retireve per page. (default: 100, max: 100)</param>
         /// <returns>The people in the specified search radius.</returns>
-        public IEnumerable<Person> NearbyPeopleResults(string location, double distance = 1.0, int page = 1, int per_page = 100)
+        public IEnumerable<Person> NearbyPeopleResults(string location, double distance = 1.0, int limit = 100)
         {
-            return AllResultsFrom(NearbyPeople(location, distance, page, per_page));
+            return AllResultsFrom(NearbyPeople(location, distance, limit));
         }
 
         /// <summary>

@@ -10,15 +10,13 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// The index endpoint provides a paginated view of the donations in a nation.
         /// </summary>
-        /// <param name="page">Result page number.</param>
-        /// <param name="per_page">Number of results to show on each page of results (max 100).</param>
+        /// <param name="limit">Number of results to show on each page of results (max 100).</param>
         /// <returns>The requested page of results, and result information.</returns>
-        public ResultsPageResponse<Donation> GetDonations(int page = 1, int per_page = 100)
+        public ResultsPageResponse<Donation> GetDonations(int limit = 100)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("donations"),
-                "&page=", page.ToString(),
-                "&per_page=", per_page.ToString());
+                "&per_page=", limit.ToString());
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Donation>>(req);
 
@@ -28,12 +26,11 @@ namespace NationBuilderAPI.V1
         /// <summary>
         /// Get an enumeration of all the donations in a nation.
         /// </summary>
-        /// <param name="page">Results page to start from.</param>
-        /// <param name="per_page">Number of results to retrieve on each page of results (max 100).</param>
+        /// <param name="limit">Number of results to retrieve on each page of results (max 100).</param>
         /// <returns>All the donations in the nation.</returns>
-        public IEnumerable<Donation> GetDonationsResults(int page = 1, int per_page = 100)
+        public IEnumerable<Donation> GetDonationsResults(int limit = 100)
         {
-            return AllResultsFrom(GetDonations(page, per_page));
+            return AllResultsFrom(GetDonations(limit));
         }
 
         /// <summary>
