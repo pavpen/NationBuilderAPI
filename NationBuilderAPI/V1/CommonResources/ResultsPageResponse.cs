@@ -21,5 +21,30 @@ namespace NationBuilderAPI.V1
 
         [DataMember]
         public List<ResultType> results;
+        
+
+
+        public ResultsPageResponse() { }
+
+        /// <summary>
+        /// Create a <see cref="RespltsPageResponse"/> object which is a shallow copy of another object.
+        /// </summary>
+        /// <param name="copySource">The object to copy.</param>
+        public ResultsPageResponse(ResultsPageResponse<ResultType> copySource)
+        {
+            foreach (var info in typeof(ResultsPageResponse<ResultType>).GetFields())
+            {
+                info.SetValue(this, info.GetValue(copySource));
+            }
+        }
+
+        /// <summary>
+        /// Create a shallow clone of this object.
+        /// </summary>
+        /// <returns>The cloned object.</returns>
+        public ResultsPageResponse<ResultType> ShallowClone()
+        {
+            return (ResultsPageResponse<ResultType>)this.MemberwiseClone();
+        }
     }
 }

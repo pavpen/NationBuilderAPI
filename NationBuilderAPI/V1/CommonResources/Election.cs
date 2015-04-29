@@ -64,5 +64,30 @@ namespace NationBuilderAPI.V1
         /// </summary>
         [DataMember]
         public char period_ngp_code;
+        
+
+
+        public Election() { }
+
+        /// <summary>
+        /// Create an <see cref="Election"/> object which is a shallow copy of another object.
+        /// </summary>
+        /// <param name="copySource">The object to copy.</param>
+        public Election(Election copySource)
+        {
+            foreach (var info in typeof(Election).GetFields())
+            {
+                info.SetValue(this, info.GetValue(copySource));
+            }
+        }
+
+        /// <summary>
+        /// Create a shallow clone of this object.
+        /// </summary>
+        /// <returns>The cloned object.</returns>
+        public Election ShallowClone()
+        {
+            return (Election)this.MemberwiseClone();
+        }
     }
 }
