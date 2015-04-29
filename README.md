@@ -12,10 +12,8 @@ using NationBuilderAPI.V1;
 
 NationBuilderSession nbSession = new NationBuilderSession("your-nation-slug", "your-access-token");
 
-// Get a page of the top 100 people in our nation:
-ResultsPageResponse<AbbreviatedPerson> resp = nbSession.GetPeople(1, 100);
-
-foreach (AbbreviatedPerson p in resp.results)
+// Iterate over all people in our nation:
+foreach (AbbreviatedPerson p in nbSession.GetPeopleResults())
 {
   // Use the person data.  E.g., display the name and e-mail:
   outpTextBox.AppendText("E-mail: " + p.email + ", Name: " + p.first_name + " " + p.last_name + "\n");
