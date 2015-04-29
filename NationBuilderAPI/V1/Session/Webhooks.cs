@@ -8,21 +8,29 @@ namespace NationBuilderAPI.V1
     public partial class NationBuilderSession : NationBuilderHttpTransport
     {
         /// <summary>
-        /// Returns a paginated list of the webhooks the nation has already registered with this endpoint
+        /// Returns a paginated list of the webhooks the nation has already registered with this endpoint.
         /// </summary>
-        /// <param name="page">Page number.</param>
-        /// <param name="per_page">The number of results to show per page. (default 10, max 100)</param>
+        /// <param name="limit">The number of results to show per page. (Default: 10, max: 100)</param>
         /// <returns>The requested page of webhook results.</returns>
-        public ResultsPageResponse<Webhook> GetWebhooks(int page=1, int per_page=10)
+        public ResultsPageResponse<Webhook> GetWebhooks(int limit=10)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("webhooks"),
-                "&page=", page.ToString(),
-                "&per_page=", per_page.ToString());
+                "&limit=", limit.ToString());
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Webhook>>(req);
 
             return res;
+        }
+
+        /// <summary>
+        /// Returns an iterator over all of the webhooks the nation has already registered.
+        /// </summary>
+        /// <param name="limit">The number of results to retrieve per page. (Max: 100)</param>
+        /// <returns>An enumeration of the nation's webhooks.</returns>
+        public IEnumerable<Webhook> GetWebhooksResults(int limit=100)
+        {
+            return AllResultsFrom(GetWebhooks(limit));
         }
 
         /// <summary>
