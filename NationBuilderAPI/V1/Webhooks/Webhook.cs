@@ -42,5 +42,30 @@ namespace NationBuilderAPI.V1
         /// </summary>
         [DataMember(Name="event")]
         public string event_name;
+        
+
+
+        public Webhook() { }
+
+        /// <summary>
+        /// Create an <see cref="Webhook"/> object which is a shallow copy of another object.
+        /// </summary>
+        /// <param name="copySource">The object to copy.</param>
+        public Webhook(Webhook copySource)
+        {
+            foreach (var info in typeof(Webhook).GetFields())
+            {
+                info.SetValue(this, info.GetValue(copySource));
+            }
+        }
+
+        /// <summary>
+        /// Create a shallow clone of this object.
+        /// </summary>
+        /// <returns>The cloned object.</returns>
+        public Webhook ShallowClone()
+        {
+            return (Webhook)this.MemberwiseClone();
+        }
     }
 }
