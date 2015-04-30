@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-using NationBuilderAPI.V1.AutoSerializable;
+using NationBuilderAPI.V1.HelperClasses;
 
 namespace NationBuilderAPI.V1
 {
@@ -541,21 +541,21 @@ namespace NationBuilderAPI.V1
         [OnSerializing]
         void OnSerializing(StreamingContext context)
         {
-            canceled_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(canceled_at);
-            created_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(created_at);
-            failed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(failed_at);
-            succeeded_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(succeeded_at);
-            updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(updated_at);
+            canceled_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(canceled_at);
+            created_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(created_at);
+            failed_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(failed_at);
+            succeeded_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(succeeded_at);
+            updated_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(updated_at);
         }
 
         [OnDeserialized]
         void OnDeserialized(StreamingContext context)
         {
-            canceled_at = Base.NullableDateTimeOffsetDeserialize(canceled_at_SerializationForm);
-            created_at = Base.DateTimeOffsetDeserialize(created_at_SerializationForm);
-            failed_at = Base.NullableDateTimeOffsetDeserialize(failed_at_SerializationForm);
-            succeeded_at = Base.NullableDateTimeOffsetDeserialize(succeeded_at_SerializationForm);
-            updated_at = Base.DateTimeOffsetDeserialize(updated_at_SerializationForm);
+            canceled_at = Serialization.NullableDateTimeOffsetDeserialize(canceled_at_SerializationForm);
+            created_at = Serialization.DateTimeOffsetDeserialize(created_at_SerializationForm);
+            failed_at = Serialization.NullableDateTimeOffsetDeserialize(failed_at_SerializationForm);
+            succeeded_at = Serialization.NullableDateTimeOffsetDeserialize(succeeded_at_SerializationForm);
+            updated_at = Serialization.DateTimeOffsetDeserialize(updated_at_SerializationForm);
         }
 
 

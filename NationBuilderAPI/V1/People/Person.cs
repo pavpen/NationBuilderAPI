@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 
-using NationBuilderAPI.V1.AutoSerializable;
+using NationBuilderAPI.V1.HelperClasses;
 
 namespace NationBuilderAPI.V1
 {
@@ -1141,59 +1141,59 @@ namespace NationBuilderAPI.V1
         [OnSerializing]
         void OnSerializing(StreamingContext context)
         {
-            active_customer_expires_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(active_customer_expires_at);
-            active_customer_started_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(active_customer_started_at);
-            banned_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(banned_at);
-            facebook_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(facebook_updated_at);
-            first_donated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_donated_at);
-            first_fundraised_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_fundraised_at);
-            first_invoice_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_invoice_at);
-            first_prospect_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_prospect_at);
-            first_recruited_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_recruited_at);
-            first_supporter_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_supporter_at);
-            first_volunteer_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(first_volunteer_at);
-            last_contacted_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_contacted_at);
-            last_donated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_donated_at);
-            last_fundraised_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_fundraised_at);
-            last_invoice_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_invoice_at);
-            last_rule_violation_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(last_rule_violation_at);
-            membership_expires_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(membership_expires_at);
-            membership_started_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(membership_started_at);
-            note_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(note_updated_at);
-            priority_level_changed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(priority_level_changed_at);
-            registered_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(registered_at);
-            support_level_changed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(support_level_changed_at);
-            twitter_updated_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(twitter_updated_at);
-            unsubscribed_at_SerializationForm = Base.DateTimeOffsetGetSerializationForm(unsubscribed_at);
+            active_customer_expires_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(active_customer_expires_at);
+            active_customer_started_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(active_customer_started_at);
+            banned_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(banned_at);
+            facebook_updated_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(facebook_updated_at);
+            first_donated_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(first_donated_at);
+            first_fundraised_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(first_fundraised_at);
+            first_invoice_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(first_invoice_at);
+            first_prospect_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(first_prospect_at);
+            first_recruited_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(first_recruited_at);
+            first_supporter_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(first_supporter_at);
+            first_volunteer_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(first_volunteer_at);
+            last_contacted_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(last_contacted_at);
+            last_donated_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(last_donated_at);
+            last_fundraised_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(last_fundraised_at);
+            last_invoice_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(last_invoice_at);
+            last_rule_violation_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(last_rule_violation_at);
+            membership_expires_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(membership_expires_at);
+            membership_started_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(membership_started_at);
+            note_updated_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(note_updated_at);
+            priority_level_changed_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(priority_level_changed_at);
+            registered_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(registered_at);
+            support_level_changed_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(support_level_changed_at);
+            twitter_updated_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(twitter_updated_at);
+            unsubscribed_at_SerializationForm = Serialization.DateTimeOffsetGetSerializationForm(unsubscribed_at);
         }
 
         [OnDeserialized]
         void OnDeserialized(StreamingContext context)
         {
-            active_customer_expires_at = Base.NullableDateTimeOffsetDeserialize(active_customer_expires_at_SerializationForm);
-            active_customer_started_at = Base.NullableDateTimeOffsetDeserialize(active_customer_started_at_SerializationForm);
-            banned_at = Base.NullableDateTimeOffsetDeserialize(banned_at_SerializationForm);
-            facebook_updated_at = Base.NullableDateTimeOffsetDeserialize(facebook_updated_at_SerializationForm);
-            first_donated_at = Base.NullableDateTimeOffsetDeserialize(first_donated_at_SerializationForm);
-            first_fundraised_at = Base.NullableDateTimeOffsetDeserialize(first_fundraised_at_SerializationForm);
-            first_invoice_at = Base.NullableDateTimeOffsetDeserialize(first_invoice_at_SerializationForm);
-            first_prospect_at = Base.NullableDateTimeOffsetDeserialize(first_prospect_at_SerializationForm);
-            first_recruited_at = Base.NullableDateTimeOffsetDeserialize(first_recruited_at_SerializationForm);
-            first_supporter_at = Base.NullableDateTimeOffsetDeserialize(first_supporter_at_SerializationForm);
-            first_volunteer_at = Base.NullableDateTimeOffsetDeserialize(first_volunteer_at_SerializationForm);
-            last_contacted_at = Base.NullableDateTimeOffsetDeserialize(last_contacted_at_SerializationForm);
-            last_donated_at = Base.NullableDateTimeOffsetDeserialize(last_donated_at_SerializationForm);
-            last_fundraised_at = Base.NullableDateTimeOffsetDeserialize(last_fundraised_at_SerializationForm);
-            last_invoice_at = Base.NullableDateTimeOffsetDeserialize(last_invoice_at_SerializationForm);
-            last_rule_violation_at = Base.NullableDateTimeOffsetDeserialize(last_rule_violation_at_SerializationForm);
-            membership_expires_at = Base.NullableDateTimeOffsetDeserialize(membership_expires_at_SerializationForm);
-            membership_started_at = Base.NullableDateTimeOffsetDeserialize(membership_started_at_SerializationForm);
-            note_updated_at = Base.NullableDateTimeOffsetDeserialize(note_updated_at_SerializationForm);
-            priority_level_changed_at = Base.NullableDateTimeOffsetDeserialize(priority_level_changed_at_SerializationForm);
-            registered_at = Base.NullableDateTimeOffsetDeserialize(registered_at_SerializationForm);
-            support_level_changed_at = Base.NullableDateTimeOffsetDeserialize(support_level_changed_at_SerializationForm);
-            twitter_updated_at = Base.NullableDateTimeOffsetDeserialize(twitter_updated_at_SerializationForm);
-            unsubscribed_at = Base.NullableDateTimeOffsetDeserialize(unsubscribed_at_SerializationForm);
+            active_customer_expires_at = Serialization.NullableDateTimeOffsetDeserialize(active_customer_expires_at_SerializationForm);
+            active_customer_started_at = Serialization.NullableDateTimeOffsetDeserialize(active_customer_started_at_SerializationForm);
+            banned_at = Serialization.NullableDateTimeOffsetDeserialize(banned_at_SerializationForm);
+            facebook_updated_at = Serialization.NullableDateTimeOffsetDeserialize(facebook_updated_at_SerializationForm);
+            first_donated_at = Serialization.NullableDateTimeOffsetDeserialize(first_donated_at_SerializationForm);
+            first_fundraised_at = Serialization.NullableDateTimeOffsetDeserialize(first_fundraised_at_SerializationForm);
+            first_invoice_at = Serialization.NullableDateTimeOffsetDeserialize(first_invoice_at_SerializationForm);
+            first_prospect_at = Serialization.NullableDateTimeOffsetDeserialize(first_prospect_at_SerializationForm);
+            first_recruited_at = Serialization.NullableDateTimeOffsetDeserialize(first_recruited_at_SerializationForm);
+            first_supporter_at = Serialization.NullableDateTimeOffsetDeserialize(first_supporter_at_SerializationForm);
+            first_volunteer_at = Serialization.NullableDateTimeOffsetDeserialize(first_volunteer_at_SerializationForm);
+            last_contacted_at = Serialization.NullableDateTimeOffsetDeserialize(last_contacted_at_SerializationForm);
+            last_donated_at = Serialization.NullableDateTimeOffsetDeserialize(last_donated_at_SerializationForm);
+            last_fundraised_at = Serialization.NullableDateTimeOffsetDeserialize(last_fundraised_at_SerializationForm);
+            last_invoice_at = Serialization.NullableDateTimeOffsetDeserialize(last_invoice_at_SerializationForm);
+            last_rule_violation_at = Serialization.NullableDateTimeOffsetDeserialize(last_rule_violation_at_SerializationForm);
+            membership_expires_at = Serialization.NullableDateTimeOffsetDeserialize(membership_expires_at_SerializationForm);
+            membership_started_at = Serialization.NullableDateTimeOffsetDeserialize(membership_started_at_SerializationForm);
+            note_updated_at = Serialization.NullableDateTimeOffsetDeserialize(note_updated_at_SerializationForm);
+            priority_level_changed_at = Serialization.NullableDateTimeOffsetDeserialize(priority_level_changed_at_SerializationForm);
+            registered_at = Serialization.NullableDateTimeOffsetDeserialize(registered_at_SerializationForm);
+            support_level_changed_at = Serialization.NullableDateTimeOffsetDeserialize(support_level_changed_at_SerializationForm);
+            twitter_updated_at = Serialization.NullableDateTimeOffsetDeserialize(twitter_updated_at_SerializationForm);
+            unsubscribed_at = Serialization.NullableDateTimeOffsetDeserialize(unsubscribed_at_SerializationForm);
         }
 
         /// <summary>

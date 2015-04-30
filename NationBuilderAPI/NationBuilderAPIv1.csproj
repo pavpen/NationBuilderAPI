@@ -40,7 +40,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="V1\AutoSerializable\Base.cs" />
+    <Compile Include="V1\HelperClasses\Serialization.cs" />
     <Compile Include="V1\Donations\Donation.cs" />
     <Compile Include="V1\People\Person.cs" />
     <Compile Include="V1\CommonResources\Election.cs" />

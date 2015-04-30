@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace NationBuilderAPI.V1.AutoSerializable
+namespace NationBuilderAPI.V1.HelperClasses
 {
-    static class Base
+    static class Serialization
     {
         public static string DateTimeGetSerializationForm(DateTime? value)
         {
