@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
+using NationBuilderAPI.V1.HelperClasses;
+
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class ResultsPageResponse<ResultType>
+    public class ResultsPageResponse<ResultType>:MemberwiseCloneableComparable
     {
         /// <summary>
         /// URI of the page of results for this query, or <c>null</c>, if this is the last page.
@@ -24,20 +26,6 @@ namespace NationBuilderAPI.V1
         
 
 
-        public ResultsPageResponse() { }
-
-        /// <summary>
-        /// Create a <see cref="RespltsPageResponse"/> object which is a shallow copy of another object.
-        /// </summary>
-        /// <param name="copySource">The object to copy.</param>
-        public ResultsPageResponse(ResultsPageResponse<ResultType> copySource)
-        {
-            foreach (var info in typeof(ResultsPageResponse<ResultType>).GetFields())
-            {
-                info.SetValue(this, info.GetValue(copySource));
-            }
-        }
-
         /// <summary>
         /// Create a shallow clone of this object.
         /// </summary>
@@ -45,6 +33,11 @@ namespace NationBuilderAPI.V1
         public ResultsPageResponse<ResultType> ShallowClone()
         {
             return (ResultsPageResponse<ResultType>)this.MemberwiseClone();
+        }
+
+        public bool Equals(ResultsPageResponse<ResultType> comparand)
+        {
+            return Equals((object)comparand);
         }
     }
 }

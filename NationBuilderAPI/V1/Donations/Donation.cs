@@ -9,7 +9,7 @@ using NationBuilderAPI.V1.HelperClasses;
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class Donation
+    public class Donation : MemberwiseCloneableComparable
     {
         /// <summary>
         /// Amount of donation in the nation's currency.
@@ -560,29 +560,20 @@ namespace NationBuilderAPI.V1
 
 
 
-        public Donation() { }
-        
-        /// <summary>
-        /// Create a <see cref="Donation"/> object which is a shallow copy of another object.
-        /// </summary>
-        /// <param name="copySource">The object to copy.</param>
-        public Donation(Donation copySource)
-        {
-            foreach (var info in typeof(Donation).GetFields())
-            {
-                info.SetValue(this, info.GetValue(copySource));
-            }
-        }
-
         /// <summary>
         /// Create a shallow copy of this object.
         /// 
         /// The clone and this object will share member objects!
         /// </summary>
         /// <returns>The cloned Donation object.</returns>
-        public Donation ShallowClone()
+        public new Donation ShallowClone()
         {
             return (Donation)this.MemberwiseClone();
+        }
+
+        public bool Equals(Donation comparand)
+        {
+            return Equals((object)comparand);
         }
     }
 }

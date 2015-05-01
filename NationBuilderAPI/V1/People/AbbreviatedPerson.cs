@@ -4,10 +4,12 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 
+using NationBuilderAPI.V1.HelperClasses;
+
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class AbbreviatedPerson
+    public class AbbreviatedPerson : MemberwiseCloneableComparable
     {
         /// <summary>
         /// This person's birth date.
@@ -336,20 +338,6 @@ namespace NationBuilderAPI.V1
 
 
 
-        public AbbreviatedPerson() { }
-
-        /// <summary>
-        /// Create an <see cref="AbbreviatedPerson"/> object which is a shallow copy of another object.
-        /// </summary>
-        /// <param name="copySource">The object to copy.</param>
-        public AbbreviatedPerson(AbbreviatedPerson copySource)
-        {
-            foreach (var info in typeof(AbbreviatedPerson).GetFields())
-            {
-                info.SetValue(this, info.GetValue(copySource));
-            }
-        }
-
         [OnSerializing]
         void OnSerializing(StreamingContext context)
         {
@@ -375,9 +363,14 @@ namespace NationBuilderAPI.V1
         /// Any member objects will be shared between this object and its shallow clone!
         /// </summary>
         /// <returns>The resulting AbbreviatedPerson object.</returns>
-        public AbbreviatedPerson ShallowClone()
+        public new AbbreviatedPerson ShallowClone()
         {
             return (AbbreviatedPerson)this.MemberwiseClone();
+        }
+
+        public bool Equals(AbbreviatedPerson comparand)
+        {
+            return Equals((object)comparand);
         }
     }
 }

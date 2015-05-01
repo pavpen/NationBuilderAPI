@@ -28,7 +28,11 @@ namespace NationBuilderAPI.V1.Webhooks.V4
         /// <returns>The <see cref="Person"/> object.</returns>
         public Person ToPerson()
         {
-            return new Person(this);
+            var res = new Person();
+
+            res.CopyFrom(this);
+
+            return res;
         }
     }
 }

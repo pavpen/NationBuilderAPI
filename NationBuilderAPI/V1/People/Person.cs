@@ -1124,19 +1124,6 @@ namespace NationBuilderAPI.V1
         public string work_phone_number;
 
 
-        public Person() { }
-
-        /// <summary>
-        /// Create a <see cref="Person"/> object which is a shallow copy of another object.
-        /// </summary>
-        /// <param name="copySource">The object to copy.</param>
-        public Person(Person copySource)
-        {
-            foreach (var info in typeof(Person).GetFields())
-            {
-                info.SetValue(this, info.GetValue(copySource));
-            }
-        }
 
         [OnSerializing]
         void OnSerializing(StreamingContext context)
@@ -1205,6 +1192,11 @@ namespace NationBuilderAPI.V1
         new public Person ShallowClone()
         {
             return (Person)this.MemberwiseClone();
+        }
+
+        public bool Equals(Person comparand)
+        {
+            return Equals((object)comparand);
         }
     }
 }

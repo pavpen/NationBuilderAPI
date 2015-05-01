@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
+
+using NationBuilderAPI.V1.HelperClasses;
 
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class Address
+    public class Address : MemberwiseCloneableComparable
     {
         /// <summary>
         /// First address line.
@@ -66,20 +67,6 @@ namespace NationBuilderAPI.V1
 
 
 
-        public Address() { }
-
-        /// <summary>
-        /// Create an <see cref="Address"/> object which is a shallow copy of another object.
-        /// </summary>
-        /// <param name="copySource">The object to copy.</param>
-        public Address(Address copySource)
-        {
-            foreach (var info in typeof(Address).GetFields())
-            {
-                info.SetValue(this, info.GetValue(copySource));
-            }
-        }
-
         /// <summary>
         /// Create a shallow clone of this object.
         /// </summary>
@@ -87,6 +74,11 @@ namespace NationBuilderAPI.V1
         public Address ShallowClone()
         {
             return (Address)this.MemberwiseClone();
+        }
+
+        public bool Equals(Address comparand)
+        {
+            return Equals((object)comparand);
         }
     }
 }
