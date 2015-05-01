@@ -73,7 +73,7 @@ namespace NationBuilderAPI.V1
         /// Create a shallow clone of this object.
         /// </summary>
         /// <returns>The cloned object.</returns>
-        public Election ShallowClone()
+        public new Election ShallowClone()
         {
             return (Election)this.MemberwiseClone();
         }

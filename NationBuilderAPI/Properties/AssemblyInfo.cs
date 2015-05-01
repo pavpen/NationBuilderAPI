@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LaRouche Policy Institute")]
 [assembly: AssemblyProduct("NationBuilder API")]
-[assembly: AssemblyCopyright("Copyright ©  2014 LaRouche Policy Institute")]
+[assembly: AssemblyCopyright("Copyright ©  2014-2015 Pavel M. Penev")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

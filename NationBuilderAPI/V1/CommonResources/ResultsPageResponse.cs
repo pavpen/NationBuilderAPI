@@ -30,7 +30,7 @@ namespace NationBuilderAPI.V1
         /// Create a shallow clone of this object.
         /// </summary>
         /// <returns>The cloned object.</returns>
-        public ResultsPageResponse<ResultType> ShallowClone()
+        public new ResultsPageResponse<ResultType> ShallowClone()
         {
             return (ResultsPageResponse<ResultType>)this.MemberwiseClone();
         }

@@ -26,7 +26,7 @@ namespace NationBuilderAPI.V1
         /// Create a shallow clone of this object.
         /// </summary>
         /// <returns>The cloned Address object.</returns>
-        public Precinct ShallowClone()
+        public new Precinct ShallowClone()
         {
             return (Precinct)this.MemberwiseClone();
         }

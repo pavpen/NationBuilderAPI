@@ -1,8 +1,0 @@
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio 2012\Projects\NationBuilderAPI\NationBuilderAPI\bin\Release\NationBuilderAPI.dll
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio 2012\Projects\NationBuilderAPI\NationBuilderAPI\bin\Release\NationBuilderAPI.pdb
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio 2012\Projects\NationBuilderAPI\NationBuilderAPI\obj\Release\NationBuilderAPI.dll
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio 2012\Projects\NationBuilderAPI\NationBuilderAPI\obj\Release\NationBuilderAPI.pdb
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\NationBuilderAPI\bin\Release\NationBuilderAPI.dll
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\NationBuilderAPI\bin\Release\NationBuilderAPI.pdb
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\NationBuilderAPI\obj\Release\NationBuilderAPI.dll
-C:\Users\lym.OFFICE-ANIMATE1\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\NationBuilderAPI\obj\Release\NationBuilderAPI.pdb
