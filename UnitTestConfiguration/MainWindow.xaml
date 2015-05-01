@@ -1,0 +1,44 @@
+﻿<Window x:Class="UnitTestConfiguration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NationBuilderAPI Unit Test Configuration" Height="350" Width="525">
+    <Grid x:Name="SettingsContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" Content="Test Nation Slug: " HorizontalAlignment="Right"/>
+        <TextBox x:Name="TestNationSlugTextBox" Grid.Row="0" Grid.Column="1" Text="{Binding Path=TestNationSlug, Mode=TwoWay}" TextWrapping="Wrap" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Margin="0,5,5,5"/>
+        
+        <Label Grid.Row="1" Grid.Column="0" Content="Test Nation API Access Token: " HorizontalAlignment="Right"/>
+        <TextBox x:Name="TestNationAccessTokenTextBox" Grid.Row="1" Grid.Column="1" Text="{Binding Path=TestNationAccessToken, Mode=TwoWay}" TextWrapping="Wrap" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Margin="0,5,5,5"/>
+        
+        <GroupBox Grid.Row="2" Grid.ColumnSpan="2" Header="Diagnostic Output" Margin="0,10,0,0" Padding="0,3,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <RichTextBox x:Name="DiagnosticOutputTextBox" Grid.Row="0" IsReadOnly="True" IsDocumentEnabled="True">
+                    <FlowDocument x:Name="DiagnosticOutputDocument"/>
+                </RichTextBox>
+                <CheckBox x:Name="ScrollToEndOnOutputCheckBox" Grid.Row="1" Content="Scroll to end on output" IsChecked="True" HorizontalAlignment="Right" Margin="0,3,1,3"/>
+            </Grid>
+        </GroupBox>
+        
+        <DockPanel Grid.Row="3" Grid.ColumnSpan="2" LastChildFill="False">
+            <Button x:Name="TestConnectionButton" Content="Test Connection" Margin="5" DockPanel.Dock="Left" Click="TestConnectionButton_Click"/>
+            
+            <Button x:Name="SaveAndCloseButton" Content="Save &amp; Close" Padding="10,2" Margin="5" Click="SaveAndCloseButton_Click" DockPanel.Dock="Right"/>
+            <Button x:Name="CancelButton" Content="Cancel" Padding="10,2" Margin="5" Click="CancelButton_Click" DockPanel.Dock="Right"/>
+            <Button x:Name="SaveButton" Content="Save" Padding="10,2" Margin="5" Click="SaveButton_Click" DockPanel.Dock="Right"/>
+        </DockPanel>
+    </Grid>
+</Window>
