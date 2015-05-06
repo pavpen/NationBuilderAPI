@@ -125,6 +125,7 @@ namespace UnitTestConfiguration
                 try
                 {
                     session.PersonMe();
+                    OutputSuccess("Successfully connected to the Nation Builder service with slug \"" + Settings.TestNationSlug + "\".");
                 }
                 catch (Exception exc)
                 {
