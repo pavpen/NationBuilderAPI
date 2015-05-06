@@ -162,14 +162,16 @@ namespace NationBuilderAPI.V1
             {
                 // Marshall Nation Builder exceptions back:
                 response = (HttpWebResponse)exc.Response;
-                if (HttpStatusCode.BadRequest == response.StatusCode || HttpStatusCode.NotFound == response.StatusCode)
+                switch (response.StatusCode)
                 {
-                    var excetpionInformation = DeserializeNationBuilderObject<RemoteException>(response.GetResponseStream());
+                    case HttpStatusCode.BadRequest:
+                    case HttpStatusCode.NotFound:
+                        var excetpionInformation = DeserializeNationBuilderObject<RemoteException>(response.GetResponseStream());
 
-                    throw new NationBuilderRemoteException(response.StatusCode,
-                        null == excetpionInformation.code ? excetpionInformation.error : excetpionInformation.code,
-                        null == excetpionInformation.message ? excetpionInformation.error_description : excetpionInformation.message,
-                        exc);
+                        throw new NationBuilderRemoteException(response.StatusCode,
+                            null == excetpionInformation.code ? excetpionInformation.error : excetpionInformation.code,
+                            null == excetpionInformation.message ? excetpionInformation.error_description : excetpionInformation.message,
+                            exc);
                 }
 
                 // Throw unrecognized exceptions back:
