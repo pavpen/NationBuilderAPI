@@ -40,7 +40,7 @@ namespace NationBuilderAPI.V1
         /// <returns>The webhook details.</returns>
         public Webhook ShowWebhook(string id)
         {
-            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks/", Uri.EscapeUriString(id));
+            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks/", WebUtility.UrlEncode(id));
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<WebhookTransportObject>(req);
 

@@ -68,7 +68,8 @@ namespace NationBuilderAPI.V1
         /// <returns>The full person information.</returns>
         public PersonResponse ShowPersonWithExternalId(string externalId)
         {
-            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", Uri.EscapeUriString(externalId), "&id_type=external");
+            StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", WebUtility.UrlEncode(externalId));
+            reqUrlBuilder = RequestUrlBuilderAppendQuery(reqUrlBuilder, "&id_type=external");
 
             HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
@@ -273,7 +274,7 @@ namespace NationBuilderAPI.V1
         }
 
         /// <summary>
-        /// This endpoint updates a person matched, or creates if no match is found.
+        /// This endpoint updates a person matched, or creates one, if no match is found.
         /// Matches are found exclusively by email address or external ID.
         /// </summary>
         /// <param name="person">The resource attributes of the person to push.</param>

@@ -102,5 +102,59 @@ namespace NationBuilderAPIv1UnitTests.V1
                 Assert.Fail("ShowPerson() did not thrown an exception with the expected parameters!");
             }
         }
+
+        [TestMethod]
+        public void ShowPersonWithExternalId()
+        {
+            using (var session = new NationBuilderSession(TestNationSlug, TestNationAccessToken))
+            {
+                // Test remote ID escaping:
+                string testId = "h!6&access_token=null";
+
+                // Create a test person object:
+                var testPerson = new Person()
+                {
+                    first_name = "Tes",
+                    last_name = "Per",
+                    email = "mess@age.net",
+                    external_id = testId,
+                };
+                var newPersonResponse = session.PushPerson(testPerson);
+
+                Assert.AreEqual(newPersonResponse.person.external_id, testId);
+                Assert.IsTrue(newPersonResponse.person.id.HasValue);
+
+                var showPersonResponse = session.ShowPersonWithExternalId(testId);
+
+                Assert.AreEqual(showPersonResponse.person.id, newPersonResponse.person.id);
+                Assert.AreEqual(showPersonResponse.person.external_id, testId);
+
+                // Remove the test person object:
+                session.DestroyPerson(newPersonResponse.person.id.Value);
+            }
+        }
+
+        [TestMethod]
+        public void ShowPersonWithExternalId_WithNonExistentId()
+        {
+            using (var session = new NationBuilderSession(TestNationSlug, TestNationAccessToken))
+            {
+                // Test remote ID escaping:
+                string testId = "h!6&access_token=null";
+
+                try
+                {
+                    var nonExistentPersonResponse = session.ShowPersonWithExternalId(testId);
+                }
+                catch (NationBuilderRemoteException exc)
+                {
+                    Assert.AreEqual("not_found", exc.ExceptionCode);
+                    Assert.AreEqual(HttpStatusCode.NotFound, exc.HttpStatusCode);
+                    return;
+                }
+
+                Assert.Fail("ShowPersonWithExternalId() did not throw an exception with the expected parameters!");
+            }
+        }
     }
 }
