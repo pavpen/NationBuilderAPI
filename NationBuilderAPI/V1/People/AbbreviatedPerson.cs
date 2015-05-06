@@ -121,7 +121,7 @@ namespace NationBuilderAPI.V1
         /// The NationBuilder ID of the person, specific to the authorized nation.
         /// </summary>
         [DataMember]
-        public int? id;
+        public long? id;
 
         /// <summary>
         /// Whether the person is a Twitter follower of one of the nation’s broadcasters.

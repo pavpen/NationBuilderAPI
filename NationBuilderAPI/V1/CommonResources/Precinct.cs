@@ -12,7 +12,7 @@ namespace NationBuilderAPI.V1
     public class Precinct : MemberwiseCloneableComparable
     {
         [DataMember]
-        public int id;
+        public long id;
 
         [DataMember]
         public string code;
