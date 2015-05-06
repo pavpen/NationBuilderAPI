@@ -9,6 +9,19 @@ namespace NationBuilderAPIv1UnitTests.V1
     public partial class NationBuilderSessionTests
     {
         [TestMethod]
+        public void GetPeopleResults()
+        {
+            using (var session = new NationBuilderSession(TestNationSlug, TestNationAccessToken))
+            {
+                // Test parsing all people in the nation:
+                foreach (var person in session.GetPeopleResults())
+                {
+                    Assert.IsTrue(person.id.HasValue);
+                }
+            }
+        }
+
+        [TestMethod]
         public void PersonMe()
         {
             using (var session = new NationBuilderSession(TestNationSlug, TestNationAccessToken))
