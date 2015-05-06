@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using NationBuilderAPI.V1;
@@ -47,6 +48,58 @@ namespace NationBuilderAPIv1UnitTests.V1
 
                 shownPerson.author_id += "suff";
                 Assert.AreNotEqual(shownPerson, personMe);
+            }
+        }
+
+        [TestMethod]
+        public void ShowPerson_WithNonExistentId()
+        {
+            using (var session = new NationBuilderSession(TestNationSlug, TestNationAccessToken))
+            {
+                long testId;
+                var testPerson = new Person()
+                {
+                    first_name = "Tes",
+                    last_name = "Per",
+                    email = "mess@age.net",
+                };
+
+                try
+                {
+                    var personResponse = session.MatchPerson(testPerson.email, testPerson.first_name, testPerson.last_name);
+
+                    testId = personResponse.person.id.Value;
+                }
+                catch (NationBuilderRemoteException exc)
+                {
+                    if ("no_matches" == exc.ExceptionCode || "multiple_matches"==exc.ExceptionCode)
+                    {
+                        // Allocate a new person ID:
+                        var newPersonResponse = session.CreatePerson(testPerson);
+
+                        testId = newPersonResponse.person.id.Value;
+                    }
+                    else
+                    {
+                        throw exc;
+                    }
+                }
+
+                // Make sure there's no person with that ID:
+                session.DestroyPerson(testId);
+
+                try
+                {
+                    var nonExistentPersonResponse = session.ShowPerson(testId);
+                }
+                catch (NationBuilderRemoteException exc)
+                {
+                    Assert.AreEqual("not_found", exc.ExceptionCode);
+                    Assert.AreEqual(HttpStatusCode.NotFound, exc.HttpStatusCode);
+                    return;
+                }
+
+                Assert.Fail("ShowPerson() did not thrown an exception with the expected parameters!");
             }
         }
     }
