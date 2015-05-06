@@ -40,6 +40,8 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="V1\CommonResources\Exceptions.cs" />
+    <Compile Include="V1\CommonResources\RemoteException.cs" />
     <Compile Include="V1\HelperClasses\MemberwiseCloneableComparable.cs" />
     <Compile Include="V1\HelperClasses\Serialization.cs" />
     <Compile Include="V1\Donations\Donation.cs" />

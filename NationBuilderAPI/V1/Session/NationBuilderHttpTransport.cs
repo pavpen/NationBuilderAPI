@@ -93,7 +93,7 @@ namespace NationBuilderAPI.V1
 
                 ParameterInfo info = parameterInfo[c];
 
-                res = RequestUrlBuilderAppendQuery(res, "&", info.Name, "=", Uri.EscapeUriString(value));
+                res = RequestUrlBuilderAppendQuery(res, "&", info.Name, "=", WebUtility.UrlEncode(value));
             }
 
             return res;
@@ -152,7 +152,29 @@ namespace NationBuilderAPI.V1
 
         protected ResponseT DeserializeHttpResponse<ResponseT>(HttpWebRequest req, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
         {
-            HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+            HttpWebResponse response;
+
+            try
+            {
+                response = (HttpWebResponse)req.GetResponse();
+            }
+            catch (WebException exc)
+            {
+                // Marshall Nation Builder exceptions back:
+                response = (HttpWebResponse)exc.Response;
+                if (HttpStatusCode.BadRequest == response.StatusCode || HttpStatusCode.NotFound == response.StatusCode)
+                {
+                    var excetpionInformation = DeserializeNationBuilderObject<RemoteException>(response.GetResponseStream());
+
+                    throw new NationBuilderRemoteException(response.StatusCode,
+                        null == excetpionInformation.code ? excetpionInformation.error : excetpionInformation.code,
+                        null == excetpionInformation.message ? excetpionInformation.error_description : excetpionInformation.message,
+                        exc);
+                }
+
+                // Throw unrecognized exceptions back:
+                throw exc;
+            }
 
             if (response.StatusCode != expectedStatusCode)
             {

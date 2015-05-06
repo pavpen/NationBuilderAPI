@@ -37,6 +37,10 @@ namespace NationBuilderAPI.V1
 
         /// <summary>
         /// The Show endpoint returns a full representation of the person with the provided ID.
+        /// 
+        /// Although, this does not appear in Nation Builder's API documentation, if a person with the specified ID
+        /// does not exist, the Nation Builder service will return an exception with HTTP status code 404 (not found),
+        /// and exception code <c>"not_found"</c>.  It will be marshalled back as a <see cref="NationBuilderRemoteException"/>.
         /// </summary>
         /// <param name="id">ID of the person to retrieve.</param>
         /// <param name="idType">Type of ID to use, set to <c>"external"</c> to show the person based on their external ID. Leave as <c>null</c> to use NationBuilder's ID.</param>
@@ -77,6 +81,14 @@ namespace NationBuilderAPI.V1
         /// A single person must match the given criteria for this endpoint to return success.
         /// 
         /// Parameters act as matching criteria.
+        /// 
+        /// Although this does not appear documented, the way Nation Builder returns a response
+        /// which is not a match, is by throwing an exception.
+        /// You can expect <see cref="NationBuilderRemoteException"/>s with the following codes:
+        /// 
+        /// <c>no_matches</c>: "No people matched the given criteria."
+        /// 
+        /// <c>multiple_matches</c>: "Multiple people matched the given criteria."
         /// </summary>
         /// <param name="email">Email address.</param>
         /// <param name="first_name">First name.</param>
@@ -238,7 +250,7 @@ namespace NationBuilderAPI.V1
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people");
             HttpWebRequest req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person });
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
+            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req, HttpStatusCode.Created);
 
             return res;
         }
