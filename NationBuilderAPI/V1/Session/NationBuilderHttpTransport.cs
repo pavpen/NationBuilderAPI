@@ -29,6 +29,15 @@ namespace NationBuilderAPI.V1
 
         protected string NationSlug;
         protected string AccessToken;
+
+        /// <summary>
+        /// Whether Nation Builder service calls should trigger registered webhooks.
+        /// 
+        /// Defaults to <c>true</c> for all API requests.
+        /// Setting to <c>false</c> will disable the firing of any webhooks that could result from that API request.
+        /// </summary>
+        public bool FireWebhooks = true;
+
         public System.Net.IWebProxy HttpProxy = null;
         protected DateTimeFormat DateTimeFormat = new DateTimeFormat(DefaultDateTimeFormatString);
 
@@ -42,8 +51,11 @@ namespace NationBuilderAPI.V1
             {
                 res.Append(component);
             }
-            res.Append("?access_token=");
-            res.Append(AccessToken);
+            res.Append("?access_token=").Append(AccessToken);
+            if (!FireWebhooks)
+            {
+                res.Append("&fire_webhooks=false");
+            }
 
             return res;
         }
@@ -63,6 +75,10 @@ namespace NationBuilderAPI.V1
             res.Append(NationSlug).Append(".nationbuilder.com");
             res.Append(requestUrl);
             res.Append("&access_token=").Append(AccessToken);
+            if (!FireWebhooks)
+            {
+                res.Append("&fire_webhooks=false");
+            }
 
             return res;
         }
