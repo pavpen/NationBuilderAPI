@@ -45,6 +45,10 @@
     <Compile Include="V1\HelperClasses\MemberwiseCloneableComparable.cs" />
     <Compile Include="V1\HelperClasses\Serialization.cs" />
     <Compile Include="V1\Donations\Donation.cs" />
+    <Compile Include="V1\Lists\List.cs" />
+    <Compile Include="V1\Lists\ListPeopleTransportObject.cs" />
+    <Compile Include="V1\Lists\ListResponse.cs" />
+    <Compile Include="V1\Lists\ListTransportObject.cs" />
     <Compile Include="V1\PeopleTags\Tag.cs" />
     <Compile Include="V1\People\Person.cs" />
     <Compile Include="V1\CommonResources\Election.cs" />
@@ -55,6 +59,7 @@
     <Compile Include="V1\People\PersonTransportObject.cs" />
     <Compile Include="V1\People\RegisterResponse.cs" />
     <Compile Include="V1\Session\Donations.cs" />
+    <Compile Include="V1\Session\Lists.cs" />
     <Compile Include="V1\Session\NationBuilderHttpTransport.cs" />
     <Compile Include="V1\CommonResources\Address.cs" />
     <Compile Include="V1\Session\NationBuilderSession.cs" />
