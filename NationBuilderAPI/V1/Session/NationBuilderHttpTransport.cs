@@ -149,7 +149,7 @@ namespace NationBuilderAPI.V1
 
         protected void ReceiveVoidHttpResponse(HttpWebRequest req, HttpStatusCode expectedStatusCode = HttpStatusCode.NoContent)
         {
-            HttpWebResponse response = (HttpWebResponse) req.GetResponse();
+            HttpWebResponse response = RequestGetResponse(req);
 
             if (response.StatusCode != expectedStatusCode)
             {
@@ -167,6 +167,18 @@ namespace NationBuilderAPI.V1
         }
 
         protected ResponseT DeserializeHttpResponse<ResponseT>(HttpWebRequest req, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
+        {
+            HttpWebResponse response = RequestGetResponse(req);
+
+            if (response.StatusCode != expectedStatusCode)
+            {
+                throw new InvalidOperationException("Unexpected HTTP status code: " + response.StatusCode + "\n" + response.StatusDescription);
+            }
+
+            return DeserializeNationBuilderObject<ResponseT>(response.GetResponseStream());
+        }
+
+        protected HttpWebResponse RequestGetResponse(HttpWebRequest req)
         {
             HttpWebResponse response;
 
@@ -194,12 +206,7 @@ namespace NationBuilderAPI.V1
                 throw exc;
             }
 
-            if (response.StatusCode != expectedStatusCode)
-            {
-                throw new InvalidOperationException("Unexpected HTTP status code: " + response.StatusCode + "\n" + response.StatusDescription);
-            }
-
-            return DeserializeNationBuilderObject<ResponseT>(response.GetResponseStream());
+            return response;
         }
 
         public Stream SerializeNationBuilderObject<ObjectT>(ObjectT dataObject, Stream outputStream = null)
