@@ -3,7 +3,7 @@
   <metadata>
     <id>NationBuilderAPI</id>
     <version>1.2.0</version>
-    <title>Nation Builder API v.1.2 .NET Wrapper</title>
+    <title>Nation Builder API v.1 .NET Wrapper</title>
     <authors>Pavel M. Penev &lt;pavpen@gmail.com&gt;</authors>
     <owners>Pavel M. Penev</owners>
     <licenseUrl>https://github.com/pavpen/NationBuilderAPI/blob/master/LICENSE</licenseUrl>
@@ -13,8 +13,11 @@
     <releaseNotes>This is an alpha pre-release. It wraps only people (people, tags, lists, contacts), donations, and webhooks.
 
 Changes since v. 1.1.0:
+======================
 
-# Improvements
+## Improvements
+
+* Added support for people lists, tags, and contacts.
 
 * Added remote exception marshalling.
 
@@ -23,20 +26,21 @@ Changes since v. 1.1.0:
 * Switched object IDs to `long`.
 
 
-# Bug Fixes
+## Bug Fixes
 
 * Fixed URI component encoding, fixed URL parameter order in ShowPersonWithExternalId().
 
 
-# Development Improvements
+## Development Improvements
 
 * Added unit tests.
 
 
 
 Changes since v. 1.0.1:
+======================
 
-# Improvements
+## Improvements
 
 * Switched to new paging API.  There are now iterator versions of methods that return query results.
 
@@ -49,7 +53,7 @@ Changes since v. 1.0.1:
 * Added NationBuilderSession.ShowPersonWithExternalId(string).
 
 
-# Bug Fixes
+## Bug Fixes
 
 * NationBuilderSession.UpdatePerson(): Fixed expected HTTP response status, so you don't get an exception.
 
@@ -66,6 +70,7 @@ Changes since v. 1.0.1:
 
 
 Changes since v. 1.0.0:
+======================
 
 * Added data structures for receiving webhook HTTP requests from Nation Builder in .NET WCF services.
 </releaseNotes>
