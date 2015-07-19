@@ -21,6 +21,29 @@ namespace NationBuilderAPIv1UnitTests.V1
             }
         }
 
+        // This is rather slow.  Enable when needed.
+        //[TestMethod]
+        public void ParseAllPeople()
+        {
+            using (var session = new NationBuilderSession(TestNationSlug, TestNationAccessToken))
+            {
+                bool parsedCouldVote = false;
+
+                foreach (var person in session.GetPeopleResults())
+                {
+                    var personResponse = session.ShowPerson(person.id.Value);
+
+                    Assert.IsTrue(personResponse.person.id.HasValue);
+                    if (personResponse.person.could_vote_status.HasValue)
+                    {
+                        parsedCouldVote = true;
+                    }
+                }
+
+                System.Diagnostics.Trace.WriteLine("ParsedCouldVote: " + parsedCouldVote);
+            }
+        }
+
         [TestMethod]
         public void PersonMe()
         {

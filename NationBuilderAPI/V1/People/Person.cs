@@ -1168,7 +1168,15 @@ namespace NationBuilderAPI.V1
             first_recruited_at = Serialization.NullableDateTimeOffsetDeserialize(first_recruited_at_SerializationForm);
             first_supporter_at = Serialization.NullableDateTimeOffsetDeserialize(first_supporter_at_SerializationForm);
             first_volunteer_at = Serialization.NullableDateTimeOffsetDeserialize(first_volunteer_at_SerializationForm);
-            last_contacted_at = Serialization.NullableDateTimeOffsetDeserialize(last_contacted_at_SerializationForm);
+            // The Nation Builder service can return an out-of-range date-time, if it is improperly set on the client side:
+            try
+            {
+                last_contacted_at = Serialization.NullableDateTimeOffsetDeserialize(last_contacted_at_SerializationForm);
+            }
+            catch (System.FormatException)
+            {
+                last_contacted_at = null;
+            }
             last_donated_at = Serialization.NullableDateTimeOffsetDeserialize(last_donated_at_SerializationForm);
             last_fundraised_at = Serialization.NullableDateTimeOffsetDeserialize(last_fundraised_at_SerializationForm);
             last_invoice_at = Serialization.NullableDateTimeOffsetDeserialize(last_invoice_at_SerializationForm);

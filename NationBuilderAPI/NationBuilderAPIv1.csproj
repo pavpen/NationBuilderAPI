@@ -42,6 +42,12 @@
   <ItemGroup>
     <Compile Include="V1\CommonResources\Exceptions.cs" />
     <Compile Include="V1\CommonResources\RemoteException.cs" />
+    <Compile Include="V1\Contacts\Contact.cs" />
+    <Compile Include="V1\Contacts\ContactMethod.cs" />
+    <Compile Include="V1\Contacts\ContactResponse.cs" />
+    <Compile Include="V1\Contacts\ContactStatus.cs" />
+    <Compile Include="V1\Contacts\ContactType.cs" />
+    <Compile Include="V1\Contacts\ContactTypeResponse.cs" />
     <Compile Include="V1\HelperClasses\MemberwiseCloneableComparable.cs" />
     <Compile Include="V1\HelperClasses\Serialization.cs" />
     <Compile Include="V1\Donations\Donation.cs" />
@@ -58,6 +64,7 @@
     <Compile Include="V1\People\AbbreviatedPersonResponse.cs" />
     <Compile Include="V1\People\PersonTransportObject.cs" />
     <Compile Include="V1\People\RegisterResponse.cs" />
+    <Compile Include="V1\Session\Contacts.cs" />
     <Compile Include="V1\Session\Donations.cs" />
     <Compile Include="V1\Session\Lists.cs" />
     <Compile Include="V1\Session\NationBuilderHttpTransport.cs" />
