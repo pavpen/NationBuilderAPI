@@ -2,15 +2,37 @@
 <package >
   <metadata>
     <id>NationBuilderAPI</id>
-    <version>1.1.0</version>
-    <title>Nation Builder API v.1.1 .NET Wrapper</title>
+    <version>1.2.0</version>
+    <title>Nation Builder API v.1.2 .NET Wrapper</title>
     <authors>Pavel M. Penev &lt;pavpen@gmail.com&gt;</authors>
     <owners>Pavel M. Penev</owners>
     <licenseUrl>https://github.com/pavpen/NationBuilderAPI/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/pavpen/NationBuilderAPI</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A .NET wrapper for Nation Builder's HTTP API (http://nationbuilder.com/api_documentation).</description>
-    <releaseNotes>This is an alpha pre-release. It wraps only people, donations, and webhooks.
+    <releaseNotes>This is an alpha pre-release. It wraps only people (people, tags, lists, contacts), donations, and webhooks.
+
+Changes since v. 1.1.0:
+
+# Improvements
+
+* Added remote exception marshalling.
+
+* Added a `FireWebhooks` property to Nation Builder sessions.
+
+* Switched object IDs to `long`.
+
+
+# Bug Fixes
+
+* Fixed URI component encoding, fixed URL parameter order in ShowPersonWithExternalId().
+
+
+# Development Improvements
+
+* Added unit tests.
+
+
 
 Changes since v. 1.0.1:
 
