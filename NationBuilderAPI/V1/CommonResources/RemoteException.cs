@@ -31,6 +31,9 @@ namespace NationBuilderAPI.V1
         [DataMember]
         public string error_description;
 
+        [DataMember]
+        public string[] validation_errors;
+
 
         /// <summary>
         /// Create a shallow clone of this object.

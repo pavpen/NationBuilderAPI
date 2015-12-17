@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Text;
+
+using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
@@ -17,7 +18,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("donations"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Donation>>(req);
 
             return res;
@@ -55,7 +56,7 @@ namespace NationBuilderAPI.V1
         public Donation CreateDonation(Donation donation)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("donations");
-            HttpWebRequest req = MakeHttpPostRequest<DonationTransportObject>(reqUrlBuilder, new DonationTransportObject() { donation = donation });
+            var req = MakeHttpPostRequest<DonationTransportObject>(reqUrlBuilder, new DonationTransportObject() { donation = donation });
             DonationTransportObject res = DeserializeHttpResponse<DonationTransportObject>(req);
 
             return res.donation;
@@ -72,7 +73,7 @@ namespace NationBuilderAPI.V1
         public Donation UpdateDonation(long id, Donation donation)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("donations/", id.ToString());
-            HttpWebRequest req = MakeHttpPostRequest<DonationTransportObject>(reqUrlBuilder, new DonationTransportObject() { donation = donation }, "PUT");
+            var req = MakeHttpPostRequest<DonationTransportObject>(reqUrlBuilder, new DonationTransportObject() { donation = donation }, "PUT");
             DonationTransportObject res = DeserializeHttpResponse<DonationTransportObject>(req);
 
             return res.donation;
@@ -85,7 +86,7 @@ namespace NationBuilderAPI.V1
         public void DestroyDonation(long id)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("donations/", id.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
+            var req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
 
             ReceiveVoidHttpResponse(req);
         }

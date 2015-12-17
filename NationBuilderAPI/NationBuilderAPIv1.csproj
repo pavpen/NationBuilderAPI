@@ -51,6 +51,8 @@
     <Compile Include="V1\HelperClasses\MemberwiseCloneableComparable.cs" />
     <Compile Include="V1\HelperClasses\Serialization.cs" />
     <Compile Include="V1\Donations\Donation.cs" />
+    <Compile Include="V1\Http\HttpMethodNames.cs" />
+    <Compile Include="V1\Http\NationBuilderWebRequest.cs" />
     <Compile Include="V1\Lists\List.cs" />
     <Compile Include="V1\Lists\ListPeopleTransportObject.cs" />
     <Compile Include="V1\Lists\ListResponse.cs" />
@@ -67,7 +69,7 @@
     <Compile Include="V1\Session\Contacts.cs" />
     <Compile Include="V1\Session\Donations.cs" />
     <Compile Include="V1\Session\Lists.cs" />
-    <Compile Include="V1\Session\NationBuilderHttpTransport.cs" />
+    <Compile Include="V1\Http\NationBuilderHttpTransport.cs" />
     <Compile Include="V1\CommonResources\Address.cs" />
     <Compile Include="V1\Session\NationBuilderSession.cs" />
     <Compile Include="V1\People\PersonResponse.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="V1\Session\PeopleTags.cs" />
     <Compile Include="V1\Session\Webhooks.cs" />
     <Compile Include="V1\People\AbbreviatedPerson.cs" />
+    <Compile Include="V1\Smtp\EmailAddress.cs" />
     <Compile Include="V1\Webhooks\V4\DonationWebhookPayload.cs" />
     <Compile Include="V1\Webhooks\V4\WebhookContent.cs" />
     <Compile Include="V1\Webhooks\V4\PersonWebhookPayload.cs" />

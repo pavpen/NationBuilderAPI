@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 
 using NationBuilderAPI.V1.HelperClasses;
+using NationBuilderAPI.V1.Smtp;
 
 namespace NationBuilderAPI.V1
 {
@@ -1205,6 +1206,134 @@ namespace NationBuilderAPI.V1
         public bool Equals(Person comparand)
         {
             return Equals((object)comparand);
+        }
+
+        /// <summary>
+        /// Returns the Nation Builder person e-mail ID of a given e-mail, or <c>null</c> if there is no such e-mail associated
+        /// with the person in Nation Builder.
+        /// 
+        /// Nation Builder person objects have properties <c>email1</c>, <c>email2</c>, <c>email3</c>, and <c>email4</c>.  The
+        /// corresponding IDs of these properties are <c>1</c>, <c>2</c>, <c>3</c>, <c>4</c>.
+        /// 
+        /// This method finds which of these properties contains a given e-mail.
+        /// </summary>
+        /// <param name="email">The e-mail to look for.</param>
+        /// <returns>E-mail address ID of the given e-mail, or <c>null</c> if no such e-mail was found.</returns>
+        public string GetEmailId(string email)
+        {
+            if (null != email1 && EmailAddress.AreEqual(email, email1))
+            {
+                return "1";
+            }
+            if (null != email2 && EmailAddress.AreEqual(email, email2))
+            {
+                return "2";
+            }
+            if (null != email3 && EmailAddress.AreEqual(email, email3))
+            {
+                return "3";
+            }
+            if (null != email4 && EmailAddress.AreEqual(email, email4))
+            {
+                return "4";
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the Nation Builder person e-mail ID of an empty e-mail slot, or <c>null</c> if all slots are occupied.
+        /// 
+        /// Nation Builder person objects have properties <c>email1</c>, <c>email2</c>, <c>email3</c>, and <c>email4</c>.  The
+        /// corresponding IDs of these properties are <c>1</c>, <c>2</c>, <c>3</c>, <c>4</c>.
+        /// 
+        /// This method finds which of these properties is empty.
+        /// </summary>
+        /// <returns>E-mail address ID of an empty e-mail slot, or <c>null</c> if no slot is empty.</returns>
+        public string FindEmptyEmailSlotId()
+        {
+            if (String.IsNullOrWhiteSpace(email1))
+            {
+                return "1";
+            }
+            if (String.IsNullOrWhiteSpace(email2))
+            {
+                return "2";
+            }
+            if (String.IsNullOrWhiteSpace(email3))
+            {
+                return "3";
+            }
+            if (String.IsNullOrWhiteSpace(email4))
+            {
+                return "4";
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the Nation Builder person e-mail ID of e-mail slot marked as containing a bad e-mail, or <c>null</c> if no
+        /// such slot is found.
+        /// 
+        /// Nation Builder person objects have properties <c>email1</c>, <c>email2</c>, <c>email3</c>, and <c>email4</c>.  The
+        /// corresponding IDs of these properties are <c>1</c>, <c>2</c>, <c>3</c>, <c>4</c>.
+        /// 
+        /// This method finds which of these properties contains an e-mail marked bad.
+        /// </summary>
+        /// <param name="self">The Nation Builder person object.</param>
+        /// <returns>E-mail address ID of e-mail slot containing a bad e-mail, or <c>null</c> if no slot exists.</returns>
+        public string FindBadEmailSlotId()
+        {
+            if (email4_is_bad)
+            {
+                return "4";
+            }
+            if (email3_is_bad)
+            {
+                return "3";
+            }
+            if (email2_is_bad)
+            {
+                return "2";
+            }
+            if (email1_is_bad)
+            {
+                return "1";
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Sets a Nation Builder person's primary e-mail.
+        /// 
+        /// If the person object already contains the given e-mail address, it is made primary.  Otherwise, this method
+        /// looks for an empty e-mail slot to assign the new primary e-mail to.  If no such slot exists, this method looks
+        /// for a slot containing an e-mail marked bad to replace it.  If such slot is not found either, this method replaces
+        /// the current primary e-mail.
+        /// </summary>
+        /// <param name="email">The new primary e-mail.</param>
+        /// <returns>The ID of the slot in whch the primary e-mail was stored.</returns>
+        public string SetPrimaryEmail(string email)
+        {
+            Type personType = typeof(Person);
+            string emailId = this.GetEmailId(email);
+
+            if (null == emailId)
+            {
+                emailId = this.FindEmptyEmailSlotId() ?? this.FindBadEmailSlotId() ?? this.primary_email_id ?? "4";
+
+                personType.GetProperty("email" + emailId).SetValue(this, email);
+                personType.GetProperty("email" + emailId + "_is_bad").SetValue(this, false);
+                this.primary_email_id = emailId;
+            }
+            else
+            {
+                this.primary_email_id = emailId;
+            }
+
+            return emailId;
         }
     }
 }

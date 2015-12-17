@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 
 using NationBuilderAPI.V1.HelperClasses;
+using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {

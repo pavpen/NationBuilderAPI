@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Text;
+
+using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
@@ -46,8 +47,7 @@ namespace NationBuilderAPI.V1
             }
 
             var reqUrlBuilder = MakeRequestUrlBuilderFromUnauthenticatedPath(resultsPage.next);
-
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
 
             return DeserializeHttpResponse<ResultsPageResponse<ResultType>>(req);
         }
@@ -66,8 +66,7 @@ namespace NationBuilderAPI.V1
             }
 
             var reqUrlBuilder = MakeRequestUrlBuilderFromUnauthenticatedPath(resultsPage.prev);
-
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
 
             return DeserializeHttpResponse<ResultsPageResponse<ResultType>>(req);
         }

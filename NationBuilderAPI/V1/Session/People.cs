@@ -4,6 +4,8 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 
+using NationBuilderAPI.V1.Http;
+
 namespace NationBuilderAPI.V1
 {
     public partial class NationBuilderSession
@@ -19,7 +21,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("people"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<AbbreviatedPerson>>(req);
 
             return res;
@@ -53,7 +55,7 @@ namespace NationBuilderAPI.V1
                 reqUrlBuilder = RequestUrlBuilderAppendQuery(reqUrlBuilder, "&id_type=", idType.ToString());
             }
 
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
 
             return res;
@@ -71,7 +73,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", WebUtility.UrlEncode(externalId));
             reqUrlBuilder = RequestUrlBuilderAppendQuery(reqUrlBuilder, "&id_type=external");
 
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
 
             return res;
@@ -103,7 +105,7 @@ namespace NationBuilderAPI.V1
                 MakeRequestUrlBuilder("people/match"),
                 MethodBase.GetCurrentMethod().GetParameters(),
                 email, first_name, last_name, phone, mobile);
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             AbbreviatedPersonResponse res = DeserializeHttpResponse<AbbreviatedPersonResponse>(req);
 
             return res;
@@ -155,7 +157,7 @@ namespace NationBuilderAPI.V1
                 county_file_id, state_file_id, datatrust_id, dw_id.HasValue ? dw_id.ToString() : null, media_market_id,
                 membership_level_id, ngp_id, pf_strat_id, van_id, salesforce_id,
                 rnc_id, rnc_regid, external_id, limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<AbbreviatedPerson>>(req);
 
             return res;
@@ -217,7 +219,7 @@ namespace NationBuilderAPI.V1
                 MakeRequestUrlBuilder("people/nearby"),
                 MethodBase.GetCurrentMethod().GetParameters(),
                 location, distance.ToString(), limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
 
             return res;
@@ -250,7 +252,7 @@ namespace NationBuilderAPI.V1
         public PersonResponse CreatePerson(Person person)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people");
-            HttpWebRequest req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person });
+            var req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person });
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req, HttpStatusCode.Created);
 
             return res;
@@ -267,7 +269,7 @@ namespace NationBuilderAPI.V1
         public PersonResponse UpdatePerson(long id, Person person)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", id.ToString());
-            HttpWebRequest req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person }, HttpMethodNames.Put);
+            var req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person }, HttpMethodNames.Put);
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
 
             return res;
@@ -282,7 +284,7 @@ namespace NationBuilderAPI.V1
         public PersonResponse PushPerson(Person person)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/push");
-            HttpWebRequest req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person }, HttpMethodNames.Put);
+            var req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person }, HttpMethodNames.Put);
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
 
             return res;
@@ -296,7 +298,7 @@ namespace NationBuilderAPI.V1
         public void DestroyPerson(long id)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", id.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
+            var req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
 
             ReceiveVoidHttpResponse(req);
         }
@@ -309,7 +311,7 @@ namespace NationBuilderAPI.V1
         public RegisterResponse RegisterPerson(long id)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", id.ToString(), "/register");
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             RegisterResponse res = DeserializeHttpResponse<RegisterResponse>(req);
 
             return res;
@@ -322,7 +324,7 @@ namespace NationBuilderAPI.V1
         public PersonResponse PersonMe()
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/me");
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
 
             return res;

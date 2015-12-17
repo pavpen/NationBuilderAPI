@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NationBuilderAPI</id>
+    <version>1.2.1</version>
+    <title>Nation Builder API v.1 .NET Wrapper</title>
+    <authors>Pavel M. Penev &lt;pavpen@gmail.com&gt;</authors>
+    <owners>Pavel M. Penev</owners>
+    <licenseUrl>https://github.com/pavpen/NationBuilderAPI/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/pavpen/NationBuilderAPI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A .NET wrapper for Nation Builder's HTTP API (http://nationbuilder.com/api_documentation).</description>
+    <releaseNotes>This is an alpha pre-release. It wraps only people (people, tags, lists, contacts), donations, and webhooks.
+
+Changes since v. 1.2.0:
+======================
+
+## Improvements
+
+* Added convenience methods for working with a person's e-mail IDs.
+
+* Added deserialization of `validation_errors` in Nation Builder remote exceptions.
+
+* Added a wrapper around `HttpWebRequest`, which now records all data sent to Nation Builder, and made it available in
+  `NationBuilderRemoteException`.
+
+
+
+Changes since v. 1.1.0:
+======================
+
+## Improvements
+
+* Added support for people lists, tags, and contacts.
+
+* Added remote exception marshalling.
+
+* Added a `FireWebhooks` property to Nation Builder sessions.
+
+* Switched object IDs to `long`.
+
+
+## Bug Fixes
+
+* Fixed URI component encoding, fixed URL parameter order in ShowPersonWithExternalId().
+
+
+## Development Improvements
+
+* Added unit tests.
+
+
+
+Changes since v. 1.0.1:
+======================
+
+## Improvements
+
+* Switched to new paging API.  There are now iterator versions of methods that return query results.
+
+* Switched from `DateTime` to `DateTimeOffset` for data fields that specify a point in time.
+
+* All client data structures are now AutoSerializable, and clone-able.
+
+* NationBuilderSession is now IDisposable.
+
+* Added NationBuilderSession.ShowPersonWithExternalId(string).
+
+
+## Bug Fixes
+
+* NationBuilderSession.UpdatePerson(): Fixed expected HTTP response status, so you don't get an exception.
+
+* Fixed AbbreviatedPerson.birthdate parsin format.
+
+* Changed Person.last_call_id's type from `DateTime?` to `long?`.
+
+* Changed Person.could_vote_status's type from `bool?` to `int?`.  (Inaccurate Nation Builder documentation.)
+
+* Changed Person.twitter_location's type from `Address` to `string`.  (Inaccurate Nation Builder documentation.)
+
+* Changed Donation.merchant_account_id's type from `long` to `long?`.
+
+
+
+Changes since v. 1.0.0:
+======================
+
+* Added data structures for receiving webhook HTTP requests from Nation Builder in .NET WCF services.
+</releaseNotes>
+    <copyright>Copyright 2014-2015 Pavel M. Penev.</copyright>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 
+using NationBuilderAPI.V1.Http;
+
 namespace NationBuilderAPI.V1
 {
     /// <summary>
@@ -20,12 +22,29 @@ namespace NationBuilderAPI.V1
     {
         public string ExceptionCode;
         public HttpStatusCode HttpStatusCode;
+        public RemoteException RemoteException;
+        public NationBuilderWebRequest NationBuilderRequest;
 
-        public NationBuilderRemoteException(HttpStatusCode httpStatusCode, string exceptionCode, string message, Exception innerException = null)
-            : base(message, innerException)
+        public NationBuilderRemoteException(HttpStatusCode httpStatusCode,
+            RemoteException remoteException, NationBuilderWebRequest nationBuilderRequest, Exception innerException = null)
+            : base(GetMessage(remoteException), innerException)
         {
             this.HttpStatusCode = httpStatusCode;
-            this.ExceptionCode = exceptionCode;
+            this.ExceptionCode = null == remoteException.code ? remoteException.error : remoteException.code;
+            this.RemoteException = remoteException;
+            this.NationBuilderRequest = nationBuilderRequest;
+        }
+
+        private static string GetMessage(RemoteException remoteException)
+        {
+            string message = null == remoteException.message ? remoteException.error_description : remoteException.message;
+
+            if (null != remoteException.validation_errors)
+            {
+                message += " Validation errors: " + String.Join("; ", remoteException.validation_errors) + ".";
+            }
+
+            return message;
         }
     }
 }

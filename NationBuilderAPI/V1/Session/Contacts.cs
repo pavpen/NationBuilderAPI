@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Reflection;
 using System.Text;
+
+using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
@@ -19,7 +20,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("people/", personId.ToString(), "/contacts"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Contact>>(req);
 
             return res;
@@ -47,7 +48,7 @@ namespace NationBuilderAPI.V1
         public ContactResponse CreateContactToPerson(long personId, Contact contact)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", personId.ToString(), "/contacts");
-            HttpWebRequest req = MakeHttpPostRequest(reqUrlBuilder, new ContactResponse { contact = contact });
+            var req = MakeHttpPostRequest(reqUrlBuilder, new ContactResponse { contact = contact });
             var res = DeserializeHttpResponse<ContactResponse>(req);
 
             return res;
@@ -63,7 +64,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("settings/contact_types"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<ContactType>>(req);
 
             return res;
@@ -89,7 +90,7 @@ namespace NationBuilderAPI.V1
         public ContactTypeResponse CreateContactType(ContactType value)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("settings/contact_types");
-            HttpWebRequest req = MakeHttpPostRequest(reqUrlBuilder, new ContactTypeResponse { contact_type = value });
+            var req = MakeHttpPostRequest(reqUrlBuilder, new ContactTypeResponse { contact_type = value });
             var res = DeserializeHttpResponse<ContactTypeResponse>(req);
 
             return res;
@@ -106,7 +107,7 @@ namespace NationBuilderAPI.V1
         public ContactTypeResponse UpdateContactType(long id, ContactType value)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("settings/contact_types/", id.ToString());
-            HttpWebRequest req = MakeHttpPostRequest(reqUrlBuilder, new ContactTypeResponse { contact_type = value }, HttpMethodNames.Put);
+            var req = MakeHttpPostRequest(reqUrlBuilder, new ContactTypeResponse { contact_type = value }, HttpMethodNames.Put);
             var res = DeserializeHttpResponse<ContactTypeResponse>(req);
 
             return res;
@@ -119,7 +120,7 @@ namespace NationBuilderAPI.V1
         public void DestroyContactType(long id)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("settings/contact_types/", id.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
+            var req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
 
             ReceiveVoidHttpResponse(req);
         }
@@ -134,7 +135,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("settings/contact_methods"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<ContactMethod>>(req);
 
             return res;
@@ -160,7 +161,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("settings/contact_statuses"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<ContactStatus>>(req);
 
             return res;

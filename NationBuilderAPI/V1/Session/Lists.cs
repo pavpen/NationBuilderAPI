@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
+using NationBuilderAPI.V1.Http;
+
 namespace NationBuilderAPI.V1
 {
     public partial class NationBuilderSession
@@ -17,7 +19,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
               MakeRequestUrlBuilder("lists"),
               "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<List>>(req);
 
             return res;
@@ -44,7 +46,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("lists/", listId.ToString(), "/people"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
 
             return res;
@@ -73,7 +75,7 @@ namespace NationBuilderAPI.V1
         public ListResponse CreateList(List value)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("lists");
-            HttpWebRequest req = MakeHttpPostRequest<ListTransportObject>(reqUrlBuilder, new ListTransportObject() { list = value });
+            var req = MakeHttpPostRequest<ListTransportObject>(reqUrlBuilder, new ListTransportObject() { list = value });
             ListResponse res = DeserializeHttpResponse<ListResponse>(req);
 
             return res;
@@ -135,7 +137,7 @@ namespace NationBuilderAPI.V1
         public ListResponse UpdateList(long id, List value)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("lists/", id.ToString());
-            HttpWebRequest req = MakeHttpPostRequest<ListTransportObject>(reqUrlBuilder, new ListTransportObject() { list = value }, HttpMethodNames.Put);
+            var req = MakeHttpPostRequest<ListTransportObject>(reqUrlBuilder, new ListTransportObject() { list = value }, HttpMethodNames.Put);
             ListResponse res = DeserializeHttpResponse<ListResponse>(req);
 
             return res;
@@ -148,7 +150,7 @@ namespace NationBuilderAPI.V1
         public void DestroyList(long id)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("lists/", id.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
+            var req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
 
             ReceiveVoidHttpResponse(req);
         }
@@ -165,7 +167,7 @@ namespace NationBuilderAPI.V1
         public void AddPeopleToList(long listId, List<long> peopleIds)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("lists/", listId.ToString(), "/people");
-            HttpWebRequest req = MakeHttpPostRequest(reqUrlBuilder, new ListPeopleTransportObject { people_ids = peopleIds });
+            var req = MakeHttpPostRequest(reqUrlBuilder, new ListPeopleTransportObject { people_ids = peopleIds });
             
             ReceiveVoidHttpResponse(req);
         }
@@ -184,7 +186,7 @@ namespace NationBuilderAPI.V1
         public void DeletePeopleFromList(long listId, List<long> peopleIds)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("lists/", listId.ToString(), "/people");
-            HttpWebRequest req = MakeHttpPostRequest(reqUrlBuilder, new ListPeopleTransportObject { people_ids = peopleIds }, HttpMethodNames.Delete);
+            var req = MakeHttpPostRequest(reqUrlBuilder, new ListPeopleTransportObject { people_ids = peopleIds }, HttpMethodNames.Delete);
             
             ReceiveVoidHttpResponse(req);
         }
@@ -200,7 +202,7 @@ namespace NationBuilderAPI.V1
         public void AddTagToPeopleInList(long listId, string tagName)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("lists/", listId.ToString(), "/tag/", Uri.EscapeDataString(tagName));
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Post);
+            var req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Post);
 
             ReceiveVoidHttpResponse(req);
         }
@@ -216,7 +218,7 @@ namespace NationBuilderAPI.V1
         public void RemoveTagFromPeopleInList(long listId, string tagName)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("lists/", listId.ToString(), "/tag/", Uri.EscapeDataString(tagName));
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
+            var req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
 
             ReceiveVoidHttpResponse(req);
         }

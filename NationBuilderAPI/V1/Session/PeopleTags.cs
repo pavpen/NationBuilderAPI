@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Text;
+
+using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
@@ -17,7 +18,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("tags"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Tag>>(req);
 
             return res;
@@ -46,7 +47,7 @@ namespace NationBuilderAPI.V1
                 // requires spaces to be encoded as '%20', and not '+'.
                 MakeRequestUrlBuilder("tags/", Uri.EscapeDataString(tagName), "/people"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
 
             return res;

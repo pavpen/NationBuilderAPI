@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
+using NationBuilderAPI.V1.Http;
+
 namespace NationBuilderAPI.V1
 {
-    public partial class NationBuilderSession : NationBuilderHttpTransport
+    public partial class NationBuilderSession : Http.NationBuilderHttpTransport
     {
         /// <summary>
         /// Returns a paginated list of the webhooks the nation has already registered with this endpoint.
@@ -17,7 +19,7 @@ namespace NationBuilderAPI.V1
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("webhooks"),
                 "&limit=", limit.ToString());
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<ResultsPageResponse<Webhook>>(req);
 
             return res;
@@ -41,7 +43,7 @@ namespace NationBuilderAPI.V1
         public Webhook ShowWebhook(string id)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks/", WebUtility.UrlEncode(id));
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder);
+            var req = MakeHttpRequest(reqUrlBuilder);
             var res = DeserializeHttpResponse<WebhookTransportObject>(req);
 
             return res.webhook;
@@ -55,7 +57,7 @@ namespace NationBuilderAPI.V1
         public Webhook CreateWebhook(Webhook webhook)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks");
-            HttpWebRequest req = MakeHttpPostRequest<WebhookTransportObject>(reqUrlBuilder, new WebhookTransportObject() { webhook = webhook });
+            var req = MakeHttpPostRequest<WebhookTransportObject>(reqUrlBuilder, new WebhookTransportObject() { webhook = webhook });
             var res = DeserializeHttpResponse<WebhookTransportObject>(req);
 
             return res.webhook;
@@ -68,7 +70,7 @@ namespace NationBuilderAPI.V1
         public void DestroyWebhook(string webhookId)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks/", webhookId);
-            HttpWebRequest req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
+            var req = MakeHttpRequest(reqUrlBuilder, HttpMethodNames.Delete);
 
             ReceiveVoidHttpResponse(req);
         }

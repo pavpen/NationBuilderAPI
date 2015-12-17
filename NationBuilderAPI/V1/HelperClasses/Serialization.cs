@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
+using NationBuilderAPI.V1.Http;
+
 namespace NationBuilderAPI.V1.HelperClasses
 {
     static class Serialization
