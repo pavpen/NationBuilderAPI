@@ -176,8 +176,14 @@ namespace NationBuilderAPI.V1.Http
             }
             catch (WebException exc)
             {
-                // Marshall Nation Builder exceptions back:
                 response = (HttpWebResponse)exc.Response;
+                
+                if (null == response)
+                {
+                    throw; // unrecognized exceptions back.
+                }
+
+                // Marshall Nation Builder exceptions back:
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.BadRequest:
@@ -188,7 +194,7 @@ namespace NationBuilderAPI.V1.Http
                 }
 
                 // Throw unrecognized exceptions back:
-                throw exc;
+                throw;
             }
 
             return response;
