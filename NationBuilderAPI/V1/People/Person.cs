@@ -1242,6 +1242,46 @@ namespace NationBuilderAPI.V1
         }
 
         /// <summary>
+        /// Sets the e-mail in the slot with a given e-mail ID to the given value, and reselts the
+        /// corresponding "email?_is_bad" flag.
+        /// 
+        /// Nation Builder person objects have properties <c>email1</c>, <c>email2</c>, <c>email3</c>, and <c>email4</c>.  The
+        /// corresponding IDs of these properties are <c>1</c>, <c>2</c>, <c>3</c>, <c>4</c>.
+        /// 
+        /// This method can set one of these properties based on the ID specified.
+        /// </summary>
+        /// <param name="emailSlotId">ID of the e-mail slot to set.</param>
+        /// <param name="email">The e-mail to store in the given slot.</param>
+        public void SetEmailWithId(string emailSlotId, string email)
+        {
+            switch (emailSlotId)
+            {
+                case "1":
+                    email1 = email;
+                    email1_is_bad = false;
+                    break;
+
+                case "2":
+                    email2 = email;
+                    email2_is_bad = false;
+                    break;
+
+                case "3":
+                    email3 = email;
+                    email3_is_bad = false;
+                    break;
+
+                case "4":
+                    email4 = email;
+                    email4_is_bad = false;
+                    break;
+
+                default:
+                    throw new ArgumentException("Unrecognized emailSlotId: " + emailSlotId);
+            }
+        }
+
+        /// <summary>
         /// Returns the Nation Builder person e-mail ID of an empty e-mail slot, or <c>null</c> if all slots are occupied.
         /// 
         /// Nation Builder person objects have properties <c>email1</c>, <c>email2</c>, <c>email3</c>, and <c>email4</c>.  The
@@ -1317,15 +1357,13 @@ namespace NationBuilderAPI.V1
         /// <returns>The ID of the slot in whch the primary e-mail was stored.</returns>
         public string SetPrimaryEmail(string email)
         {
-            Type personType = typeof(Person);
             string emailId = this.GetEmailId(email);
 
             if (null == emailId)
             {
                 emailId = this.FindEmptyEmailSlotId() ?? this.FindBadEmailSlotId() ?? this.primary_email_id ?? "4";
 
-                personType.GetProperty("email" + emailId).SetValue(this, email);
-                personType.GetProperty("email" + emailId + "_is_bad").SetValue(this, false);
+                SetEmailWithId(emailId, email);
                 this.primary_email_id = emailId;
             }
             else
@@ -1334,6 +1372,84 @@ namespace NationBuilderAPI.V1
             }
 
             return emailId;
+        }
+
+        /// <summary>
+        /// Adds a given e-mail to one of the person's e-mail slots, if an appropriate one can be found.
+        /// 
+        /// A Nation Builder person has 4 e-email slots. Each of them has flag indicating if the e-mail in the slot is
+        /// known to be bad.
+        /// 
+        /// This method will look for the first empty slot to insert the given e-email in.  If such is not found, the
+        /// e-mail could, optionally, replace an e-mail that is known to be bad.  If such is also not found, this
+        /// method could replace an e-mail that is known to be good.
+        /// 
+        /// If the given e-mail already exists in one of the slots, this method does nothing.
+        /// </summary>
+        /// <param name="email">The e-mail to add to the person object.</param>
+        /// <param name="emailIdUsed">
+        /// Nation Builder person e-mail ID of the slot where the gevin e-mail was stored, or <c>null</c>, if no
+        /// appropriate slot was found.
+        /// </param>
+        /// <param name="replaceBad">Whether to replace a known bad e-mail, if there is no empty e-mail slot.</param>
+        /// <param name="replaceGood">Whether to replace a good e-mail, if there is no empty e-mail slot.</param>
+        /// <returns>Whether the e-mail is now in one of the person's slots.</returns>
+        public bool TryAddEmail(string email, out string emailIdUsed, bool replaceBad = false, bool replaceGood = false)
+        {
+            emailIdUsed = this.GetEmailId(email);
+
+            if (null != emailIdUsed)
+            {
+                // The given e-mail is already in one of the slots. Do nothing:
+                return true;
+            }
+
+            emailIdUsed = this.FindEmptyEmailSlotId();
+            if (null == emailIdUsed)
+            {
+                if (replaceBad)
+                {
+                    emailIdUsed = this.FindBadEmailSlotId();   
+                }
+                if (null == emailIdUsed)
+                {
+                    if (replaceGood)
+                    {
+                        emailIdUsed = "4";
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            SetEmailWithId(emailIdUsed, email);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Adds a given e-mail to one of the person's e-mail slots, if an appropriate one can be found.
+        /// 
+        /// A Nation Builder person has 4 e-email slots. Each of them has flag indicating if the e-mail in the slot is
+        /// known to be bad.
+        /// 
+        /// This method will look for the first empty slot to insert the given e-email in.  If such is not found, the
+        /// e-mail could, optionally, replace an e-mail that is known to be bad.  If such is also not found, this
+        /// method could replace an e-mail that is known to be good.
+        /// 
+        /// If the given e-mail already exists in one of the slots, this method does nothing.
+        /// </summary>
+        /// <param name="email">The e-mail to add to the person object.</param>
+        /// <param name="replaceBad">Whether to replace a known bad e-mail, if there is no empty e-mail slot.</param>
+        /// <param name="replaceGood">Whether to replace a good e-mail, if there is no empty e-mail slot.</param>
+        /// <returns>Whether the e-mail is now in one of the person's slots.</returns>
+        public bool TryAddEmail(string email, bool replaceBad = false, bool replaceGood = false)
+        {
+            string emailIdUsed;
+
+            return TryAddEmail(email, out emailIdUsed, replaceBad, replaceGood);
         }
     }
 }
