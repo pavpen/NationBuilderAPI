@@ -17,6 +17,8 @@ Changes since v. 1.2.0:
 
 ## Improvements
 
+* Made more `Person` fields nullable to avoid JSON parse errors.
+
 * Added convenience methods for working with a person's e-mail IDs.
 
 * Added deserialization of `validation_errors` in Nation Builder remote exceptions.
