@@ -65,6 +65,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings\SystemFileSettingsProvider.cs" />
+    <Compile Include="V1\Serialization\Person.cs" />
+    <Compile Include="V1\Serialization\ShowPersonResponse1.json.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShowPersonResponse1.json.resx</DependentUpon>
+    </Compile>
     <Compile Include="V1\Session\Contacts.cs" />
     <Compile Include="V1\Session\Lists.cs" />
     <Compile Include="V1\Session\NationBuilderSessionTests.cs" />
@@ -90,6 +96,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="V1\Serialization\ShowPersonResponse1.json.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShowPersonResponse1.json.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

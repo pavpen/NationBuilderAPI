@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Value" xml:space="preserve">
+    <value>{  
+   "person":{  
+      "birthdate":null,
+      "city_district":null,
+      "civicrm_id":null,
+      "county_district":null,
+      "county_file_id":null,
+      "created_at":"2016-01-14T02:15:09+11:00",
+      "datatrust_id":null,
+      "do_not_call":false,
+      "do_not_contact":false,
+      "dw_id":null,
+      "email":null,
+      "email_opt_in":true,
+      "employer":null,
+      "external_id":null,
+      "federal_district":null,
+      "fire_district":null,
+      "first_name":"Steven",
+      "has_facebook":true,
+      "id":69073,
+      "is_twitter_follower":false,
+      "is_volunteer":false,
+      "judicial_district":null,
+      "labour_region":null,
+      "last_name":"Eeyee",
+      "linkedin_id":null,
+      "mobile":null,
+      "mobile_opt_in":true,
+      "nbec_guid":null,
+      "ngp_id":null,
+      "note":null,
+      "occupation":null,
+      "party":null,
+      "pf_strat_id":null,
+      "phone":null,
+      "precinct_id":null,
+      "primary_address":null,
+      "profile_image_url_ssl":"https://graph.facebook.com/v2.2/10151950080927854/picture?height=73&amp;type=square&amp;width=73",
+      "recruiter_id":null,
+      "rnc_id":null,
+      "rnc_regid":null,
+      "salesforce_id":null,
+      "school_district":null,
+      "school_sub_district":null,
+      "sex":null,
+      "signup_type":0,
+      "state_file_id":null,
+      "state_lower_district":null,
+      "state_upper_district":null,
+      "support_level":null,
+      "supranational_district":null,
+      "tags":[  
+
+      ],
+      "twitter_id":null,
+      "twitter_name":null,
+      "updated_at":"2016-01-14T02:15:09+11:00",
+      "van_id":null,
+      "village_district":null,
+      "work_phone_number":null,
+      "active_customer_expires_at":null,
+      "active_customer_started_at":null,
+      "author":null,
+      "author_id":null,
+      "auto_import_id":null,
+      "availability":null,
+      "ballots":[  
+
+      ],
+      "banned_at":null,
+      "billing_address":null,
+      "bio":null,
+      "call_status_id":null,
+      "call_status_name":null,
+      "capital_amount_in_cents":1,
+      "children_count":0,
+      "church":null,
+      "city_sub_district":null,
+      "closed_invoices_amount_in_cents":null,
+      "closed_invoices_count":null,
+      "contact_status_id":null,
+      "contact_status_name":null,
+      "could_vote_status":null,
+      "demo":null,
+      "donations_amount_in_cents":null,
+      "donations_amount_this_cycle_in_cents":null,
+      "donations_count":null,
+      "donations_count_this_cycle":null,
+      "donations_pledged_amount_in_cents":null,
+      "donations_raised_amount_in_cents":null,
+      "donations_raised_amount_this_cycle_in_cents":null,
+      "donations_raised_count":null,
+      "donations_raised_count_this_cycle":null,
+      "donations_to_raise_amount_in_cents":null,
+      "email1":null,
+      "email1_is_bad":false,
+      "email2":null,
+      "email2_is_bad":false,
+      "email3":null,
+      "email3_is_bad":false,
+      "email4":null,
+      "email4_is_bad":false,
+      "ethnicity":null,
+      "facebook_address":null,
+      "facebook_profile_url":"http://www.facebook.com/10151950080927854",
+      "facebook_updated_at":null,
+      "facebook_username":null,
+      "fax_number":null,
+      "federal_donotcall":false,
+      "first_donated_at":null,
+      "first_fundraised_at":null,
+      "first_invoice_at":null,
+      "first_prospect_at":"2016-01-14T02:15:09+11:00",
+      "first_recruited_at":null,
+      "first_supporter_at":null,
+      "first_volunteer_at":null,
+      "full_name":"Steven Eeyee",
+      "home_address":null,
+      "import_id":null,
+      "inferred_party":null,
+      "inferred_support_level":null,
+      "invoice_payments_amount_in_cents":null,
+      "invoice_payments_referred_amount_in_cents":null,
+      "invoices_amount_in_cents":null,
+      "invoices_count":null,
+      "is_absentee_voter":null,
+      "is_active_voter":null,
+      "is_deceased":false,
+      "is_donor":false,
+      "is_dropped_from_file":null,
+      "is_early_voter":null,
+      "is_fundraiser":false,
+      "is_ignore_donation_limits":false,
+      "is_leaderboardable":true,
+      "is_mobile_bad":false,
+      "is_permanent_absentee_voter":null,
+      "is_possible_duplicate":false,
+      "is_profile_private":false,
+      "is_profile_searchable":true,
+      "is_prospect":true,
+      "is_supporter":false,
+      "is_survey_question_private":false,
+      "language":null,
+      "last_call_id":null,
+      "last_contacted_at":null,
+      "last_contacted_by":null,
+      "last_donated_at":null,
+      "last_fundraised_at":null,
+      "last_invoice_at":null,
+      "last_rule_violation_at":null,
+      "legal_name":null,
+      "locale":null,
+      "mailing_address":null,
+      "marital_status":null,
+      "media_market_name":null,
+      "meetup_address":null,
+      "membership_expires_at":null,
+      "membership_level_name":null,
+      "membership_started_at":null,
+      "middle_name":null,
+      "mobile_normalized":null,
+      "nbec_precinct_code":null,
+      "nbec_precinct":null,
+      "note_updated_at":null,
+      "outstanding_invoices_amount_in_cents":null,
+      "outstanding_invoices_count":null,
+      "overdue_invoices_count":null,
+      "page_slug":null,
+      "parent":null,
+      "parent_id":null,
+      "party_member":false,
+      "phone_normalized":null,
+      "phone_time":null,
+      "precinct_code":null,
+      "precinct_name":null,
+      "prefix":null,
+      "previous_party":null,
+      "primary_email_id":null,
+      "priority_level":null,
+      "priority_level_changed_at":null,
+      "profile_content":null,
+      "profile_content_html":null,
+      "profile_headline":null,
+      "received_capital_amount_in_cents":1,
+      "recruiter":null,
+      "recruits_count":0,
+      "registered_address":null,
+      "registered_at":null,
+      "religion":null,
+      "rule_violations_count":0,
+      "signup_sources":[  
+
+      ],
+      "spent_capital_amount_in_cents":0,
+      "submitted_address":null,
+      "subnations":[  
+
+      ],
+      "suffix":null,
+      "support_level_changed_at":null,
+      "support_probability_score":null,
+      "township":null,
+      "turnout_probability_score":null,
+      "twitter_address":null,
+      "twitter_description":null,
+      "twitter_followers_count":null,
+      "twitter_friends_count":null,
+      "twitter_location":null,
+      "twitter_login":null,
+      "twitter_updated_at":null,
+      "twitter_website":null,
+      "unsubscribed_at":null,
+      "user_submitted_address":null,
+      "username":null,
+      "voter_updated_at":null,
+      "ward":null,
+      "warnings_count":0,
+      "website":null,
+      "work_address":null,
+      "campaign_centre":null,
+      "circle_financial":null,
+      "circle_volunteer":null,
+      "do_not_ask_financial":null,
+      "driver_licence_type":null,
+      "driver_notes":null,
+      "emergency_name":null,
+      "emergency_relationship":null,
+      "first_aid_qualified":null,
+      "jobs_additional_notes":null,
+      "job_advocacy_type":null,
+      "job_advocacy_status":null,
+      "job_arts_status":null,
+      "job_arts_type":null,
+      "job_av_type":null,
+      "job_office_type":null,
+      "tws_staff":null,
+      "lead_source":null,
+      "emergency_phone":null,
+      "telemarketing_in_progress":null,
+      "tws_member":null,
+      "volunteer_status":null,
+      "lead_source_detail":null,
+      "job_catering":null,
+      "job_doorknocking":null,
+      "job_events":null,
+      "job_handyman":null,
+      "job_letterboxing":null,
+      "job_nvda":null,
+      "job_project_management":null,
+      "job_research":null,
+      "job_social_media":null,
+      "job_stalls":null,
+      "job_wilderness_trips":null,
+      "job_writing":null,
+      "vip_status":null,
+      "job_phonebanking":null,
+      "job_av_status":null,
+      "job_office_status":null
+   },
+   "precinct":null
+}</value>
+  </data>
+</root>
