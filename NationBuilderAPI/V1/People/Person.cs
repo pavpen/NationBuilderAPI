@@ -187,61 +187,61 @@ namespace NationBuilderAPI.V1
         /// Aggregate amount of all this person’s donations in cents.
         /// </summary>
         [DataMember]
-        public int donations_amount_in_cents;
+        public int? donations_amount_in_cents;
 
         /// <summary>
         /// The aggregate value of the donations this person made this cycle in cents.
         /// </summary>
         [DataMember]
-        public int donations_amount_this_cycle_in_cents;
+        public int? donations_amount_this_cycle_in_cents;
 
         /// <summary>
         /// The number of donations this person made this cycle.
         /// </summary>
         [DataMember]
-        public int donations_count_this_cycle;
+        public int? donations_count_this_cycle;
 
         /// <summary>
         /// The total number of donations made by this person.
         /// </summary>
         [DataMember]
-        public int donations_count;
+        public int? donations_count;
 
         /// <summary>
         /// The aggregate amount of the donations pledged by this person in cents.
         /// </summary>
         [DataMember]
-        public int donations_pledged_amount_in_cents;
+        public int? donations_pledged_amount_in_cents;
 
         /// <summary>
         /// The aggregate amount of the donations raised by this person in cents, including their own donations.
         /// </summary>
         [DataMember]
-        public int donations_raised_amount_in_cents;
+        public int? donations_raised_amount_in_cents;
 
         /// <summary>
         /// The aggregate value of all donations raised this cycle by this person, including their own.
         /// </summary>
         [DataMember]
-        public int donations_raised_amount_this_cycle_in_cents;
+        public int? donations_raised_amount_this_cycle_in_cents;
 
         /// <summary>
         /// The number of donations raised this cycle by this person, including their own.
         /// </summary>
         [DataMember]
-        public int donations_raised_count_this_cycle;
+        public int? donations_raised_count_this_cycle;
 
         /// <summary>
         /// The total number of donations raised.
         /// </summary>
         [DataMember]
-        public int donations_raised_count;
+        public int? donations_raised_count;
 
         /// <summary>
         /// The goal amount of donations for this person to raise in cents.
         /// </summary>
         [DataMember]
-        public int donations_to_raise_amount_in_cents;
+        public int? donations_to_raise_amount_in_cents;
 
         // this person’s ID from Catalist:
         //public string dw_id;
