@@ -22,14 +22,14 @@ namespace NationBuilderAPIv1UnitTests.V1.Serialization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ShowPersonResponse1_json {
+    internal class DeserializationTestCases {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ShowPersonResponse1_json() {
+        internal DeserializationTestCases() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace NationBuilderAPIv1UnitTests.V1.Serialization {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NationBuilderAPIv1UnitTests.V1.Serialization.ShowPersonResponse1.json", typeof(ShowPersonResponse1_json).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NationBuilderAPIv1UnitTests.V1.Serialization.DeserializationTestCases", typeof(DeserializationTestCases).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,32 @@ namespace NationBuilderAPIv1UnitTests.V1.Serialization {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///   &quot;person&quot;:{
+        ///      &quot;birthdate&quot;:null,
+        ///      &quot;city_district&quot;:&quot;&quot;,
+        ///      &quot;civicrm_id&quot;:null,
+        ///      &quot;county_district&quot;:&quot;&quot;,
+        ///      &quot;county_file_id&quot;:&quot;&quot;,
+        ///      &quot;created_at&quot;:&quot;2015-12-07T16:22:04+11:00&quot;,
+        ///      &quot;datatrust_id&quot;:null,
+        ///      &quot;do_not_call&quot;:false,
+        ///      &quot;do_not_contact&quot;:false,
+        ///      &quot;dw_id&quot;:null,
+        ///      &quot;email&quot;:&quot;paul.smith@wilderness.org.au&quot;,
+        ///      &quot;email_opt_in&quot;:true,
+        ///      &quot;employer&quot;:&quot;The Wilderness Society&quot;,
+        ///      &quot;external_id&quot;:&quot;578656&quot;,
+        ///      &quot;federal_district&quot;:&quot;&quot;,
+        ///      &quot;fire_district&quot;: [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ShowPersonResponse_withAuthorField_json {
+            get {
+                return ResourceManager.GetString("ShowPersonResponse_withAuthorField_json", resourceCulture);
             }
         }
         
@@ -82,9 +108,9 @@ namespace NationBuilderAPIv1UnitTests.V1.Serialization {
         ///      &quot;first_name&quot;:&quot;Steven&quot;,
         ///  [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Value {
+        internal static string ShowPersonResponse_withNullDonationFields_json {
             get {
-                return ResourceManager.GetString("Value", resourceCulture);
+                return ResourceManager.GetString("ShowPersonResponse_withNullDonationFields_json", resourceCulture);
             }
         }
     }
