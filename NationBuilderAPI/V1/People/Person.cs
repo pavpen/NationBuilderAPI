@@ -40,7 +40,7 @@ namespace NationBuilderAPI.V1
         /// An abbreviated person resource representing the person who created this person’s record.
         /// </summary>
         [DataMember]
-        public string author;
+        public AbbreviatedPerson author;
 
         /// <summary>
         /// The ID given to a signup when a person is auto imported.
