@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>NationBuilderAPI</id>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
     <title>Nation Builder API v.1 .NET Wrapper</title>
     <authors>Pavel M. Penev &lt;pavpen@gmail.com&gt;</authors>
     <owners>Pavel M. Penev</owners>
@@ -17,14 +17,19 @@ Changes since v. 1.2.0:
 
 ## Improvements
 
-* Made more `Person` fields nullable to avoid JSON parse errors.
-
 * Added convenience methods for working with a person's e-mail IDs.
 
 * Added deserialization of `validation_errors` in Nation Builder remote exceptions.
 
 * Added a wrapper around `HttpWebRequest`, which now records all data sent to Nation Builder, and made it available in
   `NationBuilderRemoteException`.
+  
+s
+## Bug Fixes
+
+* Made more `Person` fields nullable to fix JSON deserialization errors.
+
+* Fixed the data type of `Person.author`.
 
 
 
