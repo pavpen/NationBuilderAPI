@@ -23,8 +23,10 @@ Changes since v. 1.2.0:
 
 * Added a wrapper around `HttpWebRequest`, which now records all data sent to Nation Builder, and made it available in
   `NationBuilderRemoteException`.
+
+* Switched `Person.could_vote_status` type to `bool?`, since the API seems to have changed.
   
-s
+
 ## Bug Fixes
 
 * Made more `Person` fields nullable to fix JSON deserialization errors.
