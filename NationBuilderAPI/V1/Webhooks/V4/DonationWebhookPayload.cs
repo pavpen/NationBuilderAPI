@@ -6,9 +6,13 @@ using System.Text;
 namespace NationBuilderAPI.V1.Webhooks.V4
 {
     [DataContract]
-    public class DonationWebhookPayload
+    public class DonationWebhookPayload<DonationType>
     {
         [DataMember]
-        public Donation donation;
+        public DonationType donation;
     }
+
+    [DataContract]
+    public class DonationWebhookPayload : DonationWebhookPayload<Donation>
+    { }
 }

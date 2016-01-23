@@ -10,9 +10,13 @@ namespace NationBuilderAPI.V1.Webhooks.V4
     /// The payload structure submitted in "Person created", "Person changed", "Person contacted", "Person destroyed" webhook call-back posts.
     /// </summary>
     [DataContract]
-    public class PersonWebhookPayload
+    public class PersonWebhookPayload<WebhookPersonType>
     {
         [DataMember]
-        public WebhookPerson person;
+        public WebhookPersonType person;
     }
+
+    [DataContract]
+    public class PersonWebhookPayload : PersonWebhookPayload<WebhookPerson>
+    { }
 }
