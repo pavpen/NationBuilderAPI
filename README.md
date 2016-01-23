@@ -70,6 +70,36 @@ private bool NationBuilder_WebhookRequest_CheckAccess<PayloadT>(
 ```
 
 
+### Use Custom Fields
+
+```C#
+[DataContract]
+class CustomPerson : Person
+{
+    [DataMember]
+    double height;
+}
+
+[DataContract]
+class CustomDonation : Donation
+{
+    [DataMember]
+    string in_memory_of;
+}
+
+
+public void UseCustomFields()
+{
+    using (var session = new NationBuilderSession<CustomPerson, CustomDonation>(nationSlug, nationAccessToken))
+    {
+        var shownPersonResponse = session.ShowPerson("123");
+        CustomPerson shownPerson = shownPersonResponse.person;
+         // . . .
+    }
+}
+```
+
+
 License
 -------
 
