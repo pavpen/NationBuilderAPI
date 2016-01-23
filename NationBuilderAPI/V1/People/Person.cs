@@ -152,15 +152,10 @@ namespace NationBuilderAPI.V1
         public string contact_status_name;
 
         /// <summary>
-        /// Nullable int indicating if this person could vote in an election or not, derived from their election-related IDs.
-        /// 
-        /// Nation Builder's API page <http://nationbuilder.com/people_api> says:
-        /// "Boolean indicating if this person could vote in an election or not, derived from their election-related IDs."
-        /// However, in their examples, and in actual server HTTP requests this value is a nullable int.  Values that have
-        /// been seen are <c>null</c>, <c>1</c>, <c>-1</c>.
+        /// Whether this person could vote in an election or not, derived from their election-related IDs.
         /// </summary>
         [DataMember]
-        public int? could_vote_status;
+        public bool? could_vote_status;
 
         // district field:
         //public string county_district;
