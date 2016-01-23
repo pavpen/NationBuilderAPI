@@ -4,9 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using NationBuilderAPI.V1;
 
-namespace NationBuilderAPIv1UnitTests.V1
+namespace NationBuilderAPIv1UnitTests.V1.Session
 {
-    public partial class NationBuilderSessionTests
+    [TestClass]
+    public class PeopleTests : NationBuilderSessionTests
     {
         [TestMethod]
         public void GetPeopleResults()

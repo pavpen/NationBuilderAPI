@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace NationBuilderAPIv1UnitTests.V1
 {
     [TestClass]
-    public partial class NationBuilderSessionTests
+    public class NationBuilderSessionTests
     {
-        string TestNationSlug;
-        string TestNationAccessToken;
+        protected string TestNationSlug;
+        protected string TestNationAccessToken;
 
         public NationBuilderSessionTests()
         {

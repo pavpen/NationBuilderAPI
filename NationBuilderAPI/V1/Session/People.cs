@@ -8,7 +8,7 @@ using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
-    public partial class NationBuilderSession
+    public partial class NationBuilderSession<PersonType, DonationType>
     {
         /// <summary>
         /// The index endpoint provides a paginated view of the people in a nation. Each person's data is abbreviated for the Index view.
@@ -47,7 +47,7 @@ namespace NationBuilderAPI.V1
         /// <param name="id">ID of the person to retrieve.</param>
         /// <param name="idType">Type of ID to use, set to <c>"external"</c> to show the person based on their external ID. Leave as <c>null</c> to use NationBuilder's ID.</param>
         /// <returns>The full person information.</returns>
-        public PersonResponse ShowPerson(long id, string idType = null)
+        public PersonResponse<PersonType> ShowPerson(long id, string idType = null)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", id.ToString());
             if (null != idType)
@@ -56,7 +56,7 @@ namespace NationBuilderAPI.V1
             }
 
             var req = MakeHttpRequest(reqUrlBuilder);
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
+            var res = DeserializeHttpResponse<PersonResponse<PersonType>>(req);
 
             return res;
         }
@@ -68,13 +68,13 @@ namespace NationBuilderAPI.V1
         /// </summary>
         /// <param name="externalId">The external ID of the person to retrieve.</param>
         /// <returns>The full person information.</returns>
-        public PersonResponse ShowPersonWithExternalId(string externalId)
+        public PersonResponse<PersonType> ShowPersonWithExternalId(string externalId)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", WebUtility.UrlEncode(externalId));
             reqUrlBuilder = RequestUrlBuilderAppendQuery(reqUrlBuilder, "&id_type=external");
 
             var req = MakeHttpRequest(reqUrlBuilder);
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
+            var res = DeserializeHttpResponse<PersonResponse<PersonType>>(req);
 
             return res;
         }
@@ -213,14 +213,14 @@ namespace NationBuilderAPI.V1
         /// <param name="distance">The radius in miles for which to include results. (Optional, default: 1 mile.)</param>
         /// <param name="limit">Number of results to show per page. (Default: 10, max: 100.)</param>
         /// <returns>The specified page of people in the specified search radius.</returns>
-        public ResultsPageResponse<Person> NearbyPeople(string location, double distance = 1.0, int limit = 10)
+        public ResultsPageResponse<PersonType> NearbyPeople(string location, double distance = 1.0, int limit = 10)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendMethodNonNullParameters(
                 MakeRequestUrlBuilder("people/nearby"),
                 MethodBase.GetCurrentMethod().GetParameters(),
                 location, distance.ToString(), limit.ToString());
             var req = MakeHttpRequest(reqUrlBuilder);
-            var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
+            var res = DeserializeHttpResponse<ResultsPageResponse<PersonType>>(req);
 
             return res;
         }
@@ -232,7 +232,7 @@ namespace NationBuilderAPI.V1
         /// <param name="distance">The radius in miles for which to include results. (optional, default: 1 mile)</param>
         /// <param name="limit">Number of results to retireve per page. (default: 100, max: 100)</param>
         /// <returns>The people in the specified search radius.</returns>
-        public IEnumerable<Person> NearbyPeopleResults(string location, double distance = 1.0, int limit = 100)
+        public IEnumerable<PersonType> NearbyPeopleResults(string location, double distance = 1.0, int limit = 100)
         {
             return AllResultsFrom(NearbyPeople(location, distance, limit));
         }
@@ -249,11 +249,11 @@ namespace NationBuilderAPI.V1
         /// If a person you create does not meet these criteria you will receive an error for a field called identity.
         /// </param>
         /// <returns>The person created.</returns>
-        public PersonResponse CreatePerson(Person person)
+        public PersonResponse<PersonType> CreatePerson(PersonType person)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people");
-            var req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person });
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req, HttpStatusCode.Created);
+            var req = MakeHttpPostRequest<PersonTransportObject<PersonType>>(reqUrlBuilder, new PersonTransportObject<PersonType>() { person = person });
+            var res = DeserializeHttpResponse<PersonResponse<PersonType>>(req, HttpStatusCode.Created);
 
             return res;
         }
@@ -266,11 +266,14 @@ namespace NationBuilderAPI.V1
         /// <param name="id">ID of the person to update.</param>
         /// <param name="person">The resource attributes of the person to change.</param>
         /// <returns>The updated person.</returns>
-        public PersonResponse UpdatePerson(long id, Person person)
+        public PersonResponse<PersonType> UpdatePerson(long id, PersonType person)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/", id.ToString());
-            var req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person }, HttpMethodNames.Put);
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
+            var req = MakeHttpPostRequest<PersonTransportObject<PersonType>>(
+                reqUrlBuilder,
+                new PersonTransportObject<PersonType>() { person = person },
+                HttpMethodNames.Put);
+            var res = DeserializeHttpResponse<PersonResponse<PersonType>>(req);
 
             return res;
         }
@@ -281,11 +284,14 @@ namespace NationBuilderAPI.V1
         /// </summary>
         /// <param name="person">The resource attributes of the person to push.</param>
         /// <returns>The new, or updated person.</returns>
-        public PersonResponse PushPerson(Person person)
+        public PersonResponse<PersonType> PushPerson(PersonType person)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/push");
-            var req = MakeHttpPostRequest<PersonTransportObject>(reqUrlBuilder, new PersonTransportObject() { person = person }, HttpMethodNames.Put);
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
+            var req = MakeHttpPostRequest<PersonTransportObject<PersonType>>(
+                reqUrlBuilder,
+                new PersonTransportObject<PersonType>() { person = person },
+                HttpMethodNames.Put);
+            var res = DeserializeHttpResponse<PersonResponse<PersonType>>(req);
 
             return res;
         }
@@ -321,11 +327,11 @@ namespace NationBuilderAPI.V1
         /// This endpoint returns the access token's resource owner's representation.
         /// </summary>
         /// <returns></returns>
-        public PersonResponse PersonMe()
+        public PersonResponse<PersonType> PersonMe()
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("people/me");
             var req = MakeHttpRequest(reqUrlBuilder);
-            PersonResponse res = DeserializeHttpResponse<PersonResponse>(req);
+            var res = DeserializeHttpResponse<PersonResponse<PersonType>>(req);
 
             return res;
         }

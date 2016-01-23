@@ -3,10 +3,12 @@ using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using NationBuilderAPI.V1;
+using NationBuilderAPIv1UnitTests.V1;
 
-namespace NationBuilderAPIv1UnitTests.V1
+namespace NationBuilderAPIv1UnitTests.V1.Session
 {
-    public partial class NationBuilderSessionTests
+    [TestClass]
+    public class PeopleTagsTests : NationBuilderSessionTests
     {
         [TestMethod]
         public void GetPeopleTagResults_GetPeopleWithTagResults()

@@ -15,13 +15,13 @@ namespace NationBuilderAPIv1UnitTests.V1.Serialization
         {
             string personJson;
             var httpTransport = new NationBuilderHttpTransport();
-            PersonResponse res;
+            PersonResponse<Person> res;
 
             personJson = DeserializationTestCases.ShowPersonResponse_withNullDonationFields_json;
-            res = httpTransport.DeserializeNationBuilderObject<PersonResponse>(personJson.ToMemoryStream());
+            res = httpTransport.DeserializeNationBuilderObject<PersonResponse<Person>>(personJson.ToMemoryStream());
 
             personJson = DeserializationTestCases.ShowPersonResponse_withAuthorField_json;
-            res = httpTransport.DeserializeNationBuilderObject<PersonResponse>(personJson.ToMemoryStream());
+            res = httpTransport.DeserializeNationBuilderObject<PersonResponse<Person>>(personJson.ToMemoryStream());
         }
     }
 }

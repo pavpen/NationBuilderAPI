@@ -6,20 +6,20 @@ using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
-    public partial class NationBuilderSession : NationBuilderHttpTransport
+    public partial class NationBuilderSession<PersonType, DonationType>
     {
         /// <summary>
         /// The index endpoint provides a paginated view of the donations in a nation.
         /// </summary>
         /// <param name="limit">Number of results to show on each page of results (max 100).</param>
         /// <returns>The requested page of results, and result information.</returns>
-        public ResultsPageResponse<Donation> GetDonations(int limit = 100)
+        public ResultsPageResponse<DonationType> GetDonations(int limit = 100)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("donations"),
                 "&limit=", limit.ToString());
             var req = MakeHttpRequest(reqUrlBuilder);
-            var res = DeserializeHttpResponse<ResultsPageResponse<Donation>>(req);
+            var res = DeserializeHttpResponse<ResultsPageResponse<DonationType>>(req);
 
             return res;
         }
@@ -29,7 +29,7 @@ namespace NationBuilderAPI.V1
         /// </summary>
         /// <param name="limit">Number of results to retrieve on each page of results (max 100).</param>
         /// <returns>All the donations in the nation.</returns>
-        public IEnumerable<Donation> GetDonationsResults(int limit = 100)
+        public IEnumerable<DonationType> GetDonationsResults(int limit = 100)
         {
             return AllResultsFrom(GetDonations(limit));
         }
@@ -53,11 +53,13 @@ namespace NationBuilderAPI.V1
         /// </summary>
         /// <param name="donation">The resource of the donation to be created.</param>
         /// <returns>The newly-created donation.</returns>
-        public Donation CreateDonation(Donation donation)
+        public DonationType CreateDonation(DonationType donation)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("donations");
-            var req = MakeHttpPostRequest<DonationTransportObject>(reqUrlBuilder, new DonationTransportObject() { donation = donation });
-            DonationTransportObject res = DeserializeHttpResponse<DonationTransportObject>(req);
+            var req = MakeHttpPostRequest<DonationTransportObject<DonationType>>(
+                reqUrlBuilder,
+                new DonationTransportObject<DonationType>() { donation = donation });
+            var res = DeserializeHttpResponse<DonationTransportObject<DonationType>>(req);
 
             return res.donation;
         }
@@ -70,11 +72,14 @@ namespace NationBuilderAPI.V1
         /// <param name="id">ID of the donation to update.</param>
         /// <param name="donation">The resource attributes of the donation to change.</param>
         /// <returns>A full representation of the updated donation.</returns>
-        public Donation UpdateDonation(long id, Donation donation)
+        public DonationType UpdateDonation(long id, DonationType donation)
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("donations/", id.ToString());
-            var req = MakeHttpPostRequest<DonationTransportObject>(reqUrlBuilder, new DonationTransportObject() { donation = donation }, "PUT");
-            DonationTransportObject res = DeserializeHttpResponse<DonationTransportObject>(req);
+            var req = MakeHttpPostRequest<DonationTransportObject<DonationType>>(
+                reqUrlBuilder,
+                new DonationTransportObject<DonationType>() { donation = donation },
+                "PUT");
+            DonationTransportObject<DonationType> res = DeserializeHttpResponse<DonationTransportObject<DonationType>>(req);
 
             return res.donation;
         }
