@@ -78,6 +78,8 @@ class CustomPerson : Person
 {
     [DataMember]
     double height;
+	
+	// . . .
 }
 
 [DataContract]
@@ -85,6 +87,8 @@ class CustomDonation : Donation
 {
     [DataMember]
     string in_memory_of;
+	
+	// . . .
 }
 
 
@@ -94,7 +98,8 @@ public void UseCustomFields()
     {
         var shownPersonResponse = session.ShowPerson("123");
         CustomPerson shownPerson = shownPersonResponse.person;
-         // . . .
+        
+		// . . .
     }
 }
 ```
