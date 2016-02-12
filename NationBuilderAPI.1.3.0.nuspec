@@ -17,6 +17,8 @@ Changes since v. 1.2.0:
 
 ## Improvements
 
+* Added alpha support for custom fields.
+
 * Added convenience methods for working with a person's e-mail IDs.
 
 * Added deserialization of `validation_errors` in Nation Builder remote exceptions.
@@ -97,7 +99,7 @@ Changes since v. 1.0.0:
 
 * Added data structures for receiving webhook HTTP requests from Nation Builder in .NET WCF services.
 </releaseNotes>
-    <copyright>Copyright 2014-2015 Pavel M. Penev.</copyright>
+    <copyright>Copyright 2014-2016 Pavel M. Penev.</copyright>
     <dependencies>
     </dependencies>
   </metadata>
