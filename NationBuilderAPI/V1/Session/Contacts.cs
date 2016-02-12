@@ -7,7 +7,7 @@ using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
-    public partial class NationBuilderSession
+    public partial class NationBuilderSession<PersonType, DonationType>
     {
         /// <summary>
         /// The index endpoint provides a paginated view of the contacts made to a person.

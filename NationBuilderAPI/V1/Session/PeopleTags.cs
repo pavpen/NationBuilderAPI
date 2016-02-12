@@ -6,7 +6,7 @@ using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
-    public partial class NationBuilderSession
+    public partial class NationBuilderSession<PersonType, DonationType>
     {
         /// <summary>
         /// Show the tags that have been used before in a nation.
@@ -40,7 +40,7 @@ namespace NationBuilderAPI.V1
         /// <param name="tagName">The tag to search by.</param>
         /// <param name="limit">Max number of results to show in one page of results. (Default: 10, max: 100.)</param>
         /// <returns>A results page of people tagged with the given tag.</returns>
-        public ResultsPageResponse<Person> GetPeopleWithTag(string tagName, int limit = 10)
+        public ResultsPageResponse<PersonType> GetPeopleWithTag(string tagName, int limit = 10)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 // <c>WebUtility.UrlEncode(tagName)</c> does not work here for .NET 4.5, since the Nation Builder service
@@ -48,7 +48,7 @@ namespace NationBuilderAPI.V1
                 MakeRequestUrlBuilder("tags/", Uri.EscapeDataString(tagName), "/people"),
                 "&limit=", limit.ToString());
             var req = MakeHttpRequest(reqUrlBuilder);
-            var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
+            var res = DeserializeHttpResponse<ResultsPageResponse<PersonType>>(req);
 
             return res;
         }
@@ -59,7 +59,7 @@ namespace NationBuilderAPI.V1
         /// <param name="tagName">The tag to search by.</param>
         /// <param name="limit">The number of result to fetch in each HTTP request.  The maximum is 100.</param>
         /// <returns>An enumeration of all the people with a given tag.</returns>
-        public IEnumerable<Person> GetPeopleWithTagResults(string tagName, int limit = 100)
+        public IEnumerable<PersonType> GetPeopleWithTagResults(string tagName, int limit = 100)
         {
             return AllResultsFrom(GetPeopleWithTag(tagName, limit));
         }

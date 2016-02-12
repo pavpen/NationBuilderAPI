@@ -8,8 +8,29 @@ namespace NationBuilderAPI.V1
 {
     /// <summary>
     /// A session object used to access a nation's API.
+    /// 
+    /// <param name="Person">
+    /// The type of <c>Person</c> objects returned by Nation Builder for the accessed nation.
+    /// 
+    /// Use this to access custom `Person` fields.
+    /// </param>
+    /// 
+    /// <param name="Donation">
+    /// The type of <c>Donation</c> objects returned by Nation Builder for the accessed nation.
+    /// 
+    /// Use this to access custom `Donation` fields.
+    /// </param>
     /// </summary>
-    public partial class NationBuilderSession : NationBuilderHttpTransport, IDisposable
+    public class NationBuilderSession : NationBuilderSession<Person, Donation>
+    {
+        public NationBuilderSession(string slug, string accessToken) : base(slug, accessToken)
+        { }
+    }
+
+    /// <summary>
+    /// A session object used to access a nation's API.
+    /// </summary>
+    public partial class NationBuilderSession<PersonType, DonationType> : NationBuilderHttpTransport, IDisposable
     {
         /// <summary>
         /// Create a new Nation Builder session for accessing a nation's API.

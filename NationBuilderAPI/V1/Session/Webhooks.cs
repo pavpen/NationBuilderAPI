@@ -7,7 +7,7 @@ using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
-    public partial class NationBuilderSession : Http.NationBuilderHttpTransport
+    public partial class NationBuilderSession<PersonType, DonationType>
     {
         /// <summary>
         /// Returns a paginated list of the webhooks the nation has already registered with this endpoint.

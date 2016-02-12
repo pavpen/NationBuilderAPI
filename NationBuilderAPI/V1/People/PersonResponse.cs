@@ -9,10 +9,10 @@ using NationBuilderAPI.V1.HelperClasses;
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class PersonResponse : MemberwiseCloneableComparable
+    public class PersonResponse<PersonType> : MemberwiseCloneableComparable
     {
         [DataMember]
-        public Person person;
+        public PersonType person;
 
         [DataMember]
         public Precinct precinct;

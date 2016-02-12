@@ -6,9 +6,9 @@ using System.Text;
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    class PersonTransportObject
+    class PersonTransportObject<PersonType>
     {
         [DataMember]
-        public Person person;
+        public PersonType person;
     }
 }

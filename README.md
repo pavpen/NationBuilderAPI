@@ -70,6 +70,56 @@ private bool NationBuilder_WebhookRequest_CheckAccess<PayloadT>(
 ```
 
 
+### Use Custom Fields
+
+```C#
+[DataContract]
+class CustomPerson : Person
+{
+    [DataMember]
+    double height;
+	
+	// . . .
+}
+
+[DataContract]
+class CustomDonation : Donation
+{
+    [DataMember]
+    string in_memory_of;
+	
+	// . . .
+}
+
+
+public void UseCustomFields()
+{
+    using (var session = new NationBuilderSession<CustomPerson, CustomDonation>(nationSlug, nationAccessToken))
+    {
+        var shownPersonResponse = session.ShowPerson("123");
+        CustomPerson shownPerson = shownPersonResponse.person;
+        
+		// . . .
+    }
+}
+```
+
+
+Migration from v. 1.2 and Earlier
+---------------------------------
+
+* Since the addition of custom fields, methods returning `PersonResponse` now take a type parameter for the
+  custom `Person` type:
+  
+```C#
+// Convert:
+NationBuilderAPI.V1.PersonResponse res;
+
+// into:
+NationBuilderAPI.V1.PersonResponse<NationBuilderAPI.V1.Person> res;
+```
+
+
 License
 -------
 

@@ -7,7 +7,7 @@ using NationBuilderAPI.V1.Http;
 
 namespace NationBuilderAPI.V1
 {
-    public partial class NationBuilderSession
+    public partial class NationBuilderSession<PersonType, DonationType>
     {
         /// <summary>
         /// The index endpoint shows a paginated list of custom lists.
@@ -41,13 +41,13 @@ namespace NationBuilderAPI.V1
         /// <param name="listId">ID of the list to get people from.</param>
         /// <param name="limit">Maximum number of results to show in one page of results. (Default: 10, max: 100.)</param>
         /// <returns>A page of <see cref="List"/>s.</returns>
-        public ResultsPageResponse<Person> GetPeopleInList(long listId, int limit = 10)
+        public ResultsPageResponse<PersonType> GetPeopleInList(long listId, int limit = 10)
         {
             StringBuilder reqUrlBuilder = RequestUrlBuilderAppendQuery(
                 MakeRequestUrlBuilder("lists/", listId.ToString(), "/people"),
                 "&limit=", limit.ToString());
             var req = MakeHttpRequest(reqUrlBuilder);
-            var res = DeserializeHttpResponse<ResultsPageResponse<Person>>(req);
+            var res = DeserializeHttpResponse<ResultsPageResponse<PersonType>>(req);
 
             return res;
         }
@@ -58,7 +58,7 @@ namespace NationBuilderAPI.V1
         /// <param name="listId">ID of the list to get people from.</param>
         /// <param name="limit">The number of result to fetch in each HTTP request.  The maximum is 100.</param>
         /// <returns>An enumeration of all the people in the given list.</returns>
-        public IEnumerable<Person> GetPeopleInListResults(long listId, int limit = 100)
+        public IEnumerable<PersonType> GetPeopleInListResults(long listId, int limit = 100)
         {
             return AllResultsFrom(GetPeopleInList(listId, limit));
         }

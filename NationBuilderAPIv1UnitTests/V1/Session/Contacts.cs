@@ -4,10 +4,12 @@ using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using NationBuilderAPI.V1;
+using NationBuilderAPIv1UnitTests.V1;
 
 namespace NationBuilderAPIv1UnitTests.V1
 {
-    public partial class NationBuilderSessionTests
+    [TestClass]
+    public class ContactsTests : NationBuilderSessionTests
     {
         [TestMethod]
         public void GetContactsToPersonResults()

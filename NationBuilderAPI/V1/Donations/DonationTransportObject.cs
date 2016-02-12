@@ -5,9 +5,9 @@ using System.Runtime.Serialization;
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    class DonationTransportObject
+    class DonationTransportObject<DonationType>
     {
         [DataMember]
-        public Donation donation;
+        public DonationType donation;
     }
 }
