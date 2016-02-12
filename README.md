@@ -105,6 +105,21 @@ public void UseCustomFields()
 ```
 
 
+Migration from v. 1.2 and Earlier
+---------------------------------
+
+* Since the addition of custom fields, methods returning `PersonResponse` now take a type parameter for the
+  custom `Person` type:
+  
+```C#
+// Convert:
+NationBuilderAPI.V1.PersonResponse res;
+
+// into:
+NationBuilderAPI.V1.PersonResponse<NationBuilderAPI.V1.Person> res;
+```
+
+
 License
 -------
 
