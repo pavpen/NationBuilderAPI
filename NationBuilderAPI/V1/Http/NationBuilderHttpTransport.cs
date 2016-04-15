@@ -188,7 +188,24 @@ namespace NationBuilderAPI.V1.Http
                 {
                     case HttpStatusCode.BadRequest:
                     case HttpStatusCode.NotFound:
-                        var exceptionInformation = DeserializeNationBuilderObject<RemoteException>(response.GetResponseStream());
+                        RemoteException exceptionInformation;
+
+                        try {
+                            exceptionInformation = DeserializeNationBuilderObject<RemoteException>(response.GetResponseStream());
+                        }
+                        catch
+                        {
+                            Stream stream = response.GetResponseStream();
+
+                            stream.Seek(0, SeekOrigin.Begin);
+                            using (var reader = new StreamReader(stream, Encoding.UTF8)) {
+                                exceptionInformation = new RemoteException()
+                                {
+                                    message = "Unknown error. See 'error_description' field for the unparsed server response.",
+                                    error_description = reader.ReadToEnd(),
+                                };
+                            }
+                        }
 
                         throw new NationBuilderRemoteException(response.StatusCode, exceptionInformation, req, exc);
                 }
