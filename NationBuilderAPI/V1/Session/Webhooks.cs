@@ -44,7 +44,7 @@ namespace NationBuilderAPI.V1
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks/", WebUtility.UrlEncode(id));
             var req = MakeHttpRequest(reqUrlBuilder);
-            var res = DeserializeHttpResponse<WebhookTransportObject>(req);
+            var res = DeserializeHttpResponse<WebhookResponse>(req);
 
             return res.webhook;
         }
@@ -58,7 +58,7 @@ namespace NationBuilderAPI.V1
         {
             StringBuilder reqUrlBuilder = MakeRequestUrlBuilder("webhooks");
             var req = MakeHttpPostRequest<WebhookTransportObject>(reqUrlBuilder, new WebhookTransportObject() { webhook = webhook });
-            var res = DeserializeHttpResponse<WebhookTransportObject>(req);
+            var res = DeserializeHttpResponse<WebhookResponse>(req);
 
             return res.webhook;
         }

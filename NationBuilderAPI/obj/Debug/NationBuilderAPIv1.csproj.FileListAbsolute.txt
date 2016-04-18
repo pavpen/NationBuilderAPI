@@ -1,0 +1,5 @@
+C:\Users\PPenev\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\bin\Debug\NationBuilderAPI.dll
+C:\Users\PPenev\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\bin\Debug\NationBuilderAPI.pdb
+C:\Users\PPenev\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPIv1.csprojResolveAssemblyReference.cache
+C:\Users\PPenev\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.dll
+C:\Users\PPenev\Documents\Visual Studio Projects\NationBuilderAPI\NationBuilderAPI\obj\Debug\NationBuilderAPI.pdb

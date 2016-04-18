@@ -59,7 +59,7 @@ namespace NationBuilderAPI.V1
             var req = MakeHttpPostRequest<DonationTransportObject<DonationType>>(
                 reqUrlBuilder,
                 new DonationTransportObject<DonationType>() { donation = donation });
-            var res = DeserializeHttpResponse<DonationTransportObject<DonationType>>(req);
+            var res = DeserializeHttpResponse<DonationResponse<DonationType>>(req);
 
             return res.donation;
         }
@@ -79,7 +79,7 @@ namespace NationBuilderAPI.V1
                 reqUrlBuilder,
                 new DonationTransportObject<DonationType>() { donation = donation },
                 "PUT");
-            DonationTransportObject<DonationType> res = DeserializeHttpResponse<DonationTransportObject<DonationType>>(req);
+            var res = DeserializeHttpResponse<DonationResponse<DonationType>>(req);
 
             return res.donation;
         }

@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Reflection;
 using System.Text;
-
+using NationBuilderAPI.V1.CommonResources;
 
 namespace NationBuilderAPI.V1.Http
 {
@@ -154,16 +154,36 @@ namespace NationBuilderAPI.V1.Http
             return (ObjectT)serializer.ReadObject(stream);
         }
 
-        protected ResponseT DeserializeHttpResponse<ResponseT>(NationBuilderWebRequest req, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
+        protected ResponseT DeserializeHttpResponse<ResponseT>
+            (NationBuilderWebRequest req, int minimumStatusCode, int maximumStatusCode)
+            where ResponseT : NationBuilderResponse
         {
             HttpWebResponse response = RequestGetResponse(req);
+            int statusCodeInt = (int)response.StatusCode;
 
-            if (response.StatusCode != expectedStatusCode)
+            if (statusCodeInt < minimumStatusCode || statusCodeInt > maximumStatusCode)
             {
                 throw new InvalidOperationException("Unexpected HTTP status code: " + response.StatusCode + "\n" + response.StatusDescription);
             }
 
-            return DeserializeNationBuilderObject<ResponseT>(response.GetResponseStream());
+            var res = DeserializeNationBuilderObject<ResponseT>(response.GetResponseStream());
+
+            res.Http = new HttpResponseInformation(response);
+
+            return res;
+        }
+
+        protected ResponseT DeserializeHttpResponse<ResponseT>
+            (NationBuilderWebRequest req, HttpStatusCode expectedStatusCode)
+            where ResponseT : NationBuilderResponse
+        {
+            return DeserializeHttpResponse<ResponseT>(req, (int)expectedStatusCode, (int)expectedStatusCode);
+        }
+
+        protected ResponseT DeserializeHttpResponse<ResponseT>(NationBuilderWebRequest req)
+            where ResponseT : NationBuilderResponse
+        {
+            return DeserializeHttpResponse<ResponseT>(req, 200, 299);
         }
 
         protected HttpWebResponse RequestGetResponse(NationBuilderWebRequest req)

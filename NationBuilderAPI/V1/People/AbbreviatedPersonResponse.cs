@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 
-using NationBuilderAPI.V1.HelperClasses;
+using NationBuilderAPI.V1.CommonResources;
 
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class AbbreviatedPersonResponse : MemberwiseCloneableComparable
+    public class AbbreviatedPersonResponse : NationBuilderResponse
     {
         [DataMember]
         public AbbreviatedPerson person;

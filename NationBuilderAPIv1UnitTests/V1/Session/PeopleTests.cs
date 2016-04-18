@@ -193,5 +193,37 @@ namespace NationBuilderAPIv1UnitTests.V1.Session
                 Assert.Fail("ShowPersonWithExternalId() did not throw an exception with the expected parameters!");
             }
         }
+
+        [TestMethod]
+        public void PushNewPerson()
+        {
+            using (var session = new NationBuilderSession(TestNationSlug, TestNationAccessToken))
+            {
+                // Create a test person object:
+                var testPerson = new Person()
+                {
+                    first_name = "Testy",
+                    last_name = "Pushy",
+                    email = "testy_pushy_me@mock.pavpendev.nb.com",
+                };
+                var newPersonResponse = session.PushPerson(testPerson);
+
+                Assert.IsTrue(newPersonResponse.person.id.HasValue);
+
+                // Ensure we are pushing a new person, rather than updating an existing one:
+                session.DestroyPerson(newPersonResponse.person.id.Value);
+
+                newPersonResponse = session.PushPerson(testPerson);
+                Assert.IsTrue(newPersonResponse.person.id.HasValue);
+                Assert.AreEqual(newPersonResponse.Http.StatusCode, HttpStatusCode.Created);
+
+                var showPersonResponse = session.ShowPerson(newPersonResponse.person.id.Value);
+
+                Assert.AreEqual(showPersonResponse.person.id, newPersonResponse.person.id);
+
+                // Remove the test person object:
+                session.DestroyPerson(newPersonResponse.person.id.Value);
+            }
+        }
     }
 }

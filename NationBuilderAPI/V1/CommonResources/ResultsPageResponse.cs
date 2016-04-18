@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-using NationBuilderAPI.V1.HelperClasses;
+using NationBuilderAPI.V1.CommonResources;
 
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class ResultsPageResponse<ResultType>:MemberwiseCloneableComparable
+    public class ResultsPageResponse<ResultType> : NationBuilderResponse
     {
         /// <summary>
         /// URI of the page of results for this query, or <c>null</c>, if this is the last page.
@@ -23,7 +22,7 @@ namespace NationBuilderAPI.V1
 
         [DataMember]
         public List<ResultType> results;
-        
+
 
 
         /// <summary>

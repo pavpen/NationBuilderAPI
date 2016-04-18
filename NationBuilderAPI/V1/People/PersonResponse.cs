@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 
-using NationBuilderAPI.V1.HelperClasses;
+using NationBuilderAPI.V1.CommonResources;
 
 namespace NationBuilderAPI.V1
 {
     [DataContract]
-    public class PersonResponse<PersonType> : MemberwiseCloneableComparable
+    public class PersonResponse<PersonType> : NationBuilderResponse
     {
         [DataMember]
         public PersonType person;

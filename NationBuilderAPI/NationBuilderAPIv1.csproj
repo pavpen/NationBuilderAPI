@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="V1\CommonResources\Exceptions.cs" />
+    <Compile Include="V1\CommonResources\HttpResponseInformation.cs" />
+    <Compile Include="V1\CommonResources\NationBuilderResponse.cs" />
     <Compile Include="V1\CommonResources\RemoteException.cs" />
     <Compile Include="V1\Contacts\Contact.cs" />
     <Compile Include="V1\Contacts\ContactMethod.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="V1\Contacts\ContactStatus.cs" />
     <Compile Include="V1\Contacts\ContactType.cs" />
     <Compile Include="V1\Contacts\ContactTypeResponse.cs" />
+    <Compile Include="V1\Donations\DonationResponse.cs" />
     <Compile Include="V1\HelperClasses\MemberwiseCloneableComparable.cs" />
     <Compile Include="V1\HelperClasses\Serialization.cs" />
     <Compile Include="V1\Donations\Donation.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="V1\Webhooks\V4\PersonWebhookPayload.cs" />
     <Compile Include="V1\Webhooks\V4\WebhookPerson.cs" />
     <Compile Include="V1\Webhooks\Webhook.cs" />
+    <Compile Include="V1\Webhooks\WebhookResponse.cs" />
     <Compile Include="V1\Webhooks\WebhookTransportObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
